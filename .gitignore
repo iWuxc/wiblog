@@ -20,5 +20,8 @@ backend
 bin
 assets/*.*
 
-#idea
+# idea
 .idea/*
+
+# go mod
+go.sum
