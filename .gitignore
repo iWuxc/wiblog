@@ -19,3 +19,6 @@ backend
 # vendor/
 bin
 assets/*.*
+
+#idea
+.idea/*
