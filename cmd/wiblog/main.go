@@ -56,7 +56,7 @@ func runHttpServer(endRun chan error) {
 	group := e.Group("/admin", wiblog.AuthFilter)
 	{
 		page.RegisterRoutesAuthz(group)
-		//admin.RegisterRoutesAuthz(group)
+		admin.RegisterRoutesAuthz(group)
 	}
 
 	address := fmt.Sprintf(":%d", conf.Conf.WiBlogApp.HTTPPort)

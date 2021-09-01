@@ -47,6 +47,11 @@ func (db *rdbms) LoadInsertAccount(ctx context.Context, acct *model.Account) (bo
 	return result.RowsAffected > 0, result.Error
 }
 
+// UpdateBlogger 更新博客
+func(db *rdbms) UpdateBlogger(ctx context.Context, fields map[string]interface{}) error {
+	return db.Model(&model.Blogger{}).Session(&gorm.Session{AllowGlobalUpdate: true}).Updates(fields).Error
+}
+
 // UpdateAccount 更新账户
 func (db *rdbms) UpdateAccount(ctx context.Context, name string, fields map[string]interface{}) error {
 	return db.Model(&model.Account{}).Where("username=?", name).Updates(fields).Error

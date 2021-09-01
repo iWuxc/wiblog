@@ -18,6 +18,8 @@ type Store interface {
 
 	// LoadInsertBlogger 读取或创建博客
 	LoadInsertBlogger(ctx context.Context, blogger *model.Blogger) (bool, error)
+	// UpdateBlogger 更新博客
+	UpdateBlogger(ctx context.Context, fields map[string]interface{}) error
 
 	// LoadInsertAccount 读取或创建用户
 	LoadInsertAccount(ctx context.Context, acct *model.Account) (bool, error)
