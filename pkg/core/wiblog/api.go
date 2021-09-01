@@ -3,7 +3,22 @@ package wiblog
 import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
+
+// @title APP Demo API
+// @version 1.0
+// @description This is a sample server celler server.
+
+// AuthFilter auth filter
+func AuthFilter(c *gin.Context) {
+	if !IsLogined(c) {
+		c.Abort()
+		c.Status(http.StatusUnauthorized)
+		c.Redirect(http.StatusFound, "/admin/login")
+		return
+	}
+}
 
 // SetLogin login user
 func SetLogin(c *gin.Context, username string) {

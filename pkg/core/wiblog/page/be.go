@@ -7,9 +7,17 @@ import (
 	htemplate "html/template"
 	"net/http"
 	"wiblog/pkg/cache"
+	"wiblog/pkg/conf"
 	"wiblog/pkg/core/wiblog"
 )
 
+// baseBEParams 页面基础参数
+func baseBEParams(c *gin.Context) gin.H {
+	return gin.H{
+		"Author": cache.Wi.Account.Username,
+		"Qiniu": conf.Conf.WiBlogApp.Qiniu,
+	}
+}
 
 // handleLoginPage 登录页面
 func handleLoginPage(c *gin.Context) {
@@ -21,10 +29,18 @@ func handleLoginPage(c *gin.Context) {
 		return
 	}
 	params := gin.H{"BTitle": cache.Wi.Blogger.BTitle}
-	//params := gin.H{"BTitle": "武晓晨"}
 	renderHTMLAdminLayout(c, "login.html", params)
 }
 
+// handleAdminProfile 个人配置中心
+func handleAdminProfile(c *gin.Context) {
+	params := baseBEParams(c)
+	params["Title"] = "个人配置 | " + cache.Wi.Blogger.BTitle
+	params["Path"] = c.Request.URL.Path
+	params["Console"] = true
+	params["Wi"] = cache.Wi
+	renderHTMLAdminLayout(c, "admin-profile", params)
+}
 
 // renderHTMLAdminLayout 渲染admin页面
 func renderHTMLAdminLayout(c *gin.Context, name string, data gin.H) {

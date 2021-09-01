@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"wiblog/pkg/conf"
+	"wiblog/pkg/core/wiblog"
 	"wiblog/pkg/core/wiblog/admin"
 	"wiblog/pkg/core/wiblog/file"
 	"wiblog/pkg/core/wiblog/page"
@@ -51,6 +52,12 @@ func runHttpServer(endRun chan error) {
 
 	// unauthz api
 	admin.RegisterRoutes(e)
+
+	group := e.Group("/admin", wiblog.AuthFilter)
+	{
+		page.RegisterRoutesAuthz(group)
+		//admin.RegisterRoutesAuthz(group)
+	}
 
 	address := fmt.Sprintf(":%d", conf.Conf.WiBlogApp.HTTPPort)
 	go func() {

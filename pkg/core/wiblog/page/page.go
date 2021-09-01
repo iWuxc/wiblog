@@ -33,3 +33,9 @@ func RegisterRoutes(e *gin.Engine) {
 	e.GET("/admin/login", handleLoginPage)
 
 }
+
+// RegisterRoutesAuthz register admin
+func RegisterRoutesAuthz(group gin.IRoutes) {
+	// console
+	group.GET("/profile", handleAdminProfile)
+}

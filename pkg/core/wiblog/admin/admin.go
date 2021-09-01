@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"context"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"net/http"
@@ -10,8 +11,14 @@ import (
 	"wiblog/tools"
 )
 
+// RegisterRoutes register routes
 func RegisterRoutes(e *gin.Engine) {
 	e.POST("/admin/login", handleAcctLogin)
+}
+
+// RegisterRoutesAuthz register routes
+func RegisterRoutesAuthz(group *gin.IRoutes) {
+
 }
 
 func handleAcctLogin(c *gin.Context) {
@@ -22,6 +29,7 @@ func handleAcctLogin(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/admin/login")
 		return
 	}
+
 
 	if cache.Wi.Account.Username != user ||
 		cache.Wi.Account.Password != tools.EncryptPassword(user, passwd) {
@@ -36,6 +44,10 @@ func handleAcctLogin(c *gin.Context) {
 	//更新登录状态
 	cache.Wi.Account.LoginIP = c.ClientIP()
 	cache.Wi.Account.LoginAt = time.Now()
+	_ = cache.Wi.Store.UpdateAccount(context.Background(), user, map[string]interface{}{
+		"login_ip": cache.Wi.Account.LoginIP,
+		"login_at": cache.Wi.Account.LoginAt,
+	})
 
-
+	c.Redirect(http.StatusFound, "/admin/profile")
 }

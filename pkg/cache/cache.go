@@ -39,7 +39,7 @@ func init() {
 	}
 
 	//wi init
-	Wi := &Cache{
+	Wi = &Cache{
 		lock:        sync.Mutex{},
 		Store:       s,
 	}
@@ -54,7 +54,7 @@ func init() {
 
 type Cache struct {
 	lock sync.Mutex
-	store.Store
+	Store store.Store
 
 	//load from model
 	Account *model.Account
@@ -97,9 +97,9 @@ func (c *Cache) loadOrInit() error {
 			Author:    blogapp.Account.Username,
 			Title:     "友情链接",
 			Slug:      "blogroll",
-			CreatedAt: time.Time{}.AddDate(0, 0, 7),
+			CreatedAt: time.Time{}.AddDate(0, 0, 1),
 		}
-		err = c.InsertArticle(context.Background(), blogroll, ArticleStartID)
+		err = c.Store.InsertArticle(context.Background(), blogroll, ArticleStartID)
 		if err != nil {
 			return err
 		}
