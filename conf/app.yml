@@ -3,12 +3,12 @@ database:
   driver: mysql
   source: root:root@tcp(127.0.0.1:3306)/wiblog?charset=utf8mb4&parseTime=True&loc=Local
 eshost:
-eiblogapp:
+wiblogapp:
   mode:
     name: cmd-wiblog
     enablehttp: true
     httpport: 9000
-    host: example.com
+    host: wuxc.com
   staticversion: 1 # 静态文件版本
   hotwords: # 热搜词
     - docker

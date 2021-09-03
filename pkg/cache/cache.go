@@ -18,6 +18,11 @@ var (
 	// Wi wiblog cache
 	Wi *Cache
 
+	// regenerate pages chan
+	PagesCh = make(chan string, 2)
+	PageSeries  = "series-md"
+	PageArchive = "archive-md"
+
 	// ArticleStartID article start id
 	ArticleStartID = 11
 )
@@ -60,6 +65,12 @@ type Cache struct {
 	Account *model.Account
 	Blogger *model.Blogger
 	Articles *model.Article
+
+	//auto genernal
+	PageSeries string //page
+	Series model.SortedSeries
+	TagArticles map[string]model.SortedArticles // tagname:articles
+	ArticlesMap  map[string]*model.Article       // slug:article
 }
 
 func (c *Cache) loadOrInit() error {
@@ -104,6 +115,13 @@ func (c *Cache) loadOrInit() error {
 			return err
 		}
 	}
+
+	//series init
+	series, err := c.Store.LoadAllSerie(context.Background())
+	if err != nil {
+		return nil
+	}
+	c.Series = series
 
 	//account init
 	pwd := tools.EncryptPassword(blogapp.Account.Username, blogapp.Account.Password)

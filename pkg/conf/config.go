@@ -135,7 +135,7 @@ type Config struct {
 	AppName   string    `yaml:"appname"`
 	Database  Database  `yaml:"database"`
 	ESHost    string    `yaml:"eshost"`
-	WiBlogApp WiBlogApp `yaml:"eiblogapp"`
+	WiBlogApp WiBlogApp `yaml:"wiblogapp"`
 	BackupApp BackupApp `yaml:"backupapp"`
 }
 

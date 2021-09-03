@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	htemplate "html/template"
 	"net/http"
+	"strconv"
 	"wiblog/pkg/cache"
 	"wiblog/pkg/conf"
 	"wiblog/pkg/core/wiblog"
@@ -15,7 +16,7 @@ import (
 func baseBEParams(c *gin.Context) gin.H {
 	return gin.H{
 		"Author": cache.Wi.Account.Username,
-		"Qiniu": conf.Conf.WiBlogApp.Qiniu,
+		"Qiniu":  conf.Conf.WiBlogApp.Qiniu,
 	}
 }
 
@@ -28,8 +29,8 @@ func handleLoginPage(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/admin/profile")
 		return
 	}
-	params := gin.H{"BTitle": cache.Wi.Blogger.BTitle}
-	renderHTMLAdminLayout(c, "login.html", params)
+	//params := gin.H{"BTitle": cache.Wi.Blogger.BTitle}
+	renderHTMLAdminLayout(c, "login.html", gin.H{})
 }
 
 // handleAdminProfile 个人配置中心
@@ -40,6 +41,36 @@ func handleAdminProfile(c *gin.Context) {
 	params["Console"] = true
 	params["Wi"] = cache.Wi
 	renderHTMLAdminLayout(c, "admin-profile", params)
+}
+
+// handleAdminWritePost 编辑文章
+func handleAdminWritePost(c *gin.Context) {
+	params := baseBEParams(c)
+	id, err := strconv.Atoi(c.Query("cid"))
+	if err == nil && id > 0 {
+		article, _ := cache.Wi.Store.LoadArticle(c, id)
+		if article != nil {
+			params["Title"] = "编辑文章"
+			params["Edit"] = article
+		}
+	}
+	if params["Title"] == nil {
+		params["Title"] = "创建文章 | " + cache.Wi.Blogger.BTitle
+	}
+	params["Path"] = c.Request.URL.Path
+	params["Domain"] = conf.Conf.WiBlogApp.Host
+	//params["Series"] = cache.Wi.Series
+	renderHTMLAdminLayout(c, "admin-post", params)
+}
+
+// handleAdminSeries 专题列表
+func handleAdminSeries(c *gin.Context) {
+	params := baseBEParams(c)
+	params["Title"] = "专题管理 | " + cache.Wi.Blogger.BTitle
+	params["Manage"] = true
+	params["Path"] = c.Request.URL.Path
+	params["List"] = cache.Wi.Series
+	renderHTMLAdminLayout(c, "admin-series", params)
 }
 
 // renderHTMLAdminLayout 渲染admin页面

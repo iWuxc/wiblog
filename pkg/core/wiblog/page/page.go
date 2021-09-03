@@ -32,10 +32,17 @@ func RegisterRoutes(e *gin.Engine) {
 	//login page
 	e.GET("/admin/login", handleLoginPage)
 
+
 }
 
 // RegisterRoutesAuthz register admin
 func RegisterRoutesAuthz(group gin.IRoutes) {
 	// console
 	group.GET("/profile", handleAdminProfile)
+	//write
+	group.GET("write-post", handleAdminWritePost)
+
+	//manage
+	group.GET("manage-series", handleAdminSeries)
+	//group.GET("/add-serie", handleAdminSerie)
 }

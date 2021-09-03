@@ -113,6 +113,10 @@ func handleAPIBlogger(c *gin.Context) {
 	cache.Wi.Blogger.SubTitle = subTitle
 	cache.Wi.Blogger.SeriesSay = seriessay
 	cache.Wi.Blogger.ArchivesSay = archivessay
+
+	cache.PagesCh <- cache.PageSeries
+	cache.PagesCh <- cache.PageArchive
+
 	ResponseNotice(c, NoticeSuccess, "更新成功", "")
 }
 

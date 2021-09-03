@@ -14,6 +14,21 @@ var (
 	stores  = make(map[string]Driver)
 )
 
+// SearchArticles 搜索字段
+type SearchArticles struct {
+	Page   int                    //第几页/1
+	Limit  int                    //每页大小
+	Fields map[string]interface{} //字段:值
+}
+
+// article search fields
+const (
+	SearchArticleDraft = "draft"
+	SearchArticleTrash   = "trash"
+	SearchArticleTitle   = "title"
+	SearchArticleSerieID = "serieid"
+)
+
 type Store interface {
 
 	// LoadInsertBlogger 读取或创建博客
@@ -26,8 +41,15 @@ type Store interface {
 	// UpdateAccount 更新账户
 	UpdateAccount(ctx context.Context, name string, fields map[string]interface{}) error
 
+	// LoadAllSerie 读取所有专题
+	LoadAllSerie(ctx context.Context) (model.SortedSeries, error)
+
 	// InsertArticle 创建文章
 	InsertArticle(ctx context.Context, article *model.Article, startID int) error
+	// LoadArticle 加载文章
+	LoadArticle(ctx context.Context, id int) (*model.Article, error)
+	// LoadArticleList 搜索文章
+	LoadArticleList(ctx context.Context, search SearchArticles) (model.SortedArticles, int, error)
 }
 
 type Driver interface {
