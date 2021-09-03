@@ -31,6 +31,7 @@ func RegisterRoutesAuthz(group gin.IRoutes) {
 	group.POST("/api/blog", handleAPIBlogger)
 	group.POST("/api/password", handleAPIPassword)
 	group.POST("/api/serie-add", handleAPISerieCreate)
+	group.POST("/api/serie-delete", handleAPISerieDelete)
 }
 
 // handleAcctLogin login passport
@@ -153,7 +154,7 @@ func handleAPIPassword(c *gin.Context) {
 	ResponseNotice(c, NoticeSuccess, "更新成功", "")
 }
 
-// handleAPISerieCreate 创建专题
+// handleAPISerieCreate 创建专题 如果专题有提交 mid 即更新专题
 func handleAPISerieCreate(c *gin.Context) {
 	name := c.PostForm("name")
 	slug := c.PostForm("slug")
@@ -171,14 +172,14 @@ func handleAPISerieCreate(c *gin.Context) {
 				break
 			}
 		}
-		if err == nil {
+		if serie == nil {
 			ResponseNotice(c, NoticeWarning, "专题不存在", "")
 			return
 		}
 		err = cache.Wi.Store.UpdateSerie(c, sid, map[string]interface{}{
-			name: name,
-			slug: slug,
-			desc: desc,
+			"name": name,
+			"slug": slug,
+			"desc": desc,
 		})
 		if err != nil {
 			logrus.Error("handleAPISerieCreate.UpdateSerie: ", err)
@@ -189,7 +190,7 @@ func handleAPISerieCreate(c *gin.Context) {
 		serie.Slug = slug
 		serie.Desc = desc
 	} else {
-		err = cache.Wi.Store.InsertSerie(c, &model.Serie{
+		err = cache.Wi.AddSerie(&model.Serie{
 			Name: name,
 			Slug: slug,
 			Desc: desc,
@@ -201,6 +202,24 @@ func handleAPISerieCreate(c *gin.Context) {
 		}
 	}
 	ResponseNotice(c, NoticeSuccess, "操作成功", "")
+}
+
+// handleAPISerieDelete
+func handleAPISerieDelete(c *gin.Context) {
+	fmt.Println(c.PostFormArray("sid[]"))
+	for _, v := range c.PostFormArray("sid[]") {
+		id, err := strconv.Atoi(v)
+		if err != nil && id < 1 {
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+		err = cache.Wi.DelSerie(id)
+		if err != nil {
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+	}
+	ResponseNotice(c, NoticeSuccess, "删除成功", "")
 }
 
 // ResponseNotice response notice

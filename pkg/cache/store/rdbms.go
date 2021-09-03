@@ -82,6 +82,11 @@ func (db *rdbms) UpdateSerie(ctx context.Context, id int, fields map[string]inte
 	return db.Model(&model.Serie{}).Where("id=?", id).Updates(fields).Error
 }
 
+// RemoveSerie 删除专题
+func (db *rdbms) RemoveSerie(ctx context.Context, id int) error {
+	return db.Where("id=?", id).Delete(&model.Serie{}).Error
+}
+
 // InsertArticle 创建文章
 func (db *rdbms) InsertArticle(ctx context.Context, article *model.Article, startID int) error {
 	if article.ID == 0 {

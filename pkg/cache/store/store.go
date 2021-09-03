@@ -47,6 +47,8 @@ type Store interface {
 	LoadAllSerie(ctx context.Context) (model.SortedSeries, error)
 	// UpdateSerie 更新专题
 	UpdateSerie(ctx context.Context, id int, fields map[string]interface{}) error
+	// RemoveSerie 删除专题
+	RemoveSerie(ctx context.Context, id int) error
 
 	// InsertArticle 创建文章
 	InsertArticle(ctx context.Context, article *model.Article, startID int) error
