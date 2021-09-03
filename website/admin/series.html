@@ -43,11 +43,11 @@
                             {{range .List}}
                             <tr id="mid-category-{{.ID}}">
                                 <td>
-                                    <input type="checkbox" value="{{.ID}}" name="mid[]" />
+                                    <input type="checkbox" value="{{.ID}}" name="sid[]" />
                                 </td>
                                 <td>{{.ID}}</td>
                                 <td>
-                                    <a href="/admin/add-serie?mid={{.ID}}">{{.Name}}</a>
+                                    <a href="/admin/add-serie?sid={{.ID}}">{{.Name}}</a>
                                     <a target="_blank" href="/series.html#toc-{{.ID}}" title="浏览 {{.Name}}"><i class="i-exlink"></i></a>
                                 </td>
                                 <td>{{dateformat .CreatedAt "2006/01/02 15:04"}}</td>

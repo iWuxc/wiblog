@@ -6,9 +6,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"net/http"
+	"strconv"
 	"time"
 	"wiblog/pkg/cache"
 	"wiblog/pkg/core/wiblog"
+	"wiblog/pkg/model"
 	"wiblog/tools"
 )
 
@@ -28,6 +30,7 @@ func RegisterRoutesAuthz(group gin.IRoutes) {
 	group.POST("/api/account", handleAPIAccount)
 	group.POST("/api/blog", handleAPIBlogger)
 	group.POST("/api/password", handleAPIPassword)
+	group.POST("/api/serie-add", handleAPISerieCreate)
 }
 
 // handleAcctLogin login passport
@@ -148,6 +151,56 @@ func handleAPIPassword(c *gin.Context) {
 	}
 	cache.Wi.Account.Password = newPw
 	ResponseNotice(c, NoticeSuccess, "更新成功", "")
+}
+
+// handleAPISerieCreate 创建专题
+func handleAPISerieCreate(c *gin.Context) {
+	name := c.PostForm("name")
+	slug := c.PostForm("slug")
+	desc := c.PostForm("description")
+	if name == "" || slug == "" || desc == "" {
+		ResponseNotice(c, NoticeWarning, "参数错误", "")
+		return
+	}
+	sid, err := strconv.Atoi(c.PostForm("sid"))
+	if err == nil && sid > 0 {
+		var serie *model.Serie
+		for _, v := range cache.Wi.Series {
+			if v.ID == sid {
+				serie = v
+				break
+			}
+		}
+		if err == nil {
+			ResponseNotice(c, NoticeWarning, "专题不存在", "")
+			return
+		}
+		err = cache.Wi.Store.UpdateSerie(c, sid, map[string]interface{}{
+			name: name,
+			slug: slug,
+			desc: desc,
+		})
+		if err != nil {
+			logrus.Error("handleAPISerieCreate.UpdateSerie: ", err)
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+		serie.Name = name
+		serie.Slug = slug
+		serie.Desc = desc
+	} else {
+		err = cache.Wi.Store.InsertSerie(c, &model.Serie{
+			Name: name,
+			Slug: slug,
+			Desc: desc,
+		})
+		if err != nil {
+			logrus.Error("handleAPISerieCreate.InsertSerie: ", err)
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+	}
+	ResponseNotice(c, NoticeSuccess, "操作成功", "")
 }
 
 // ResponseNotice response notice

@@ -73,6 +73,24 @@ func handleAdminSeries(c *gin.Context) {
 	renderHTMLAdminLayout(c, "admin-series", params)
 }
 
+// handleAdminSerie 专题添加
+func handleAdminSerie(c *gin.Context) {
+	params := baseBEParams(c)
+	params["Title"] = "新增专题 | " + cache.Wi.Blogger.BTitle
+	id, err := strconv.Atoi(c.Query("sid"))
+	if err == nil && id > 0 {
+		for _, v := range cache.Wi.Series {
+			if v.ID == id {
+				params["Title"] = "编辑专题 | " + cache.Wi.Blogger.BTitle
+				params["Edit"] = v
+			}
+		}
+	}
+	params["Manage"] = true
+	params["Path"] = c.Request.URL.Path
+	renderHTMLAdminLayout(c, "admin-serie", params)
+}
+
 // renderHTMLAdminLayout 渲染admin页面
 func renderHTMLAdminLayout(c *gin.Context, name string, data gin.H) {
 	c.Header("Content-Type", "text/html; charset=utf-8")

@@ -41,8 +41,12 @@ type Store interface {
 	// UpdateAccount 更新账户
 	UpdateAccount(ctx context.Context, name string, fields map[string]interface{}) error
 
+	//添加专题
+	InsertSerie(ctx context.Context, serie *model.Serie) error
 	// LoadAllSerie 读取所有专题
 	LoadAllSerie(ctx context.Context) (model.SortedSeries, error)
+	// UpdateSerie 更新专题
+	UpdateSerie(ctx context.Context, id int, fields map[string]interface{}) error
 
 	// InsertArticle 创建文章
 	InsertArticle(ctx context.Context, article *model.Article, startID int) error

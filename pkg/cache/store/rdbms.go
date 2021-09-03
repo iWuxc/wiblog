@@ -65,11 +65,21 @@ func (db *rdbms) LoadInsertBlogger(ctx context.Context, blogger *model.Blogger) 
 	return result.RowsAffected > 0, result.Error
 }
 
+// InsertSerie 添加专题
+func (db *rdbms) InsertSerie(ctx context.Context, serie *model.Serie) error {
+	return db.Model(&model.Serie{}).Create(serie).Error
+}
+
 // LoadAllSerie 读取所有的专题
 func (db *rdbms) LoadAllSerie(ctx context.Context) (model.SortedSeries, error) {
 	var series model.SortedSeries
 	err := db.Order("id DESC").Find(&series).Error
 	return series, err
+}
+
+// UpdateSerie 更新专题
+func (db *rdbms) UpdateSerie(ctx context.Context, id int, fields map[string]interface{}) error {
+	return db.Model(&model.Serie{}).Where("id=?", id).Updates(fields).Error
 }
 
 // InsertArticle 创建文章
