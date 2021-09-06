@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/sirupsen/logrus"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -75,6 +76,27 @@ type Cache struct {
 	Series      model.SortedSeries
 	TagArticles map[string]model.SortedArticles // tagname:articles
 	ArticlesMap map[string]*model.Article       // slug:article
+}
+
+func (c *Cache) readdArticle(article *model.Article, needSort bool) {
+	//tag
+	for _, tag := range article.Tags {
+		if needSort {
+			sort.Sort(c.TagArticles[tag])
+		}
+	}
+
+	//series
+	for i, serie := range c.Series {
+		if serie.ID != article.SerieID {
+			continue
+		}
+		c.Series[i].Articles = append(c.Series[i].Articles, article)
+		if needSort {
+			sort.Sort(c.Series[i].Articles)
+			PagesCh <- PageSeries //重建专题
+		}
+	}
 }
 
 // loadOrInit Init 数据库初始化, 建表, 加索引操作等

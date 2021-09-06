@@ -43,6 +43,11 @@ func handleAdminProfile(c *gin.Context) {
 	renderHTMLAdminLayout(c, "admin-profile", params)
 }
 
+type T struct {
+	ID   string `json:"id"`
+	Tags string `json:"tags"`
+}
+
 // handleAdminWritePost 编辑文章
 func handleAdminWritePost(c *gin.Context) {
 	params := baseBEParams(c)
@@ -59,7 +64,12 @@ func handleAdminWritePost(c *gin.Context) {
 	}
 	params["Path"] = c.Request.URL.Path
 	params["Domain"] = conf.Conf.WiBlogApp.Host
-	//params["Series"] = cache.Wi.Series
+	params["Series"] = cache.Wi.Series
+	var tags []T
+	for tag := range cache.Wi.TagArticles {
+		tags = append(tags, T{tag, tag})
+	}
+	params["Tags"] = tags
 	renderHTMLAdminLayout(c, "admin-post", params)
 }
 
