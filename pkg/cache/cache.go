@@ -9,6 +9,7 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"wiblog/pkg/cache/render"
 	"wiblog/pkg/cache/store"
 	"wiblog/pkg/conf"
 	"wiblog/pkg/model"
@@ -46,8 +47,10 @@ func init() {
 
 	//wi init
 	Wi = &Cache{
-		lock:  sync.Mutex{},
-		Store: s,
+		lock:        sync.Mutex{},
+		Store:       s,
+		TagArticles: make(map[string]model.SortedArticles),
+		ArticlesMap: make(map[string]*model.Article),
 	}
 
 	//load and init
@@ -65,7 +68,7 @@ type Cache struct {
 	//load from model
 	Account  *model.Account
 	Blogger  *model.Blogger
-	Articles *model.Article
+	Articles model.SortedArticles
 
 	//auto genernal
 	PageSeries  string //page
@@ -118,13 +121,6 @@ func (c *Cache) loadOrInit() error {
 		}
 	}
 
-	//series init
-	series, err := c.Store.LoadAllSerie(context.Background())
-	if err != nil {
-		return nil
-	}
-	c.Series = series
-
 	//account init
 	pwd := tools.EncryptPassword(blogapp.Account.Username, blogapp.Account.Password)
 	account := &model.Account{
@@ -138,6 +134,42 @@ func (c *Cache) loadOrInit() error {
 	//load account
 	c.Account = account
 
+	//series init
+	series, err := c.Store.LoadAllSerie(context.Background())
+	if err != nil {
+		return err
+	}
+	c.Series = series
+
+	//all articles
+	search := store.SearchArticles{
+		Page:   1, //当前页码
+		Limit:  9999,                                                    //每页大小
+		Fields: map[string]interface{}{store.SearchArticleDraft: false}} //字段:值
+
+	articles, _, err := c.Store.LoadArticleList(context.Background(), search)
+
+	for i, article := range articles {
+		// 渲染页面
+		render.GenerateExcerptMarkdown(article)
+		c.ArticlesMap[article.Slug] = article
+		// 分析文章
+		if article.ID < ArticleStartID {
+			continue
+		}
+		if i > 0 {
+			article.Prev = articles[i-1]
+		}
+		if i < len(articles)-1 &&
+			articles[i+1].ID >= ArticleStartID {
+			article.Next = articles[i+1]
+		}
+	}
+
+	Wi.Articles = articles
+	// 重建专题与归档
+	PagesCh <- PageSeries
+	PagesCh <- PageArchive
 	return nil
 }
 

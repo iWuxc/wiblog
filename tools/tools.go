@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"path"
+	"regexp"
 )
 
 //EncryptPassword encrypt password
@@ -37,4 +38,17 @@ func ReadDirFiles(dir string, filter func(name string) bool) (files []string) {
 	}
 
 	return files
+}
+
+var (
+	regexpBrackets = regexp.MustCompile(`<[\S\s]+?>`)
+	regexpEnter    = regexp.MustCompile(`\s+`)
+)
+
+// IgnoreHtmlTag 去掉 html tag
+func IgnoreHtmlTag(src string) string {
+	// 去除所有尖括号内的HTML代码
+	src = regexpBrackets.ReplaceAllString(src, "")
+	// 去除换行符
+	return regexpEnter.ReplaceAllString(src, "")
 }

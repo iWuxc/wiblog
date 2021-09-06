@@ -140,7 +140,7 @@ func (db *rdbms) LoadArticleList(ctx context.Context, search SearchArticles) (mo
 	}
 	var articles model.SortedArticles
 	err = gormDB.Limit(search.Limit).Offset((search.Page - 1) * search.Page).Order("created_at DESC").
-		Find(articles).Error
+		Find(&articles).Error
 	if err != nil {
 		return nil, 0, err
 	}

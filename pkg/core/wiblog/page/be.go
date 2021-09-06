@@ -29,8 +29,8 @@ func handleLoginPage(c *gin.Context) {
 		c.Redirect(http.StatusFound, "/admin/profile")
 		return
 	}
-	//params := gin.H{"BTitle": cache.Wi.Blogger.BTitle}
-	renderHTMLAdminLayout(c, "login.html", gin.H{})
+	params := gin.H{"BTitle": cache.Wi.Blogger.BTitle}
+	renderHTMLAdminLayout(c, "login.html", params)
 }
 
 // handleAdminProfile 个人配置中心
@@ -89,6 +89,16 @@ func handleAdminSerie(c *gin.Context) {
 	params["Manage"] = true
 	params["Path"] = c.Request.URL.Path
 	renderHTMLAdminLayout(c, "admin-serie", params)
+}
+
+// handleAdminTags 标签管理
+func handleAdminTags(c *gin.Context) {
+	params := baseBEParams(c)
+	params["Title"] = "标签管理 | " + cache.Wi.Blogger.BTitle
+	params["Manage"] = true
+	params["Path"] = c.Request.URL.Path
+	params["List"] = cache.Wi.TagArticles
+	renderHTMLAdminLayout(c, "admin-tags", params)
 }
 
 // renderHTMLAdminLayout 渲染admin页面
