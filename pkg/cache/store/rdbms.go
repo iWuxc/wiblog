@@ -106,6 +106,11 @@ func (db *rdbms) InsertArticle(ctx context.Context, article *model.Article, star
 	return db.Create(article).Error
 }
 
+// UpdateArticle 编辑文章
+func (db *rdbms) UpdateArticle(ctx context.Context, id int, fields map[string]interface{}) error {
+	return db.Model(&model.Article{}).Where("id=?",id).Updates(fields).Error
+}
+
 // LoadArticle 加载文章
 func (db *rdbms) LoadArticle(ctx context.Context, id int) (*model.Article, error) {
 	article := &model.Article{}

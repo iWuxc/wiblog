@@ -52,6 +52,8 @@ type Store interface {
 
 	// InsertArticle 创建文章
 	InsertArticle(ctx context.Context, article *model.Article, startID int) error
+	// UpdateArticle 编辑文章
+	UpdateArticle(ctx context.Context, id int, fields map[string]interface{}) error
 	// LoadArticle 加载文章
 	LoadArticle(ctx context.Context, id int) (*model.Article, error)
 	// LoadArticleList 搜索文章

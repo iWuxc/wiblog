@@ -78,20 +78,45 @@ type Cache struct {
 	ArticlesMap map[string]*model.Article       // slug:article
 }
 
-//func (c *Cache) addArticle(article *model.Article) error {
-//	c.lock.Lock()
-//	defer c.lock.Unlock()
-//
-//	// store
-//	err := c.Store.InsertArticle(context.Background(), article, ArticleStartID)
-//	if err != nil {
-//		return err
-//	}
-//	if article.IsDraft {
-//		return nil
-//	}
-//
-//}
+// AddArticle 添加文章
+func (c *Cache) AddArticle(article *model.Article) error {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+
+	// store
+	err := c.Store.InsertArticle(context.Background(), article, ArticleStartID)
+	if err != nil {
+		return err
+	}
+	if article.IsDraft {
+		return nil
+	}
+
+	// 正式发布文章
+	//TODO::正式发布文章
+	return nil
+}
+
+// DelArticle 删除文章
+func (c *Cache) DelArticle(id int) error {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+
+	//article, _ := c.findArticleByID(id)
+	//fmt.Println(article)
+	//if article == nil {
+	//	return nil
+	//}
+	//set delete
+	err := c.Store.UpdateArticle(context.Background(), id, map[string]interface{}{
+		"deleted_at" : time.Now(),
+	})
+	if err != nil {
+		return err
+	}
+	//TODO::刷新文章缓存
+	return nil
+}
 
 func (c *Cache) readdArticle(article *model.Article, needSort bool) {
 	//tag
@@ -255,16 +280,48 @@ func (c *Cache) DelSerie(id int) error {
 	return nil
 }
 
+// PageArticleBE 后台文章分页
+func (c *Cache) PageArticleBE(se int, kw string, draft, del bool, page, limit int) ([]*model.Article, int) {
+	search := store.SearchArticles{
+		Page:   page,
+		Limit:  limit,
+		Fields: make(map[string]interface{}),
+	}
+
+	if draft {
+		search.Fields[store.SearchArticleDraft] = true
+	} else if del {
+		search.Fields[store.SearchArticleTrash] = true
+	} else {
+		search.Fields[store.SearchArticleDraft] = false
+		if se > 0 {
+			search.Fields[store.SearchArticleSerieID] = se
+		}
+		if kw != "" {
+			search.Fields[store.SearchArticleTitle] = kw
+		}
+	}
+	list, count, err := c.Store.LoadArticleList(context.Background(), search)
+	if err != nil {
+		return nil, 0
+	}
+	max := count / limit
+	if count%limit > 0 {
+		max++
+	}
+	return list, max
+}
+
 // findArticleByID 通过ID查找文章
-//func (c *Cache) findArticleByID(id int) (*model.Article, int) {
-//	for id, article := range c.Articles {
-//		if article.ID == id {
-//			return article, id
-//		}
-//	}
-//	return nil, -1
-//}
-//
+func (c *Cache) findArticleByID(id int) (*model.Article, int) {
+	for id, article := range c.Articles {
+		if article.ID == id {
+			return article, id
+		}
+	}
+	return nil, -1
+}
+
 //func (c *Cache) refreshCache(article model.Article, del bool) {
 //
 //}

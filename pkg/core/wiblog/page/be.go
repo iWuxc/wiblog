@@ -3,6 +3,7 @@ package page
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	htemplate "html/template"
 	"net/http"
@@ -71,6 +72,55 @@ func handleAdminWritePost(c *gin.Context) {
 	}
 	params["Tags"] = tags
 	renderHTMLAdminLayout(c, "admin-post", params)
+}
+
+// handleAdminPosts 文章列表
+func handleAdminPosts(c *gin.Context) {
+	//receive search value
+	serie := c.Query("serie")
+	keywords := c.Query("keywords")
+	serieId, err := strconv.Atoi(serie)
+	if err != nil || serieId < 1 {
+		serieId = 0
+	}
+	pg, err := strconv.Atoi(c.Query("page"))
+	if err != nil || pg < 1 {
+		pg = 1
+	}
+
+	//all request url query
+	vals := c.Request.URL.Query()
+	fmt.Println(vals)
+
+	params := baseBEParams(c)
+	params["Title"] = "文章管理 | " + cache.Wi.Blogger.BTitle
+	params["Manage"] = true
+	params["Path"] = c.Request.URL.Path
+	params["Domain"] = conf.Conf.WiBlogApp.Host
+	params["Series"] = cache.Wi.Series
+
+	params["Serie"] = serieId
+	params["KW"] = keywords
+
+	var max int
+	params["List"], max = cache.Wi.PageArticleBE(serieId, keywords, false, false, pg,
+		conf.Conf.WiBlogApp.General.PageNum)
+	if pg < max {
+		vals.Set("page", fmt.Sprint(pg+1))
+		params["Next"] = vals.Encode()
+	}
+	if pg > 1 {
+		vals.Set("page", fmt.Sprint(pg-1))
+		params["Prev"] = vals.Encode()
+	}
+	params["PP"] = make(map[int]string, max)
+	for i := 0; i < max; i++ {
+		vals.Set("page", fmt.Sprint(i+1))
+		params["PP"].(map[int]string)[i+1] = vals.Encode()
+	}
+	params["Cur"] = pg
+
+	renderHTMLAdminLayout(c, "admin-posts", params)
 }
 
 // handleAdminSeries 专题列表

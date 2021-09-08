@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 	"wiblog/pkg/cache"
+	"wiblog/pkg/conf"
 	"wiblog/pkg/core/wiblog"
 	"wiblog/pkg/model"
 	"wiblog/tools"
@@ -32,6 +33,7 @@ func RegisterRoutesAuthz(group gin.IRoutes) {
 	group.POST("/api/blog", handleAPIBlogger)
 	group.POST("/api/password", handleAPIPassword)
 	group.POST("/api/post-add", handleAPIPostCreate)
+	group.POST("/api/post-delete", handleAPIPostDelete)
 	group.POST("/api/serie-add", handleAPISerieCreate)
 	group.POST("/api/serie-delete", handleAPISerieDelete)
 }
@@ -156,13 +158,41 @@ func handleAPIPassword(c *gin.Context) {
 	ResponseNotice(c, NoticeSuccess, "更新成功", "")
 }
 
+// handleAPIPostCreate 添加文章
 func handleAPIPostCreate(c *gin.Context) {
+	var (
+		err error
+		do  string
+		cid int
+	)
 
-	do := c.PostForm("do")
+	defer func() {
+		now := time.Now().In(tools.TimeLocation)
+		switch do {
+		case "auto": // 自动保存
+			if nil != err {
+				c.JSON(http.StatusOK, gin.H{"fail": 1, "time": now.Format("15:04:05 PM"), "cid": cid})
+				return
+			}
+			c.JSON(http.StatusOK, gin.H{"success": 0, "time": now.Format("15:04:05 PM"), "cid": cid})
+		case "save", "publish": // 草稿，发布
+			if err != nil {
+				ResponseNotice(c, NoticeWarning, err.Error(), "")
+				return
+			}
+			uri := "/admin/manage-draft"
+			if do == "publish" {
+				uri = "/admin/manage-posts"
+			}
+			c.Redirect(http.StatusFound, uri)
+		}
+	}()
+
+	do = c.PostForm("do")
 	title := c.PostForm("title")
 	slug := c.PostForm("slug")
 	text := c.PostForm("text")
-	//cid := c.PostForm("cid")
+
 	date := parseLocationDate(c.PostForm("title"))
 	serie := c.PostForm("serie")
 	tag := c.PostForm("tags")
@@ -176,24 +206,66 @@ func handleAPIPostCreate(c *gin.Context) {
 	}
 	serieid, _ := strconv.Atoi(serie)
 	article := &model.Article{
-		Title: title,
-		Content: text,
-		Slug: slug,
-		IsDraft: do != "publish",
-		Author: cache.Wi.Account.Username,
-		SerieID: serieid,
+		Title:     title,
+		Content:   text,
+		Slug:      slug,
+		IsDraft:   do != "publish",
+		Author:    cache.Wi.Account.Username,
+		SerieID:   serieid,
 		Tags:      tags,
 		CreatedAt: date,
 	}
 
-	fmt.Println(article)
-	err := cache.Wi.Store.InsertArticle(context.Background(), article, cache.ArticleStartID)
+	cid, err = strconv.Atoi(c.PostForm("cid"))
+	//新文章
+	if err != nil || cid < 1 {
+		err = cache.Wi.AddArticle(article)
+		if err != nil {
+			logrus.Error("handleAPIPostCreate.AddArticle: ", err)
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+
+		//TODO::异步执行其他文章操作
+		return
+	}
+	//旧文章
+	err = cache.Wi.Store.UpdateArticle(context.Background(), cid, map[string]interface{}{
+		"title":      article.Title,
+		"content":    article.Content,
+		"serie_id":   article.SerieID,
+		"is_draft":   article.IsDraft,
+		"tags":       article.Tags,
+		"updated_at": article.UpdatedAt,
+		"created_at": article.CreatedAt,
+	})
 	if err != nil {
-		logrus.Error("handleAPIPostCreate.InsertArticle: ", err)
-		ResponseNotice(c, NoticeWarning, err.Error(), "")
+		logrus.Error("handleAPIPostCreate.UpdateArticle: ", err)
 		return
 	}
 	ResponseNotice(c, NoticeSuccess, "操作成功", "")
+}
+
+// handleAPIPostDelete 删除文章，移入回收箱
+func handleAPIPostDelete(c *gin.Context) {
+	var ids []int
+	for _, v := range c.PostFormArray("cid[]") {
+		fmt.Println(v)
+		id, err := strconv.Atoi(v)
+		if err != nil || id < conf.Conf.WiBlogApp.General.StartID {
+			ResponseNotice(c, NoticeWarning, "参数错误", "")
+			return
+		}
+		err = cache.Wi.DelArticle(id)
+		if err != nil {
+			logrus.Error("handleAPIPostDelete.DelArticle: ", err)
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+		ids = append(ids, id)
+	}
+	ResponseNotice(c, NoticeSuccess, "删除成功", "")
+	//TODO::elasticsearch
 }
 
 // handleAPISerieCreate 创建专题 如果专题有提交 mid 即更新专题
