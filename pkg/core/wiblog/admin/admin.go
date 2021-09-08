@@ -7,6 +7,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 	"wiblog/pkg/cache"
 	"wiblog/pkg/core/wiblog"
@@ -30,6 +31,7 @@ func RegisterRoutesAuthz(group gin.IRoutes) {
 	group.POST("/api/account", handleAPIAccount)
 	group.POST("/api/blog", handleAPIBlogger)
 	group.POST("/api/password", handleAPIPassword)
+	group.POST("/api/post-add", handleAPIPostCreate)
 	group.POST("/api/serie-add", handleAPISerieCreate)
 	group.POST("/api/serie-delete", handleAPISerieDelete)
 }
@@ -154,6 +156,46 @@ func handleAPIPassword(c *gin.Context) {
 	ResponseNotice(c, NoticeSuccess, "更新成功", "")
 }
 
+func handleAPIPostCreate(c *gin.Context) {
+
+	do := c.PostForm("do")
+	title := c.PostForm("title")
+	slug := c.PostForm("slug")
+	text := c.PostForm("text")
+	//cid := c.PostForm("cid")
+	date := parseLocationDate(c.PostForm("title"))
+	serie := c.PostForm("serie")
+	tag := c.PostForm("tags")
+	if title == "" || slug == "" || text == "" {
+		ResponseNotice(c, NoticeWarning, "参数错误", "")
+		return
+	}
+	var tags []string
+	if tag != "" {
+		tags = strings.Split(tag, ",")
+	}
+	serieid, _ := strconv.Atoi(serie)
+	article := &model.Article{
+		Title: title,
+		Content: text,
+		Slug: slug,
+		IsDraft: do != "publish",
+		Author: cache.Wi.Account.Username,
+		SerieID: serieid,
+		Tags:      tags,
+		CreatedAt: date,
+	}
+
+	fmt.Println(article)
+	err := cache.Wi.Store.InsertArticle(context.Background(), article, cache.ArticleStartID)
+	if err != nil {
+		logrus.Error("handleAPIPostCreate.InsertArticle: ", err)
+		ResponseNotice(c, NoticeWarning, err.Error(), "")
+		return
+	}
+	ResponseNotice(c, NoticeSuccess, "操作成功", "")
+}
+
 // handleAPISerieCreate 创建专题 如果专题有提交 mid 即更新专题
 func handleAPISerieCreate(c *gin.Context) {
 	name := c.PostForm("name")
@@ -220,6 +262,15 @@ func handleAPISerieDelete(c *gin.Context) {
 		}
 	}
 	ResponseNotice(c, NoticeSuccess, "删除成功", "")
+}
+
+// parseLocationDate 解析日期
+func parseLocationDate(date string) time.Time {
+	t, err := time.ParseInLocation("2006-01-02 15:04", date, tools.TimeLocation)
+	if err == nil {
+		return t.UTC()
+	}
+	return time.Now()
 }
 
 // ResponseNotice response notice

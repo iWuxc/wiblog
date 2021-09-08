@@ -78,6 +78,21 @@ type Cache struct {
 	ArticlesMap map[string]*model.Article       // slug:article
 }
 
+//func (c *Cache) addArticle(article *model.Article) error {
+//	c.lock.Lock()
+//	defer c.lock.Unlock()
+//
+//	// store
+//	err := c.Store.InsertArticle(context.Background(), article, ArticleStartID)
+//	if err != nil {
+//		return err
+//	}
+//	if article.IsDraft {
+//		return nil
+//	}
+//
+//}
+
 func (c *Cache) readdArticle(article *model.Article, needSort bool) {
 	//tag
 	for _, tag := range article.Tags {
@@ -165,7 +180,7 @@ func (c *Cache) loadOrInit() error {
 
 	//all articles
 	search := store.SearchArticles{
-		Page:   1, //当前页码
+		Page:   1,                                                       //当前页码
 		Limit:  9999,                                                    //每页大小
 		Fields: map[string]interface{}{store.SearchArticleDraft: false}} //字段:值
 
@@ -190,10 +205,20 @@ func (c *Cache) loadOrInit() error {
 
 	Wi.Articles = articles
 	// 重建专题与归档
-	PagesCh <- PageSeries
-	PagesCh <- PageArchive
+	//PagesCh <- PageSeries
+	//PagesCh <- PageArchive
 	return nil
 }
+
+// reloadPages 重载生成series archive页面
+//func (c *Cache) reloadPages() {
+//	for {
+//		switch page := <- PagesCh; page {
+//		case PageSeries:
+//		case PageArchive:
+//		}
+//	}
+//}
 
 // AddSerie 添加专题
 func (c *Cache) AddSerie(serie *model.Serie) error {
@@ -229,3 +254,17 @@ func (c *Cache) DelSerie(id int) error {
 	}
 	return nil
 }
+
+// findArticleByID 通过ID查找文章
+//func (c *Cache) findArticleByID(id int) (*model.Article, int) {
+//	for id, article := range c.Articles {
+//		if article.ID == id {
+//			return article, id
+//		}
+//	}
+//	return nil, -1
+//}
+//
+//func (c *Cache) refreshCache(article model.Article, del bool) {
+//
+//}
