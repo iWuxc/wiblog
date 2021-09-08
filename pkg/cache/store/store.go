@@ -56,6 +56,8 @@ type Store interface {
 	UpdateArticle(ctx context.Context, id int, fields map[string]interface{}) error
 	// LoadArticle 加载文章
 	LoadArticle(ctx context.Context, id int) (*model.Article, error)
+	// RemoveArticle 硬删除文章
+	RemoveArticle(ctx context.Context, id int) error
 	// LoadArticleList 搜索文章
 	LoadArticleList(ctx context.Context, search SearchArticles) (model.SortedArticles, int, error)
 }

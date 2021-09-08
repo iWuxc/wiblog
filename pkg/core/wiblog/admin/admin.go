@@ -36,6 +36,9 @@ func RegisterRoutesAuthz(group gin.IRoutes) {
 	group.POST("/api/post-delete", handleAPIPostDelete)
 	group.POST("/api/serie-add", handleAPISerieCreate)
 	group.POST("/api/serie-delete", handleAPISerieDelete)
+	group.POST("/api/draft-delete", handleDraftDelete)
+	group.POST("/api/trash-delete", handleAPITrashDelete)
+	group.POST("/api/trash-recover", handleAPITrashRecover)
 }
 
 // handleAcctLogin login passport
@@ -266,6 +269,63 @@ func handleAPIPostDelete(c *gin.Context) {
 	}
 	ResponseNotice(c, NoticeSuccess, "删除成功", "")
 	//TODO::elasticsearch
+}
+
+//handleDraftDelete 硬删除文章
+func handleDraftDelete(c *gin.Context) {
+	for _, v :=range c.PostFormArray("mid[]") {
+		id, err := strconv.Atoi(v)
+		if err != nil || id < 0 {
+			ResponseNotice(c, NoticeWarning, "参数错误", "")
+			return
+		}
+		err = cache.Wi.Store.RemoveArticle(context.Background(), id)
+		if err != nil {
+			logrus.Error("handleDraftDelete.RemoveArticle: ", err)
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+	}
+	ResponseNotice(c, NoticeSuccess, "删除成功", "")
+}
+
+// handleAPITrashDelete 删除回收箱文章
+func handleAPITrashDelete(c *gin.Context) {
+	for _, v :=range c.PostFormArray("mid[]") {
+		id, err := strconv.Atoi(v)
+		if err != nil || id < 0 {
+			ResponseNotice(c, NoticeWarning, "参数错误", "")
+			return
+		}
+		err = cache.Wi.Store.RemoveArticle(context.Background(), id)
+		if err != nil {
+			logrus.Error("handleAPITrashDelete.RemoveArticle: ", err)
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+	}
+	ResponseNotice(c, NoticeSuccess, "删除成功", "")
+}
+
+// handleAPITrashRecover 恢复到草稿箱
+func handleAPITrashRecover(c *gin.Context) {
+	for _, v :=range c.PostFormArray("mid[]") {
+		id, err := strconv.Atoi(v)
+		if err != nil || id < 0 {
+			ResponseNotice(c, NoticeWarning, "参数错误", "")
+			return
+		}
+		err = cache.Wi.Store.UpdateArticle(context.Background(), id, map[string]interface{}{
+			"deleted_at": time.Time{},
+			"is_draft": true,
+		})
+		if err != nil {
+			logrus.Error("handleAPITrashRecover.UpdateArticle: ", err)
+			ResponseNotice(c, NoticeWarning, err.Error(), "")
+			return
+		}
+	}
+	ResponseNotice(c, NoticeSuccess, "恢复成功", "")
 }
 
 // handleAPISerieCreate 创建专题 如果专题有提交 mid 即更新专题

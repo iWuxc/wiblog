@@ -3,12 +3,15 @@ package page
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 	htemplate "html/template"
 	"net/http"
 	"strconv"
 	"wiblog/pkg/cache"
+	"wiblog/pkg/cache/store"
 	"wiblog/pkg/conf"
 	"wiblog/pkg/core/wiblog"
 )
@@ -159,6 +162,54 @@ func handleAdminTags(c *gin.Context) {
 	params["Path"] = c.Request.URL.Path
 	params["List"] = cache.Wi.TagArticles
 	renderHTMLAdminLayout(c, "admin-tags", params)
+}
+
+// handleAdminDraft 草稿箱
+func handleAdminDraft(c *gin.Context) {
+	params := baseBEParams(c)
+	params["Title"] = "草稿箱 | " + cache.Wi.Blogger.BTitle
+	params["Manage"] = true
+	params["Path"] = c.Request.URL.Path
+	search := store.SearchArticles{
+		Page: 1,
+		Limit: 9999,
+		Fields: map[string]interface{}{
+			store.SearchArticleDraft: true,
+		},
+	}
+	var err error
+	params["List"], _, err = cache.Wi.Store.LoadArticleList(context.Background(), search)
+	if err != nil {
+		logrus.Error("handleAdminDraft.LoadArticleList: ", err)
+		c.Status(http.StatusBadRequest)
+	} else {
+		c.Status(http.StatusOK)
+	}
+	renderHTMLAdminLayout(c, "admin-draft", params)
+}
+
+// handleAdminTrash 回收箱
+func handleAdminTrash(c *gin.Context) {
+	params := baseBEParams(c)
+	params["Title"] = "回收箱 | " + cache.Wi.Blogger.BTitle
+	params["Manage"] = true
+	params["Path"] = c.Request.URL.Path
+	search := store.SearchArticles{
+		Page: 1,
+		Limit: 9999,
+		Fields: map[string]interface{}{
+			store.SearchArticleTrash: true,
+		},
+	}
+	var err error
+	params["List"], _, err = cache.Wi.Store.LoadArticleList(context.Background(), search)
+	if err != nil {
+		logrus.Error("handleAdminDraft.LoadArticleList: ", err)
+		c.Status(http.StatusBadRequest)
+	} else {
+		c.Status(http.StatusOK)
+	}
+	renderHTMLAdminLayout(c, "admin-trash", params)
 }
 
 // renderHTMLAdminLayout 渲染admin页面
