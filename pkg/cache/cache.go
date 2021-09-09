@@ -121,6 +121,7 @@ func (c *Cache) DelArticle(id int) error {
 func (c *Cache) readdArticle(article *model.Article, needSort bool) {
 	//tag
 	for _, tag := range article.Tags {
+		c.TagArticles[tag] = append(c.TagArticles[tag], article)
 		if needSort {
 			sort.Sort(c.TagArticles[tag])
 		}
@@ -226,6 +227,7 @@ func (c *Cache) loadOrInit() error {
 			articles[i+1].ID >= ArticleStartID {
 			article.Next = articles[i+1]
 		}
+		c.readdArticle(article, false)
 	}
 
 	Wi.Articles = articles

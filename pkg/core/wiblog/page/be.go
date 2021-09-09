@@ -212,6 +212,24 @@ func handleAdminTrash(c *gin.Context) {
 	renderHTMLAdminLayout(c, "admin-trash", params)
 }
 
+// handleAdminGeneral 基本设置
+func handleAdminGeneral(c *gin.Context) {
+	params := baseBEParams(c)
+	params["Title"] = "基本设置 | " + cache.Wi.Blogger.BTitle
+	params["Setting"] = true
+	params["Path"] = c.Request.URL.Path
+	renderHTMLAdminLayout(c, "admin-general", params)
+}
+
+// handleAdminDiscussion 阅读设置
+func handleAdminDiscussion(c *gin.Context) {
+	params := baseBEParams(c)
+	params["Title"] = "阅读设置 | " + cache.Wi.Blogger.BTitle
+	params["Setting"] = true
+	params["Path"] = c.Request.URL.Path
+	renderHTMLAdminLayout(c, "admin-discussion", params)
+}
+
 // renderHTMLAdminLayout 渲染admin页面
 func renderHTMLAdminLayout(c *gin.Context, name string, data gin.H) {
 	c.Header("Content-Type", "text/html; charset=utf-8")
