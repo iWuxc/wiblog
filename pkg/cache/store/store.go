@@ -23,7 +23,7 @@ type SearchArticles struct {
 
 // article search fields
 const (
-	SearchArticleDraft = "draft"
+	SearchArticleDraft   = "draft"
 	SearchArticleTrash   = "trash"
 	SearchArticleTitle   = "title"
 	SearchArticleSerieID = "serieid"

@@ -4,6 +4,7 @@ package page
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
@@ -73,7 +74,8 @@ func handleAdminWritePost(c *gin.Context) {
 	for tag := range cache.Wi.TagArticles {
 		tags = append(tags, T{tag, tag})
 	}
-	params["Tags"] = tags
+	str, _ := json.Marshal(tags)
+	params["Tags"] = string(str)
 	renderHTMLAdminLayout(c, "admin-post", params)
 }
 
@@ -171,7 +173,7 @@ func handleAdminDraft(c *gin.Context) {
 	params["Manage"] = true
 	params["Path"] = c.Request.URL.Path
 	search := store.SearchArticles{
-		Page: 1,
+		Page:  1,
 		Limit: 9999,
 		Fields: map[string]interface{}{
 			store.SearchArticleDraft: true,
@@ -195,7 +197,7 @@ func handleAdminTrash(c *gin.Context) {
 	params["Manage"] = true
 	params["Path"] = c.Request.URL.Path
 	search := store.SearchArticles{
-		Page: 1,
+		Page:  1,
 		Limit: 9999,
 		Fields: map[string]interface{}{
 			store.SearchArticleTrash: true,

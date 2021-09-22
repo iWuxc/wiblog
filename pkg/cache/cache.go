@@ -22,9 +22,9 @@ var (
 	Wi *Cache
 
 	// regenerate pages chan
-	PagesCh     = make(chan string, 2)
-	PageSeries  = "series-md"
-	PageArchive = "archive-md"
+	//PagesCh     = make(chan string, 2)
+	//PageSeries  = "series-md"
+	//PageArchive = "archive-md"
 
 	// ArticleStartID article start id
 	ArticleStartID = 11
@@ -109,7 +109,7 @@ func (c *Cache) DelArticle(id int) error {
 	//}
 	//set delete
 	err := c.Store.UpdateArticle(context.Background(), id, map[string]interface{}{
-		"deleted_at" : time.Now(),
+		"deleted_at": time.Now(),
 	})
 	if err != nil {
 		return err
@@ -135,7 +135,7 @@ func (c *Cache) readdArticle(article *model.Article, needSort bool) {
 		c.Series[i].Articles = append(c.Series[i].Articles, article)
 		if needSort {
 			sort.Sort(c.Series[i].Articles)
-			PagesCh <- PageSeries //重建专题
+			//PagesCh <- PageSeries //重建专题
 		}
 	}
 }
@@ -256,7 +256,7 @@ func (c *Cache) AddSerie(serie *model.Serie) error {
 		return err
 	}
 	c.Series = append(c.Series, serie)
-	PagesCh <- PageSeries
+	//PagesCh <- PageSeries
 	return nil
 }
 
@@ -275,7 +275,7 @@ func (c *Cache) DelSerie(id int) error {
 			}
 			c.Series[i] = nil
 			c.Series = append(c.Series[:i], c.Series[i+1:]...)
-			PagesCh <- PageSeries
+			//PagesCh <- PageSeries
 			break
 		}
 	}
@@ -316,7 +316,7 @@ func (c *Cache) PageArticleBE(se int, kw string, draft, del bool, page, limit in
 
 // findArticleByID 通过ID查找文章
 func (c *Cache) findArticleByID(id int) (*model.Article, int) {
-	for id, article := range c.Articles {
+	for _, article := range c.Articles {
 		if article.ID == id {
 			return article, id
 		}

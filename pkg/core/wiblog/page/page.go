@@ -32,7 +32,6 @@ func RegisterRoutes(e *gin.Engine) {
 	//login page
 	e.GET("/admin/login", handleLoginPage)
 
-
 }
 
 // RegisterRoutesAuthz register admin

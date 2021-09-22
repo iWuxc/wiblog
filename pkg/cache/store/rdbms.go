@@ -108,7 +108,7 @@ func (db *rdbms) InsertArticle(ctx context.Context, article *model.Article, star
 
 // UpdateArticle 编辑文章
 func (db *rdbms) UpdateArticle(ctx context.Context, id int, fields map[string]interface{}) error {
-	return db.Model(&model.Article{}).Where("id=?",id).Updates(fields).Error
+	return db.Model(&model.Article{}).Where("id=?", id).Updates(fields).Error
 }
 
 // RemoveArticle 硬删除文章

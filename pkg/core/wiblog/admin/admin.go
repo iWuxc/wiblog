@@ -39,6 +39,7 @@ func RegisterRoutesAuthz(group gin.IRoutes) {
 	group.POST("/api/draft-delete", handleDraftDelete)
 	group.POST("/api/trash-delete", handleAPITrashDelete)
 	group.POST("/api/trash-recover", handleAPITrashRecover)
+	//group.POST("/api/file-upload", handleAPIQiniuUpload)
 }
 
 // handleAcctLogin login passport
@@ -273,7 +274,7 @@ func handleAPIPostDelete(c *gin.Context) {
 
 //handleDraftDelete 硬删除文章
 func handleDraftDelete(c *gin.Context) {
-	for _, v :=range c.PostFormArray("mid[]") {
+	for _, v := range c.PostFormArray("mid[]") {
 		id, err := strconv.Atoi(v)
 		if err != nil || id < 0 {
 			ResponseNotice(c, NoticeWarning, "参数错误", "")
@@ -291,7 +292,7 @@ func handleDraftDelete(c *gin.Context) {
 
 // handleAPITrashDelete 删除回收箱文章
 func handleAPITrashDelete(c *gin.Context) {
-	for _, v :=range c.PostFormArray("mid[]") {
+	for _, v := range c.PostFormArray("mid[]") {
 		id, err := strconv.Atoi(v)
 		if err != nil || id < 0 {
 			ResponseNotice(c, NoticeWarning, "参数错误", "")
@@ -309,7 +310,7 @@ func handleAPITrashDelete(c *gin.Context) {
 
 // handleAPITrashRecover 恢复到草稿箱
 func handleAPITrashRecover(c *gin.Context) {
-	for _, v :=range c.PostFormArray("mid[]") {
+	for _, v := range c.PostFormArray("mid[]") {
 		id, err := strconv.Atoi(v)
 		if err != nil || id < 0 {
 			ResponseNotice(c, NoticeWarning, "参数错误", "")
@@ -317,7 +318,7 @@ func handleAPITrashRecover(c *gin.Context) {
 		}
 		err = cache.Wi.Store.UpdateArticle(context.Background(), id, map[string]interface{}{
 			"deleted_at": time.Time{},
-			"is_draft": true,
+			"is_draft":   true,
 		})
 		if err != nil {
 			logrus.Error("handleAPITrashRecover.UpdateArticle: ", err)
@@ -395,6 +396,25 @@ func handleAPISerieDelete(c *gin.Context) {
 	}
 	ResponseNotice(c, NoticeSuccess, "删除成功", "")
 }
+
+//func handleAPIQiniuUpload(c *gin.Context) {
+//	type Size interface {
+//		Size() int64
+//	}
+//	file, header, err := c.Request.FormFile("file")
+//	fmt.Println(header)
+//	if err != nil {
+//		logrus.Error("handleAPIQiniuUpload.FormFile: ", err)
+//		c.String(http.StatusBadRequest, err.Error())
+//		return
+//	}
+//	_, ok := file.(Size)
+//	if !ok {
+//		logrus.Error("assert failed ")
+//		c.String(http.StatusBadRequest, "false")
+//		return
+//	}
+//}
 
 // parseLocationDate 解析日期
 func parseLocationDate(date string) time.Time {

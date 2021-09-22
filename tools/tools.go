@@ -26,7 +26,7 @@ func ReadDirFiles(dir string, filter func(name string) bool) (files []string) {
 		return
 	}
 
-	for _, fi := range fileInfos  {
+	for _, fi := range fileInfos {
 		if filter(fi.Name()) {
 			continue
 		}
