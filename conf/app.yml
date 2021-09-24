@@ -34,10 +34,10 @@ wiblogapp:
     t: pageview
     adsense: <script data-ad-client="ca-pub-5384494508691406" async src=""></script>
   qiniu: # 七牛OSS
-    bucket: eiblog
-    domain: st.deepzz.com
-    accesskey: MB6AXl_Sj_mmFsL-Lt59Dml2Vmy2o8XMmiCbbSeC
-    secretkey: BIrMy0fsZ0_SHNceNXk3eDuo7WmVYzj2-zrmd5Tf
+    bucket: wiblog
+    domain: qiniu.iwuxc.com
+    accesskey: uRKG6iuqgtzw-G1KZQqcSkcl4JJ5BKNEVQOl5sWe
+    secretkey: 6NhzzuB6NfvHdQWyKJEyJpy8plxHsOJ6ORZj8iPS
   twitter: # twitter card
     card: summary
     site: deepzz02

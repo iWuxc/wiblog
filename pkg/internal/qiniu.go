@@ -1,3 +1,4 @@
+// Package internal provides ...
 package internal
 
 import (
@@ -18,6 +19,7 @@ type UploadParams struct {
 	Config conf.Qiniu
 }
 
+// QiniuUpload 七牛云上传
 func QiniuUpload(params UploadParams) (string, error) {
 	if params.Config.AccessKey == "" || params.Config.SecretKey == "" {
 		return "", errors.New("qiniu config error")
@@ -35,7 +37,7 @@ func QiniuUpload(params UploadParams) (string, error) {
 	uploadToken := putPolicy.UploadToken(mac)
 	//上传配置
 	cfg := &storage.Config{
-		UseHTTPS: true,
+		UseHTTPS: false,
 		Zone:     &storage.ZoneHuabei,
 	}
 	//uploader
@@ -51,6 +53,35 @@ func QiniuUpload(params UploadParams) (string, error) {
 	}
 	url := "https://" + params.Config.Domain + "/" + key
 	return url, nil
+}
+
+type DeleteParams struct {
+	Name string
+	Days int
+
+	Config conf.Qiniu
+}
+
+func QiniuDelete(params DeleteParams) error {
+
+	key := completeQiniuKey(params.Name)
+
+	mac := qbox.NewMac(params.Config.AccessKey, params.Config.SecretKey)
+
+	//上传配置
+	cfg := &storage.Config{
+		UseHTTPS: false,
+		Zone:     &storage.ZoneHuabei,
+	}
+
+	// manager
+	bucketManager := storage.NewBucketManager(mac, cfg)
+
+	if params.Days > 0 {
+		return bucketManager.DeleteAfterDays(params.Config.Bucket, key, params.Days)
+	}
+	return bucketManager.Delete(params.Config.Bucket, key)
+
 }
 
 // completeQiniuKey 修复路径

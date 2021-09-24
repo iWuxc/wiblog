@@ -12,6 +12,7 @@ import (
 	"wiblog/pkg/cache"
 	"wiblog/pkg/conf"
 	"wiblog/pkg/core/wiblog"
+	"wiblog/pkg/internal"
 	"wiblog/pkg/model"
 	"wiblog/tools"
 )
@@ -39,7 +40,8 @@ func RegisterRoutesAuthz(group gin.IRoutes) {
 	group.POST("/api/draft-delete", handleDraftDelete)
 	group.POST("/api/trash-delete", handleAPITrashDelete)
 	group.POST("/api/trash-recover", handleAPITrashRecover)
-	//group.POST("/api/file-upload", handleAPIQiniuUpload)
+	group.POST("/api/file-upload", handleAPIQiniuUpload)
+	group.POST("/api/file-delete", handleAPIQiniuDelete)
 }
 
 // handleAcctLogin login passport
@@ -379,7 +381,7 @@ func handleAPISerieCreate(c *gin.Context) {
 	ResponseNotice(c, NoticeSuccess, "操作成功", "")
 }
 
-// handleAPISerieDelete
+// handleAPISerieDelete 专题删除
 func handleAPISerieDelete(c *gin.Context) {
 	fmt.Println(c.PostFormArray("sid[]"))
 	for _, v := range c.PostFormArray("sid[]") {
@@ -397,24 +399,68 @@ func handleAPISerieDelete(c *gin.Context) {
 	ResponseNotice(c, NoticeSuccess, "删除成功", "")
 }
 
-//func handleAPIQiniuUpload(c *gin.Context) {
-//	type Size interface {
-//		Size() int64
-//	}
-//	file, header, err := c.Request.FormFile("file")
-//	fmt.Println(header)
-//	if err != nil {
-//		logrus.Error("handleAPIQiniuUpload.FormFile: ", err)
-//		c.String(http.StatusBadRequest, err.Error())
-//		return
-//	}
-//	_, ok := file.(Size)
-//	if !ok {
-//		logrus.Error("assert failed ")
-//		c.String(http.StatusBadRequest, "false")
-//		return
-//	}
-//}
+// handleAPIQiniuUpload 七牛云上传
+func handleAPIQiniuUpload(c *gin.Context) {
+	type Size interface {
+		Size() int64
+	}
+	file, header, err := c.Request.FormFile("file")
+
+	if err != nil {
+		logrus.Error("handleAPIQiniuUpload.FormFile: ", err)
+		c.String(http.StatusBadRequest, err.Error())
+		return
+	}
+
+	s, ok := file.(Size)
+	if !ok {
+		logrus.Error("assert failed ")
+		c.String(http.StatusBadRequest, "false")
+		return
+	}
+	filename := strings.ToLower(header.Filename)
+
+	params := internal.UploadParams{
+		Name: filename,
+		Size: s.Size(),
+		Data: file,
+
+		Config: conf.Conf.WiBlogApp.Qiniu,
+	}
+
+	url, err := internal.QiniuUpload(params)
+	if err != nil {
+		logrus.Error("handleAPIQiniuUpload.QiniuUpload: ", err)
+		c.String(http.StatusBadRequest, err.Error())
+		return
+	}
+
+	typ := header.Header.Get("Content-Type")
+	c.JSON(http.StatusOK, gin.H{
+		"title":   filename,
+		"isImage": typ[:5] == "image",
+		"url":     url,
+		"bytes":   fmt.Sprintf("%dkb", s.Size()/1000),
+	})
+}
+
+// handleAPIQiniuDelete 七牛云删除
+func handleAPIQiniuDelete(c *gin.Context) {
+	defer c.String(http.StatusOK, "删掉了吗？鬼知道。。。")
+	name := c.PostForm("title")
+	if name == "" {
+		logrus.Error("handleAPIQiniuDelete.PostForm: 参数错误")
+		return
+	}
+	params := internal.DeleteParams{
+		Name: name,
+		Config: conf.Conf.WiBlogApp.Qiniu,
+	}
+	err := internal.QiniuDelete(params)
+	if err != nil {
+		logrus.Error("handleAPIQiniuDelete.QiniuDelete: ", err)
+	}
+}
 
 // parseLocationDate 解析日期
 func parseLocationDate(date string) time.Time {
