@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{.Title}}</title>{{.AdSense}}
-    <meta name="keywords" content="{{.Keyword}}" />
+    <title>{{.Title}}</title>
+    <meta name="{{.KeyWord}}" content="{{.SubTitle}}" />
     <meta name="description" content="{{.Description}}">
     <link rel="stylesheet" href="/static/front/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/front/layui/css/layui.css" />
     <link rel="stylesheet" href="/static/front/css/master.css" />
     <link rel="stylesheet" href="/static/front/css/gloable.css" />
     <link rel="stylesheet" href="/static/front/css/nprogress.css" />
-    {{.RenderCss}}
+<!--    {{.RenderCss}}-->
 </head>
 <body>
 <div class="header">
@@ -19,7 +19,7 @@
 <header class="gird-header">
     <div class="header-fixed">
         <div class="header-inner">
-            <a href="javascript:void(0)" class="header-logo" id="logo">{{.BlogName}}</a>
+            <a href="javascript:void(0)" class="header-logo" id="logo">BlogName</a>
             <nav class="nav" id="nav">
                 <ul>
                     <li><a href="/Home">首页</a></li>
@@ -54,7 +54,12 @@
                     <a href="javascript:void(0)" class="weixin"><i class="fa fa-weixin"></i></a>
                 </div>
                 <p class="mt05">
-                    @ViewBag.Site.CopyRight <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277902185'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1277902185%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script> | <a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#565755;">赣ICP备19008895号-1</a>
+                    {{.Copyright}}
+                    <script type="text/javascript">
+                        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+                        document.write(unescape("%3Cspan id='cnzz_stat_icon_1277902185'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1277902185%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+                    </script>
+                    | <a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#565755;">{{.BeiAn}}</a>
                 </p>
             </div>
         </div>
