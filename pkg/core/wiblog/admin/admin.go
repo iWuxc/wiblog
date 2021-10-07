@@ -198,6 +198,7 @@ func handleAPIPostCreate(c *gin.Context) {
 	title := c.PostForm("title")
 	slug := c.PostForm("slug")
 	text := c.PostForm("text")
+	cover := c.PostForm("cover")
 
 	date := parseLocationDate(c.PostForm("title"))
 	serie := c.PostForm("serie")
@@ -215,6 +216,7 @@ func handleAPIPostCreate(c *gin.Context) {
 		Title:     title,
 		Content:   text,
 		Slug:      slug,
+		Cover:     cover,
 		IsDraft:   do != "publish",
 		Author:    cache.Wi.Account.Username,
 		SerieID:   serieid,
@@ -239,6 +241,7 @@ func handleAPIPostCreate(c *gin.Context) {
 	err = cache.Wi.Store.UpdateArticle(context.Background(), cid, map[string]interface{}{
 		"title":      article.Title,
 		"content":    article.Content,
+		"cover":      article.Cover,
 		"serie_id":   article.SerieID,
 		"is_draft":   article.IsDraft,
 		"tags":       article.Tags,
@@ -453,7 +456,7 @@ func handleAPIQiniuDelete(c *gin.Context) {
 		return
 	}
 	params := internal.DeleteParams{
-		Name: name,
+		Name:   name,
 		Config: conf.Conf.WiBlogApp.Qiniu,
 	}
 	err := internal.QiniuDelete(params)

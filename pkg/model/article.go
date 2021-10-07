@@ -14,6 +14,7 @@ type Article struct {
 	Author  string         `gorm:"column:author;type:string;size:50;not null" bson:"author"`  // 作者名
 	Slug    string         `gorm:"column:slug;type:string;size:250;not null" bson:"slug"`     // 文章缩略名
 	Title   string         `gorm:"column:title;type:string;size:250;not null" bson:"title"`   // 标题
+	Cover   string         `gorm:"column:cover;type:string;size:250;not null" bson:"cover"`   //封面图
 	Count   int            `gorm:"column:count;not null" bson:"count"`                        // 评论数量
 	Content string         `gorm:"column:content;not null" bson:"content"`                    // markdown内容
 	SerieID int            `gorm:"column:serie_id;not null" bson:"serie_id"`                  // 专题ID

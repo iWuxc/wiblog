@@ -11,6 +11,10 @@
                     <label for="title" class="sr-only">标题</label>
                     <input type="text" id="title" name="title" autocomplete="off" {{with .Edit}}value="{{.Title}}"{{end}} placeholder="标题" class="w-100 text title" />
                 </p>
+                <p class="cover">
+                    <label for="title" class="sr-only">封面图</label>
+                    <input type="text" id="cover" name="cover" autocomplete="off" {{with .Edit}}value="{{.Cover}}" {{end}} placeholder="封面图" class="w-100 text cover" />
+                </p>
                 <p class="mono url-slug">
                     <label for="slug" class="sr-only">网址缩略名</label>
                     https://{{.Domain}}/post/<input type="text" id="slug" name="slug" autocomplete="off" {{with .Edit}}value="{{.Slug}}" {{end}} class="mono" />.html </p>
