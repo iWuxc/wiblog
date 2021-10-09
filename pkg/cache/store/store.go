@@ -27,6 +27,7 @@ const (
 	SearchArticleTrash   = "trash"
 	SearchArticleTitle   = "title"
 	SearchArticleSerieID = "serieid"
+	SearchArticleHot     = "hot"
 )
 
 type Store interface {

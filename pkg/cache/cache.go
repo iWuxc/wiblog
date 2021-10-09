@@ -76,6 +76,7 @@ type Cache struct {
 	Series      model.SortedSeries
 	TagArticles map[string]model.SortedArticles // tagname:articles
 	ArticlesMap map[string]*model.Article       // slug:article
+	HotArticles []*model.Article //热门文章
 }
 
 // AddArticle 添加文章
@@ -118,6 +119,7 @@ func (c *Cache) DelArticle(id int) error {
 	return nil
 }
 
+// readdArticle 分类、专题
 func (c *Cache) readdArticle(article *model.Article, needSort bool) {
 	//tag
 	for _, tag := range article.Tags {
@@ -231,6 +233,19 @@ func (c *Cache) loadOrInit() error {
 	}
 
 	Wi.Articles = articles
+
+	// hot articles
+	hotSearch := store.SearchArticles{
+		Page: 1,
+		Limit: 3,
+		Fields: map[string]interface{}{
+			store.SearchArticleHot: true,
+		},
+	}
+	hotArts, _, err := c.Store.LoadArticleList(context.Background(), hotSearch)
+	fmt.Println(hotArts)
+	Wi.HotArticles = hotArts
+
 	// 重建专题与归档
 	//PagesCh <- PageSeries
 	//PagesCh <- PageArchive

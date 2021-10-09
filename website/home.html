@@ -53,8 +53,7 @@
                     </div>
                 </div>
                 <div class="layui-row">
-                    @foreach (ArticleModel item in ViewBag.HotArtileList)
-                    {
+                    {{range .TopList}}
                     <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" style="padding: 0 10px">
                         <div class="single-news">
                             <div class="news-head">
@@ -79,7 +78,7 @@
                             </div>
                         </div>
                     </div>
-                    }
+                    {{end}}
                 </div>
             </div>
         </div>
