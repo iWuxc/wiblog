@@ -53,7 +53,19 @@ func handleHomePage(c *gin.Context) {
 	params["Address"] = "北京市海淀区"
 	params["QQ"] = "1272105573"
 	params["Email"] = "wuxc.ent@gmail.com"
+
+	// TODO::应该加入缓存
+	//hotSearch := store.SearchArticles{
+	//	Page: 1,
+	//	Limit: 3,
+	//	Fields: map[string]interface{}{
+	//		store.SearchArticleHot: true,
+	//	},
+	//}
+	//hotArticles, _, _ := cache.Wi.Store.LoadArticleList(context.Background(), hotSearch)
 	params["Article"] = cache.Wi.HotArticles
+	//params["Article"] = hotArticles
+
 	fmt.Println(cache.Wi.HotArticles)
 	renderHTMLHomeLayout(c, "home.html", params)
 }

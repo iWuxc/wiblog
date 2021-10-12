@@ -199,6 +199,7 @@ func handleAPIPostCreate(c *gin.Context) {
 	slug := c.PostForm("slug")
 	text := c.PostForm("text")
 	cover := c.PostForm("cover")
+	isHot := c.PostForm("hot")
 
 	date := parseLocationDate(c.PostForm("title"))
 	serie := c.PostForm("serie")
@@ -222,6 +223,7 @@ func handleAPIPostCreate(c *gin.Context) {
 		SerieID:   serieid,
 		Tags:      tags,
 		CreatedAt: date,
+		IsHot: isHot == "1",
 	}
 
 	cid, err = strconv.Atoi(c.PostForm("cid"))

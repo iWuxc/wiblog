@@ -56,6 +56,7 @@ func init() {
 
 	//load and init
 	err = Wi.loadOrInit()
+	fmt.Println("asfknrkng")
 	if err != nil {
 		panic(err)
 	}
@@ -243,7 +244,6 @@ func (c *Cache) loadOrInit() error {
 		},
 	}
 	hotArts, _, err := c.Store.LoadArticleList(context.Background(), hotSearch)
-	fmt.Println(hotArts)
 	Wi.HotArticles = hotArts
 
 	// 重建专题与归档
@@ -252,15 +252,9 @@ func (c *Cache) loadOrInit() error {
 	return nil
 }
 
-// reloadPages 重载生成series archive页面
-//func (c *Cache) reloadPages() {
-//	for {
-//		switch page := <- PagesCh; page {
-//		case PageSeries:
-//		case PageArchive:
-//		}
-//	}
-//}
+func (c *Cache) regeneratePagesElem() {
+	//switch
+}
 
 // AddSerie 添加专题
 func (c *Cache) AddSerie(serie *model.Serie) error {
