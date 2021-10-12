@@ -53,26 +53,26 @@
                     </div>
                 </div>
                 <div class="layui-row">
-                    {{range .TopList}}
+                    {{range .Article}}
                     <div class="layui-col-xs12 layui-col-sm4 layui-col-md4  wow fadeInUp" style="padding: 0 10px">
                         <div class="single-news">
                             <div class="news-head">
-                                <img src="@item.ImgUrl">
-                                <a href="/Article/Detail/@item.Id" class="link"><i class="fa fa-link"></i></a>
+                                <img src="{{.Cover}}">
+                                <a href="/Article/Detail/{{.ID}}" class="link"><i class="fa fa-link"></i></a>
                             </div>
                             <div class="news-content">
                                 <h4>
                                     <a href="/">
-                                        @item.Title
+                                        {{.Title}}
                                     </a>
                                 </h4>
                                 <div class="date">
-                                    @item.CreateOn.ToString("yyyy年MM月dd日")
+                                    {{dateformat .CreatedAt "06/01/02 15:04"}}
                                 </div>
                                 <p>
-                                    @item.ZhaiYao
+                                    {{.Author}}
                                 </p>
-                                <a href="/Article/Detail/@item.Id" class="btn">
+                                <a href="/Article/Detail/{{.ID}}" class="btn">
                                     阅读更多
                                 </a>
                             </div>

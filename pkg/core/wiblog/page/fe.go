@@ -53,6 +53,8 @@ func handleHomePage(c *gin.Context) {
 	params["Address"] = "北京市海淀区"
 	params["QQ"] = "1272105573"
 	params["Email"] = "wuxc.ent@gmail.com"
+	params["Article"] = cache.Wi.HotArticles
+	fmt.Println(cache.Wi.HotArticles)
 	renderHTMLHomeLayout(c, "home.html", params)
 }
 
