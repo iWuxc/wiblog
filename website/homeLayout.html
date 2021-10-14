@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/static/front/css/master.css" />
     <link rel="stylesheet" href="/static/front/css/gloable.css" />
     <link rel="stylesheet" href="/static/front/css/nprogress.css" />
-<!--    {{.RenderCss}}-->
+    {{if eq .CurrentPage "article-index"}}<link rel="stylesheet" href="/static/front/css/blog.css" />{{end}}
 </head>
 <body>
 <div class="header">
@@ -74,7 +74,7 @@
 <script src="/static/front/js/yss/gloable.js"></script>
 <script src="/static/front/js/plugins/nprogress.js"></script>
 <script>NProgress.start();</script>
-{{.RenderJavascript}}
+{{if eq .CurrentPage "article-index"}}<script src="/static/front/js/yss/article.js"></script>{{end}}
 <script>
     window.onload = function () {
         NProgress.done();

@@ -6,21 +6,20 @@
         elem: "#LAY_bloglist",
         done: function (page, next) {
             var pagecount = $(".bloglist").attr("data-pagecount"),
-                type = $(".bloglist").attr("data-type"),
                 pagesize = $(".bloglist").attr("data-pagesize"),
                 lis = [];
             $.ajax({
                 type: "POST",
-                url: "/Article/LoadArticleByClass",
+                url: "/web/article/list",
                 data: {
-                    classId: type,
                     page: page,
                     pagesize: pagesize
                 },
                 success: function (res) {
                     //直接后台拼接返回每页的html，舒服啊。
-                    lis.push(res);
-                    next(lis.join(""), page < pagecount);
+                    console.log(res)
+                    // lis.push(res);
+                    // next(lis.join(""), page < pagecount);
                 }
             })
         }

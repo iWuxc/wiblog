@@ -158,3 +158,33 @@ func (db *rdbms) LoadArticleList(ctx context.Context, search SearchArticles) (mo
 	}
 	return articles, int(count), nil
 }
+
+// LoadArticleCount 统计文章数量
+func (db *rdbms) LoadArticleCount(ctx context.Context, search SearchArticles) (int, error) {
+	gormDB := db.Model(model.Article{})
+	for k, v := range search.Fields {
+		switch k {
+		case SearchArticleDraft:
+			if ok := v.(bool); ok {
+				gormDB = gormDB.Where("is_draft=?", true)
+			} else {
+				gormDB = gormDB.Where("is_draft=? AND deleted_at=?", false, time.Time{})
+			}
+		case SearchArticleTrash:
+			gormDB = gormDB.Where("deleted_at!=?", time.Time{})
+		case SearchArticleTitle:
+			gormDB = gormDB.Where("title LIKE ?", "%"+v.(string)+"%")
+		case SearchArticleSerieID:
+			gormDB = gormDB.Where("serie_id=?", v.(int))
+		case SearchArticleHot:
+			gormDB = gormDB.Where("is_hot=?", true)
+		}
+	}
+	// search count
+	var count int64
+	err := gormDB.Count(&count).Error
+	if err != nil {
+		return 0, err
+	}
+	return int(count), nil
+}

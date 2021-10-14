@@ -27,27 +27,11 @@ wiblogapp:
     shortname: xxxxxx
     publickey: wdSgxRm9rdGAlLKFcFdToBe3GT4SibmV7Y8EjJQ0r4GWXeKtxpopMAeIeoI2dTEg
     accesstoken: 50023908f39f4607957e909b495326af
-  google: # 谷歌分析
-    url: https://www.google-analytics.com/collect
-    tid: UA-xxxxxx-1
-    v: "1"
-    t: pageview
-    adsense: <script data-ad-client="ca-pub-5384494508691406" async src=""></script>
   qiniu: # 七牛OSS
     bucket: wiblog
     domain: qiniu.iwuxc.com
     accesskey: uRKG6iuqgtzw-G1KZQqcSkcl4JJ5BKNEVQOl5sWe
     secretkey: 6NhzzuB6NfvHdQWyKJEyJpy8plxHsOJ6ORZj8iPS
-  twitter: # twitter card
-    card: summary
-    site: deepzz02
-    image: st.deepzz.com/static/img/avatar.jpg
-    address: twitter.com/deepzz02
-  feedrpc: # rss ping
-    feedrurl: https://deepzz.superfeedr.com/
-    pingrpc:
-      - http://ping.baidu.com/ping/RPC2
-      - http://rpc.pingomatic.com/
   # 数据初始化操作，可到博客后台修改
   account:
     username: wuxc # *后台登录用户名

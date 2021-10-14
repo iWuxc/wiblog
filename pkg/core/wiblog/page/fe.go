@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"time"
 	"wiblog/pkg/cache"
+	"wiblog/pkg/cache/store"
 	"wiblog/pkg/conf"
 )
 
@@ -65,16 +66,38 @@ func handleHomePage(c *gin.Context) {
 	//hotArticles, _, _ := cache.Wi.Store.LoadArticleList(context.Background(), hotSearch)
 	params["Article"] = cache.Wi.HotArticles
 	//params["Article"] = hotArticles
-
-	fmt.Println(cache.Wi.HotArticles)
 	renderHTMLHomeLayout(c, "home.html", params)
+}
+
+// handleArticleIndexPage 文章列表
+func handleArticleIndexPage(c *gin.Context) {
+	params := baseFEParams(c)
+	params["Title"] = "文章列表" + " | " + cache.Wi.Blogger.SubTitle
+	params["Description"] = "文章列表，" + cache.Wi.Blogger.SubTitle
+	params["CurrentPage"] = "article-index"
+
+	//文章设置属性
+	pagesize := conf.Conf.WiBlogApp.General.PageNum
+	params["PageSize"] = pagesize
+
+	var search = store.SearchArticles{
+		Page: 1,
+		Limit: 10,
+		Fields: map[string]interface{}{
+			store.SearchArticleDraft: false,
+		},
+	}
+	count, _ := cache.Wi.Store.LoadArticleCount(c, search)
+	params["Count"] = count
+	//总页数
+	params["PageCount"] = (count + pagesize - 1) / pagesize
+
+	renderHTMLHomeLayout(c, "article-index", params)
 }
 
 // renderHTMLHomeLayout homelayout html
 func renderHTMLHomeLayout(c *gin.Context, name string, data gin.H) {
 	c.Header("Content-Type", "text/html; charset=utf-8")
-
-	fmt.Println(name)
 
 	//special page
 	if name == "home.html" {

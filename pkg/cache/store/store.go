@@ -61,6 +61,8 @@ type Store interface {
 	RemoveArticle(ctx context.Context, id int) error
 	// LoadArticleList 搜索文章
 	LoadArticleList(ctx context.Context, search SearchArticles) (model.SortedArticles, int, error)
+	//LoadArticleCount 获取文章数量
+	LoadArticleCount(ctx context.Context, search SearchArticles) (int, error)
 }
 
 type Driver interface {

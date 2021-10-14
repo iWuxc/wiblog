@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 	"wiblog/pkg/cache"
+	"wiblog/pkg/cache/store"
 	"wiblog/pkg/conf"
 	"wiblog/pkg/core/wiblog"
 	"wiblog/pkg/internal"
@@ -26,6 +27,13 @@ var (
 // RegisterRoutes register routes
 func RegisterRoutes(e *gin.Engine) {
 	e.POST("/admin/login", handleAcctLogin)
+
+	//frontend api
+	web := e.Group("/web")
+	{
+		web.POST("/article/list", handleWEBArticleList)
+	}
+
 }
 
 // RegisterRoutesAuthz register routes
@@ -223,7 +231,7 @@ func handleAPIPostCreate(c *gin.Context) {
 		SerieID:   serieid,
 		Tags:      tags,
 		CreatedAt: date,
-		IsHot: isHot == "1",
+		IsHot:     isHot == "1",
 	}
 
 	cid, err = strconv.Atoi(c.PostForm("cid"))
@@ -484,4 +492,37 @@ func ResponseNotice(c *gin.Context, typ, content, hl string) {
 	c.SetCookie("notice_type", typ, 86400, "/", "", true, false)
 	c.SetCookie("notice", fmt.Sprintf("[\"%s\"]", content), 86400, "/", "", true, false)
 	c.Redirect(http.StatusFound, c.Request.Referer())
+}
+
+func handleWEBArticleList(c *gin.Context) {
+	page, _ := strconv.Atoi(c.PostForm("page"))
+	pagesize, _ := strconv.Atoi(c.PostForm("pagesize"))
+	search := store.SearchArticles{
+		Page: page,
+		Limit: pagesize,
+		Fields: map[string]interface{}{
+			store.SearchArticleDraft: false,
+		},
+	}
+	articles, _, err := cache.Wi.Store.LoadArticleList(c, search)
+	if err != nil {
+		sendAjaxResponse(c, 1, err.Error(), "")
+		return
+	}
+	sendAjaxResponse(c, 0, "操作成功", articles)
+}
+
+type Response struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
+}
+
+// Response ajax response
+func sendAjaxResponse(c *gin.Context, code int, msg string, data interface{}) {
+	c.JSON(http.StatusOK, Response{
+		Code: code,
+		Msg:  msg,
+		Data: data,
+	})
 }
