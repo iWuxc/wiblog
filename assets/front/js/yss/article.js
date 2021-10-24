@@ -16,10 +16,53 @@
                     pagesize: pagesize
                 },
                 success: function (res) {
-                    //直接后台拼接返回每页的html，舒服啊。
-                    console.log(res)
-                    // lis.push(res);
-                    // next(lis.join(""), page < pagecount);
+                    if (res.code == 0 && res.data) {
+                        let articles = res.data
+                        console.log(articles)
+                        // let html = "";
+                        // for(let i = 0; i < articles.length; i++) {
+                        //     html += `<section class='article-item zoomIn article'>
+                        //                 <div class='fc-flag'>置顶</div>
+                        //                 <h5 class='title'>
+                        //                     <span class='fc-blue'>【分类】</span>
+                        //                     <a href='{11}'>${articles[i].Title}</a>
+                        //                 </h5>
+                        //                 <div class='time'>
+                        //                     <span class='day'>28</span>
+                        //                     <span class='month fs-18'>10<span class='fs-14'>月</span></span>
+                        //                     <span class='year fs-18 ml10'>2021</span>
+                        //                 </div>
+                        //                 <div class='content'>
+                        //                     <a href='${articles[i].Title}' class='cover img-light'>
+                        //                         <img src='{{.Domain}}' >
+                        //                     </a>
+                        //                     {7}
+                        //                 </div>
+                        //                 <div class='read-more'>
+                        //                     <a href='{13}' class='fc-black f-fwb'>继续阅读</a>
+                        //                 </div>
+                        //                 <aside class='f-oh footer'>
+                        //                     <div class='f-fl tags'>
+                        //                         <span class='fa fa-tags fs-16'></span>
+                        //                         <a class='tag'>{8}</a>
+                        //                     </div>
+                        //                     <div class='f-fr'>
+                        //                         <span class='read'>
+                        //                             <i class='fa fa-eye fs-16'></i>
+                        //                             <i class='num'>{9}</i>
+                        //                         </span>
+                        //                         <span class='ml20'>
+                        //                             <i class='fa fa-comments fs-16'></i>
+                        //                             <a href = 'javascript:void(0)' class='num fc-grey'>{10}</a>
+                        //                         </span>
+                        //                     </div>
+                        //                 </aside>
+                        //             </section>`;
+                        // }
+                        // lis.push(html);
+                        next(lis.join(""), page < pagecount);
+                    }
+
                 }
             })
         }

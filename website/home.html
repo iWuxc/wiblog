@@ -33,7 +33,7 @@
             <div class="nav wow zoomIn" data-wow-duration="2s">
                 <h1>{{.BlogName}}</h1>
                 <p>{{.SubTitle}}</p>
-                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="/Article">Enter Blog</a>
+                <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="/article">Enter Blog</a>
             </div>
             <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
         </div>
@@ -58,7 +58,7 @@
                         <div class="single-news">
                             <div class="news-head">
                                 <img src="{{.Cover}}">
-                                <a href="/Article/Detail/{{.ID}}" class="link"><i class="fa fa-link"></i></a>
+                                <a href="/article/{{.ID}}" class="link"><i class="fa fa-link"></i></a>
                             </div>
                             <div class="news-content">
                                 <h4>
@@ -72,7 +72,7 @@
                                 <p>
                                     {{.Author}}
                                 </p>
-                                <a href="/Article/Detail/{{.ID}}" class="btn">
+                                <a href="/article/{{.ID}}" class="btn">
                                     阅读更多
                                 </a>
                             </div>
@@ -137,7 +137,7 @@
                     <div class="single-widget">
                         <h2>相关链接</h2>
                         <ul class="social-icon">
-                            <li class="active"><a href="/Article"><i class="fa fa-book"></i>博文</a></li>
+                            <li class="active"><a href="/article"><i class="fa fa-book"></i>博文</a></li>
                             <li class="active"><a href="/Feedback"><i class="fa fa-comments"></i>留言</a></li>
                             <li class="active"><a href="/Archives"><i class="fa fa-files-o"></i>归档</a></li>
                             <li class="active"><a href="/Diarys"><i class="fa fa-snowflake-o"></i>日记</a></li>

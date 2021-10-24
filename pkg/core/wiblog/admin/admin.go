@@ -10,11 +10,11 @@ import (
 	"strings"
 	"time"
 	"wiblog/pkg/cache"
-	"wiblog/pkg/cache/store"
 	"wiblog/pkg/conf"
 	"wiblog/pkg/core/wiblog"
 	"wiblog/pkg/internal"
 	"wiblog/pkg/model"
+	"wiblog/pkg/service"
 	"wiblog/tools"
 )
 
@@ -497,19 +497,18 @@ func ResponseNotice(c *gin.Context, typ, content, hl string) {
 func handleWEBArticleList(c *gin.Context) {
 	page, _ := strconv.Atoi(c.PostForm("page"))
 	pagesize, _ := strconv.Atoi(c.PostForm("pagesize"))
-	search := store.SearchArticles{
-		Page: page,
-		Limit: pagesize,
-		Fields: map[string]interface{}{
-			store.SearchArticleDraft: false,
-		},
+	articles, _, err := service.List(c, page, pagesize)
+
+	var html string
+	for _, v := range articles {
+		html += fmt.Sprintf(articleHtml(), "置顶", v.Slug, v.Title)
 	}
-	articles, _, err := cache.Wi.Store.LoadArticleList(c, search)
+
 	if err != nil {
 		sendAjaxResponse(c, 1, err.Error(), "")
 		return
 	}
-	sendAjaxResponse(c, 0, "操作成功", articles)
+	sendAjaxResponse(c, 0, "操作成功", html)
 }
 
 type Response struct {

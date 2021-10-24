@@ -16,7 +16,7 @@ wiblogapp:
     - curl
     - dns
   general: # 常规配置
-    pagenum: 10 # 首页展示文章数量
+    pagenum: 2 # 首页展示文章数量
     pagesize: 20 # 管理界面
     startid: 11 # 起始ID，预留id不时之需, 不用管
     descprefix: "Desc:" # 文章描述前缀
