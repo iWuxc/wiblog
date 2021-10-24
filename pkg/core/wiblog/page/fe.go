@@ -83,7 +83,7 @@ func handleArticleIndexPage(c *gin.Context) {
 	params["PageSize"] = pagesize
 
 	var search = store.SearchArticles{
-		Page: 1,
+		Page:  1,
 		Limit: 10,
 		Fields: map[string]interface{}{
 			store.SearchArticleDraft: false,
@@ -94,7 +94,12 @@ func handleArticleIndexPage(c *gin.Context) {
 	//总页数
 	params["PageCount"] = (count + pagesize - 1) / pagesize
 
-	renderHTMLHomeLayout(c, "article-index", params)
+	renderHTMLHomeLayout(c, "web-posts", params)
+}
+
+func handleArticleDetailPage(c *gin.Context) {
+	params := baseFEParams(c)
+	renderHTMLHomeLayout(c, "web-post", params)
 }
 
 // renderHTMLHomeLayout homelayout html

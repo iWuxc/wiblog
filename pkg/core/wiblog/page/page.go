@@ -30,7 +30,8 @@ func RegisterRoutes(e *gin.Engine) {
 	e.NoRoute(handleNotFound)
 
 	e.GET("/", handleHomePage)
-	e.GET("/article", handleArticleIndexPage)
+	e.GET("/posts", handleArticleIndexPage)
+	e.GET("/post/:slug", handleArticleDetailPage)
 
 	//login page
 	e.GET("/admin/login", handleLoginPage)
