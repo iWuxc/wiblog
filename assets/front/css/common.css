@@ -1,0 +1,296 @@
+﻿/* 公共样式 */
+
+/* 初始化 开始*/
+html {
+    font-family: Microsoft Yahei;
+    /*为指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制*/
+    box-sizing: border-box !important;
+    height: 100%;
+    min-height: 100%;
+    /* 隐藏横向滚动条 */
+    overflow-x: hidden;
+}
+
+*, *:before, *:after {
+    /*规定应从父元素继承 box-sizing 属性的值*/
+    box-sizing: inherit !important;
+}
+
+*:focus {
+    outline: none; /*该元素获得焦点时，不出现虚线框（或高亮框）*/
+}
+
+* {  
+    margin: 0;
+    padding: 0;
+    border: 0;
+    /* CSS禁止文本复制属性*/
+    /*-moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;*/
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    background: #F9F9F9;
+}
+
+body a {
+    text-decoration: none;
+    transition: 0.5s all; /*过渡时长为0.5s*/
+}
+
+img {
+    max-width: 100%; /*图片的最大宽度为100%*/
+    height: auto;
+    width: auto;
+    vertical-align: middle; /*把此元素放置在父元素的中部*/
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=textarea]:focus {
+    border: 1px solid #0099FF !important;
+}
+
+.clearfix:after {
+    /*清除浮动*/
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.ellipsis {
+    overflow: hidden; /*超出的文本隐藏*/
+    text-overflow: ellipsis; /*溢出用省略号显示*/
+    white-space: nowrap; /*溢出不换行*/
+}
+
+/* 初始化 结束*/
+
+/* header */
+header {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.85);
+    z-index: 999;
+}
+
+.logo {
+    float: left;
+}
+
+.logo img {
+    margin: 20px 0px 0px 50px;
+    max-width: 130px !important;
+    z-index: 9999;
+}
+
+header > nav > ul {
+    float: right;
+    padding-right: 100px;
+}
+
+.logo, header nav, header nav > ul, header nav > ul > li {
+    height: 100%;
+}
+
+header nav > ul > li {
+    height: 80px;
+    line-height: 90px;
+    padding: 0 25px;
+    text-align: center;
+    font-size: 14px;
+    float: left;
+}
+
+header nav > ul > li:hover {
+    border-bottom: 4px solid #5FB878;
+}
+
+header nav > ul > li:hover > a {
+    color: white;
+}
+
+header nav > ul > li a {
+    color: rgba(255,255,255,.75);
+}
+
+header nav > ul > li a:hover {
+    color: white !important;
+}
+
+.nav-a-click {
+    color: white;
+}
+
+.nav-select-this {
+    border-bottom: 4px solid #5FB878 !important;
+}
+
+/*复选框用于切换菜单的开合状态*/
+header nav input[type="checkbox"] {
+    position: absolute; /*相对于父元素绝对定位*/
+    top: 27px;
+    right: 32px;
+    display: none; /*隐藏不显示*/
+}
+
+.menu {
+    position: absolute; /*相对于父元素绝对定位*/
+    top: 10px;
+    right: 15px;
+    width: 50px;
+    height: 40px;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    display: none; /*隐藏不显示*/
+}
+
+.menu i {
+    position: relative;
+    top: 2.5px;
+    left: 8.5px;
+    z-index: 999;
+    font-size: 2rem;
+    color: white;
+}
+/* header End */
+
+/* container */
+.container {
+    position: relative; /*保证footer是相对于container位置绝对定位*/
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    padding-top: 80px;
+    padding-bottom: 40px; /*设置padding-bottom值大于等于footer的height值，以保证main的内容能够全部显示出来而不被footer遮盖；*/
+}
+/* container End */
+
+/* footer */
+footer {
+    position: relative;
+    top: -40px;
+    height: 40px;
+    background-color: rgba(0,0,0,0.85);
+}
+
+footer p, footer p a {
+    font-size: 14px;
+    color: rgba(255,255,255,.35);
+    line-height: 40px;
+    text-align: center;
+}
+
+footer p a:hover {
+    color: rgba(255,255,255,.55);
+}
+/* footer End */
+
+/* 设置暗锚点,解决锚点偏移 */
+.target-fix {
+    position: relative;
+    top: -80px; /*偏移值*/
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+/* 解决分页样式冲突问题 */
+.layui-box, .layui-box * {
+    box-sizing: content-box !important;
+}
+/* 解决tab弹层样式冲突 */
+.layui-layer-tab * {
+    box-sizing: initial !important;
+}
+/* 固定块样式 */
+.layui-fixbar li {
+    background-color: rgba(0,0,0,0.75) !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 20px !important;
+    line-height: 36px !important;
+}
+.layui-fixbar .layui-fixbar-top {
+    font-size: 30px !important;
+}
+
+
+
+/* 媒体查询 */
+@media (max-width: 1367px) {
+    header > nav > ul {
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 856px) {
+    .target-fix {
+        top: -60px; /*偏移值*/
+    }
+
+    .logo {
+        float: none;
+    }
+
+    .logo img {
+        margin: 10px 0px 7px 20px;
+    }
+
+    header nav > ul > li {
+        height: 60px;
+        line-height: 60px;
+    }
+
+    .logo, header > nav > ul {
+        float: none;
+        padding-right: 0px;
+    }
+
+    .menu {
+        display: block; /*显示该对象之前被隐藏*/
+        cursor: pointer;
+    }
+
+    header > nav > ul {
+        display: none;
+    }
+
+    header > nav > input[type="checkbox"]:checked ~ ul {
+        display: block;
+    }
+
+    .container {
+        padding-top: 60px;
+    }
+}
+
+@media (width: 568px) and (height:320px) {
+    header > nav > ul > li {
+        float: none;
+        height: 40px !important;
+        line-height: 40px !important;
+    }
+}
+
+@media (max-width: 655px) {
+    header > nav > ul > li {
+        float: none;
+        height: 50px;
+        line-height: 50px;
+    }
+}

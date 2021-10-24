@@ -1,0 +1,164 @@
+﻿body {
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 200 200'%3E%3Cpolygon fill='%23fbfbfb' points='100 0 0 100 100 100 100 200 200 100 200 0'/%3E%3C/svg%3E");
+}
+.layui-container {
+    position: initial;
+}
+.friendly-link {
+    padding-top: 30px;
+    padding-bottom: 70px;
+}
+.text-center {
+    text-align: center !important;
+}
+.text-bold {
+    font-weight: bold;
+}
+
+/* 说明 */
+.explain .layui-elem-field {
+    margin-bottom:5px;
+}
+.explain .layui-elem-field legend {
+    font-size: 1.6em;
+    font-weight: 400;
+}
+.explain .layui-elem-field .layui-field-box h1 {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+}
+.explain .layui-elem-field .layui-field-box p {
+    margin: 5px 0;
+    font-size: 14px;
+    text-align: left;
+    text-indent: 2em;
+    line-height: 23px;
+    color: #333;
+}
+.format {
+    margin-bottom: 10px;
+}
+.format span {
+    color: #000;
+    font-weight:400;
+}
+.demand {
+    text-indent: 2em;
+    padding: 7px 0 5px 5px;
+    font-size: 1em;
+    color:#777;
+}
+.demand .layui-icon{
+   margin-right:2px;
+   position:relative;
+   top:1px;
+}
+.demand .layui-icon-ok {
+    color: #5FB878;
+}
+.demand .layui-icon-close {
+    color: red;
+}
+.demand span {
+    margin-right: 10px;
+}
+.demand span:last-child {
+    margin-right: 0px;
+}
+h1.text-center {
+    margin-top:20px;
+}
+
+/* 链接盒子 */
+.link-big-box {
+    margin-top: 30px;
+}
+.link-big-box a {
+    color: #888;
+    font-weight: 500;
+    -webkit-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+}
+.link-big-box a:hover .link-box {
+    position: relative;
+    top: -7px;
+    color: #666;
+}
+.link-big-box a:hover .link-box:before {
+    width: 100%;
+    height: 100%;
+    transition: width 0.2s ease-in,height 0.2s ease-in 0.2s;
+    border-top-color: rgba(47,64,86,0.1);
+    border-right-color: rgba(47,64,86,0.1);
+    border-radius: 10px;
+}
+.link-big-box a:hover .link-box:after {
+    width: 100%;
+    height: 100%;
+    transition: border-color 0s ease-in 0.4s,width 0.2s ease-in 0.4s,height 0.3s ease-in 0.6s;
+    border-bottom-color: rgba(47,64,86,0.1);
+    border-left-color: rgba(47,64,86,0.1);
+    border-radius: 10px;
+}
+.link-box {
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+.link-box:before, .link-box:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    position: absolute;
+}
+.link-box:before {
+    top: 0;
+    left: 0;
+    transition: border-color 0s ease-in 0.8s,width 0.2s ease-in 0.6s,height 0.2s ease-in 0.4s;
+}
+.link-box:after {
+    right: 0;
+    bottom: 0;
+    transition: border-color 0s ease-in 0.4s,width 0.2s ease-in 0.2s,height 0.2s ease-in;
+}
+.link-box img {
+    width: 80px;
+    height:80px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    -webkit-transition: -webkit-transform 1s ease-out;
+    -moz-transition: -moz-transform 1s ease-out;
+    -o-transition: -o-transform 1s ease-out;
+    -ms-transition: -ms-transform 1s ease-out;
+}
+.link-box h3 {
+    margin: 5px auto;
+    font-weight: bold;
+    line-height: 22px;
+}
+.link-box div p {      
+    height: 22px;
+}
+
+/* 媒体查询 */
+@media (max-width: 1024px) {
+    .friendly-link {
+        padding-top: 10px;
+    }
+}
+

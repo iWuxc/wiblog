@@ -1,0 +1,91 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+a:hover {
+    color: #1E9FFF;
+}
+
+a:visited {
+    color: #1071bb;
+}
+
+ul {
+    overflow: hidden;
+    display: block;
+    list-style-type: disc;
+    margin:5px 0;
+    padding-left:15px;
+}
+
+li {
+    line-height: 22px;
+    margin-bottom: 3px;
+    position: relative;
+    padding-left: 10px;
+}
+
+li:before {
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 10px;
+    left: 0px;
+    top: 8px;
+}
+
+li a:hover {
+    color: #1E9FFF;
+}
+   
+header {
+    text-align: center;
+    margin-top: 20px;
+    font-weight:bold;
+}
+
+.container {
+    padding:15px 30px;
+}
+
+.box-border {
+    border:1px solid #EEEEEE;
+    padding:7px 10px;
+    margin-bottom:10px;
+}
+
+.Catalog {
+    padding:15px 10px;
+}
+
+.Catalog h3{
+   margin-bottom:10px;
+}
+
+footer {
+    text-align:center;
+    padding:10px;
+}
+
+footer p:last-child{
+    margin-top:8px;
+}
+
+footer p:last-child a:hover{
+    color:#666;
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding: 15px 15px;
+    }
+    ul {
+        padding-left: 0px;
+    }
+}
+
+
+
+

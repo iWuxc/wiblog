@@ -1,115 +1,598 @@
 <!DOCTYPE html>
-<html>
+
+<html><!-- InstanceBegin template="/Templates/Template.dwt" codeOutsideHTMLIsLocked="false" -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Window-target" content="_top">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- InstanceBeginEditable name="doctitle" -->
     <title>{{.Title}}</title>
-    <meta name="{{.KeyWord}}" content="{{.SubTitle}}" />
-    <meta name="description" content="{{.Description}}">
-    <link rel="stylesheet" href="/static/front/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/front/layui/css/layui.css" />
-    <link rel="stylesheet" href="/static/front/css/master.css" />
-    <link rel="stylesheet" href="/static/front/css/gloable.css" />
-    <link rel="stylesheet" href="/static/front/css/nprogress.css" />
-    {{if eq .CurrentPage "article-index"}}<link rel="stylesheet" href="/static/front/css/blog.css" />{{end}}
+    <!-- InstanceEndEditable -->
+    <meta name="Author" contect="{{.Author}}">
+    <!--    <meta name="Copyright" content="{{.Copyright}}">-->
+    <meta name="keywords" content="{{.Keywords}}"/>
+    <meta name="description" content="{{.Description}}"/>
+    <meta property="og:title" content="{{.Author}}"/>
+    <meta property="og:title" content="{{.Title}}"/>
+    <meta property="og:type" content="个人博客"/>
+    <meta property="og:url" content="http://{{.Domain}}"/>
+    <meta property="og:image" content="/static/front/images/logo.png"/>
+    <meta property="og:site_name" content="{{.Domain}}"/>
+    <meta property="og:description" content="{{.Description}}"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link href="/static/front/css/loading.css" rel="stylesheet"/>
+    <link href="/static/front/css/scroll-bar.css" rel="stylesheet"/>
+    <link href="/static/front/Eextend/layui/css/layui.css" rel="stylesheet" media="all"/>
+    <link href="/static/front/css/common.css" rel="stylesheet"/>
+    <link href="/static/front/css/suspension.css" rel="stylesheet"/>
+    <link href="/static/front/css/animate.css" rel="stylesheet"/>
+    <link href="/static/front/Eextend/iconfont/iconfont.css" rel="stylesheet"/>
+    <script src="/static/front/Eextend/iconfont/iconfont.js"></script>
+    <script src="/static/front/js/jquery.min.js"></script>
+    <script src="/static/front/Eextend/layui/layui.js"></script>
+    <script src="/static/front/js/wow.min.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-<div class="header">
-</div>
-<header class="gird-header">
-    <div class="header-fixed">
-        <div class="header-inner">
-            <a href="javascript:void(0)" class="header-logo" id="logo">BlogName</a>
-            <nav class="nav" id="nav">
-                <ul>
-                    <li><a href="/">首页</a></li>
-                    <li><a href="/article">博客</a></li>
-                    <li><a href="/Feedback">留言</a></li>
-                    <li><a href="/Diarys">日记</a></li>
-                    <li><a href="/Links">友链</a></li>
-                    <li><a href="/About">关于</a></li>
-                </ul>
-            </nav>
-            <a href="/QQUser/QQLogin" class="blog-user">
-                <i class="fa fa-qq"></i>
-                <img src="" alt="" title="" style="display:none;">
-            </a>
-            <a class="phone-menu">
-                <i></i>
-                <i></i>
-                <i></i>
-            </a>
+<!--
+           ▄              ▄
+          ▌▒█           ▄▀▒▌
+          ▌▒▒▀▄        ▀▒▒▒▐
+         ▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐
+       ▄▄▀▒▒▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐
+     ▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▐
+    ▐▒▒▒▄▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▒▒▌
+    ▌▒▒▐▄█▀▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐
+   ▐▒▒▒▒▒▒▒▒▒▒▒▌██▀▒▒▒▒▒▒▒▒▀▄▌
+   ▌▒▀▄██▄▒▒▒▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌
+   ▌▀▐▄█▄█▌▄▒▀▒▒▒▒▒▒░░░░░░▒▒▒▐
+  ▐▒▀▐▀▐▀▒▒▄▄▒▄▒▒▒  typecho  ▒▌
+  ▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒░░░░░░▒▒▒▐
+   ▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌
+   ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐
+    ▀ yo-du ▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▌
+      ▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀
+     ▐▀▒▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀
+    ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀
+
+    --你好，世界！生活，从敲的第一行代码开始。
+-->
+<div id="loading">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_one"></div>
         </div>
     </div>
+</div>
+<header>
+    <nav>
+        <div class="logo">
+            <a target='_blank' href="Index.html">
+                <img src="/static/front/images/logo.png" oncontextmenu="return false;" ondragstart="return false;"/>
+            </a>
+        </div>
+        <!-- 汉堡菜单 -->
+        <input type="checkbox" id="togglebox"/>
+        <ul>
+            <li><a href="Index.html">网站首页</a></li>
+            <li><a href="Article.html">学无止境</a></li>
+            <li><a href="Archive.html">文章归档</a></li>
+            <li><a href="Moments.html">瞬时说说</a></li>
+            <li><a href="Resources.html">资源分享</a></li>
+            <li><a href="About.html">关于本站</a></li>
+        </ul>
+        <label class="menu" for="togglebox">
+            <i class="layui-icon layui-extend-hamburg-menu"></i>
+        </label>
+    </nav>
+    <div class="clearfix"></div>
 </header>
-{{.LayoutContent}}
-<footer class="grid-footer">
-    <div class="footer-fixed">
-        <div class="copyright">
-            <div class="info">
-                <div class="contact">
-                    <a href="@ViewBag.Site.Gitee" class="github" target="_blank"><i class="fa fa-github"></i></a>
-                    <a href="https://wpa.qq.com/msgrd?v=3&uin=@ViewBag.Site.QQ&site=qq&menu=yes" class="qq" target="_blank" title="@ViewBag.Site.QQ"><i class="fa fa-qq"></i></a>
-                    <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=@ViewBag.Site.Mail" class="email" target="_blank" title="@ViewBag.Site.Mail"><i class="fa fa-envelope"></i></a>
-                    <a href="javascript:void(0)" class="weixin"><i class="fa fa-weixin"></i></a>
-                </div>
-                <p class="mt05">
-                    {{.Copyright}}
-                    <script type="text/javascript">
-                        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-                        document.write(unescape("%3Cspan id='cnzz_stat_icon_1277902185'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1277902185%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-                    </script>
-                    | <a href="http://www.miitbeian.gov.cn" target="_blank" style="color:#565755;">{{.BeiAn}}</a>
-                </p>
+<section class="bg-overlay layui-hide">
+    <div class="overlay"></div>
+    <div class="layui-row text py-5">
+        <p class="lead">Keep on going never give up.</p>
+        <h1>
+            我为你翻山越岭，却无心看风景
+        </h1>
+        <a href="#welcome" class="layui-btn layui-btn-normal layui-btn-radius layui-btn-lg">Let's Go</a>
+    </div>
+</section>
+<section class="container">
+    <!-- InstanceBeginEditable name="EditRegion1" -->
+
+    <!-- 首页样式 -->
+    <link href="/static/front/css/Index.css" rel="stylesheet"/>
+
+    <div id="welcome" class="target-fix"></div>
+    <div class="about">
+        <div class="row-container">
+            <div class="about-w3ls-info text-center py-5">
+                <h3>About Us</h3>
+                <p>
+                    当你觉得生活没意思，做什么都提不起兴趣时，说明你已经许久没有做出过改变了。长时间待在舒适区，人难免会慢慢丧失斗志，动起来，做出改变，出去看看世界或者学一项新技能，让自己始终在进步。你要相信，在这个世界上，一定有着另外一个你自己，在做着你不敢做的事，过着你想过的生活。</p>
+                <a href="About.html" class="wow rotateIn" data-wow-delay="0.2s">Read More</a>
             </div>
         </div>
     </div>
+
+    <div class="blog">
+        <div class="row-container wow fadeInUp">
+            <div class="layui-row">
+                <h2 class="container-title">热门文章</h2>
+                <p class="container-lead text-muted">每个人都有一个习惯，我的习惯是在这里等你来临。</p>
+            </div>
+            <div class="layui-row layui-col-space30 blog-body">
+                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                    <article class="card">
+                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">
+                            <img class="card-img-top" src="/static/front/images/img04.jpg" alt=""></a>
+                        <div class="card-body">
+                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
+                            <h4 class="card-title"><a
+                                    href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">Q-Blog
+                                v2.0改版啦</a></h4>
+                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
+                            <div class="text-right">
+                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html"
+                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                    <article class="card">
+                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">
+                            <img class="card-img-top" src="/static/front/images/img03.jpg" alt=""></a>
+                        <div class="card-body">
+                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
+                            <h4 class="card-title"><a
+                                    href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">Q-Blog
+                                v2.0改版啦</a></h4>
+                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
+                            <div class="text-right">
+                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html"
+                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                    <article class="card">
+                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">
+                            <img class="card-img-top" src="/static/front/images/img06.jpg" alt=""></a>
+                        <div class="card-body">
+                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
+                            <h4 class="card-title"><a
+                                    href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">Q-Blog
+                                v2.0改版啦</a></h4>
+                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
+                            <div class="text-right">
+                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html"
+                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                    <article class="card">
+                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">
+                            <img class="card-img-top" src="/static/front/images/img01.jpg" alt=""></a>
+                        <div class="card-body">
+                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
+                            <h4 class="card-title"><a
+                                    href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">Q-Blog
+                                v1.0上线啦</a></h4>
+                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
+                            <div class="text-right">
+                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html"
+                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                    <article class="card">
+                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">
+                            <img class="card-img-top" src="/static/front/images/img02.jpg" alt=""></a>
+                        <div class="card-body">
+                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
+                            <h4 class="card-title"><a
+                                    href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">Q-Blog
+                                v1.0上线啦</a></h4>
+                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
+                            <div class="text-right">
+                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html"
+                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
+                    <article class="card">
+                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">
+                            <img class="card-img-top" src="/static/front/images/img05.jpg" alt=""></a>
+                        <div class="card-body">
+                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
+                            <h4 class="card-title"><a
+                                    href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">Q-Blog
+                                v1.0上线啦</a></h4>
+                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
+                            <div class="text-right">
+                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html"
+                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="new-comment">
+        <h3 class="tittle-wthree text-center">最近留言</h3>
+        <!-- Swiper -->
+        <div id="swiper1" class="swiper-container wow zoomIn">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonials-gd-vj">
+                        <p class="sub-test">
+                            <i class="layui-icon layui-extend-quotation"></i>
+                            有时候，耳朵比眼睛还重要，很多东西用耳朵听比用眼睛看好，一个人假装开心，但声音就装不了。细心一听就知道了。
+                        </p>
+                        <div class="user">
+                            <a href="#" target="_blank" rel="nofollow">
+                                <div>
+                                    <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                                    <h5 class="layui-elip">潘多拉</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonials-gd-vj">
+                        <p class="sub-test">
+                            <i class="layui-icon layui-extend-quotation"></i>
+                            有时候，耳朵比眼睛还重要，很多东西用耳朵听比用眼睛看好，一个人假装开心，但声音就装不了。细心一听就知道了。
+                        </p>
+                        <div class="user">
+                            <a href="#" target="_blank" rel="nofollow">
+                                <div>
+                                    <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                                    <h5 class="layui-elip">盛秋月</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonials-gd-vj">
+                        <p class="sub-test">
+                            <i class="layui-icon layui-extend-quotation"></i>
+                            有时候，耳朵比眼睛还重要，很多东西用耳朵听比用眼睛看好，一个人假装开心，但声音就装不了。细心一听就知道了。
+                        </p>
+                        <div class="user">
+                            <a href="#" target="_blank" rel="nofollow">
+                                <div>
+                                    <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                                    <h5 class="layui-elip">渣渣辉</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonials-gd-vj">
+                        <p class="sub-test">
+                            <i class="layui-icon layui-extend-quotation"></i>
+                            有时候，耳朵比眼睛还重要，很多东西用耳朵听比用眼睛看好，一个人假装开心，但声音就装不了。细心一听就知道了。
+                        </p>
+                        <div class="user">
+                            <a href="#" target="_blank" rel="nofollow">
+                                <div>
+                                    <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                                    <h5 class="layui-elip">葫芦娃</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonials-gd-vj">
+                        <p class="sub-test">
+                            <i class="layui-icon layui-extend-quotation"></i>
+                            有时候，耳朵比眼睛还重要，很多东西用耳朵听比用眼睛看好，一个人假装开心，但声音就装不了。细心一听就知道了。
+                        </p>
+                        <div class="user">
+                            <a href="#" target="_blank" rel="nofollow">
+                                <div>
+                                    <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                                    <h5 class="layui-elip">沈婷婷</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <!--	留言样式风格二，自适应效果不同，喜欢哪种自选	-->
+    <!--
+            <div class="new-comment">
+                <div class="row-container">
+                    <h3 class="tittle-wthree text-center">最近留言</h3>
+                    <div class="layui-row layui-col-space25">
+                        <div class="layui-col-md4 layui-col-xs12">
+                            <div class="testimonials-gd-vj">
+                                <p class="sub-test">
+                                    <i class="layui-icon layui-extend-quotation"></i>
+                                    有时候，耳朵比眼睛还重要，很多东西用耳朵听比用眼睛看好，一个人假装开心，但声音就装不了。细心一听就知道了。
+                                </p>
+                                <div class="layui-row user">
+                                    <a href="#" target="_blank" rel="nofollow">
+                                        <div class="layui-col-xs12">
+                                            <img class="layui-circle" src="images/nan.png" alt="">
+                                            <h5>付子博</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4 layui-col-xs12">
+                            <div class="testimonials-gd-vj">
+                                <p class="sub-test">
+                                    <i class="layui-icon layui-extend-quotation"></i>
+                                    有时候，耳朵比眼睛还重要，很多东西用耳朵听比用眼睛看好，一个人假装开心，但声音就装不了。细心一听就知道了。
+                                </p>
+                                <div class="layui-row user">
+                                    <a href="#" target="_blank" rel="nofollow">
+                                        <div class="layui-col-xs12">
+                                            <img class="layui-circle" src="images/nv.png" alt="">
+                                            <h5>易sir</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md4 layui-col-xs12">
+                            <div class="testimonials-gd-vj">
+                                <p class="sub-test">
+                                    <i class="layui-icon layui-extend-quotation"></i>
+                                    有时候，耳朵比眼睛还重要，很多东西用耳朵听比用眼睛看好，一个人假装开心，但声音就装不了。细心一听就知道了。
+                                </p>
+                                <div class="layui-row user">
+                                    <a href="#" target="_blank" rel="nofollow">
+                                        <div class="layui-col-xs12">
+                                            <img class="layui-circle" src="images/nan.png" alt="">
+                                            <h5>钠盐</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    -->
+
+    <div id="statistics" class="bg-overlay">
+        <div class="overlay"></div>
+        <div class="row-container wow slideInLeft">
+            <div class="layui-row text-center">
+                <div class="layui-col-md3 layui-col-sm3 layui-col-xs6">
+                    <i class="layui-icon layui-extend-dianzan"></i>
+                    <h4 id="like-count" class="animateNum" data-animatetarget="2048"></h4>
+                    <p>网站点赞数量</p>
+                </div>
+                <div class="layui-col-md3 layui-col-sm3 layui-col-xs6">
+                    <i class="layui-icon layui-icon-dialogue"></i>
+                    <h4 id="comment-count" class="animateNum" data-animatetarget="1024"></h4>
+                    <p>用户评论数量</p>
+                </div>
+                <div class="layui-col-md3 layui-col-sm3 layui-col-xs6">
+                    <i class="layui-icon layui-extend-computer_icon"></i>
+                    <h4 id="visit-count" class="animateNum" data-animatetarget="13654"></h4>
+                    <p>网站访问次数</p>
+                </div>
+                <div class="layui-col-md3 layui-col-sm3 layui-col-xs6">
+                    <i class="layui-icon layui-extend-riqi"></i>
+                    <h4 id="working-day" class="animateNum" data-animatetarget="180"></h4>
+                    <p>网站运行天数</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hot-review py-5">
+        <div class="row-container wow slideInRight">
+            <h3 class="tittle-wthree text-center">热评用户</h3>
+            <div class="layui-row layui-col-space25 bottom-grids text-center">
+                <div class="layui-col-md4 layui-col-sm4">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#layui-extend-jiangbei-1"></use>
+                    </svg>
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">胖大海</h4>
+                    </a>
+                    <p>
+                        本站评论数：<span class="layui-badge layui-bg-orange">88</span>
+                    </p>
+                </div>
+                <div class="layui-col-md4 layui-col-sm4">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#layui-extend-jiangbei-2"></use>
+                    </svg>
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                        <h4 class="layui-elip">柳岩</h4>
+                    </a>
+                    <p>
+                        本站评论数：<span class="layui-badge layui-bg-blue">66</span>
+                    </p>
+                </div>
+                <div class="layui-col-md4 layui-col-sm4">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#layui-extend-jiangbei-3"></use>
+                    </svg>
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">虎哥</h4>
+                    </a>
+                    <p>
+                        本站评论数：<span class="layui-badge layui-bg-gray">24</span>
+                    </p>
+                </div>
+                <span class="border-line"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="visitor">
+        <h3 class="tittle-wthree text-center">近期访客</h3>
+        <!-- Swiper -->
+        <div id="swiper2" class="swiper-container wow flipInX">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">用户1号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                        <h4 class="layui-elip">用户2号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">用户3号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                        <h4 class="layui-elip">用户4号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">用户5号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                        <h4 class="layui-elip">用户6号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">用户7号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                        <h4 class="layui-elip">用户8号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">用户9号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                        <h4 class="layui-elip">用户10号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">用户11号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                        <h4 class="layui-elip">用户12号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">用户13号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nv.png" alt="">
+                        <h4 class="layui-elip">用户14号</h4>
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="#" target="_blank" rel="nofollow">
+                        <img class="layui-circle" src="/static/front/images/nan.png" alt="">
+                        <h4 class="layui-elip">用户15号</h4>
+                    </a>
+                </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <!-- Swiper CSS And JS -->
+    <link href="/static/front/Eextend/Swiper-4.5.0/css/swiper.min.css" rel="stylesheet"/>
+    <script src="/static/front/Eextend/Swiper-4.5.0/js/swiper.min.js"></script>
+    <!-- Running JS -->
+    <script src="/static/front/js/jquery.running.min.js"></script>
+    <script src="/static/front/js/Index.js"></script>
+
+
+    <!-- InstanceEndEditable -->
+</section>
+<footer>
+    <p><a href="http://www.qbl.link">{{.Copyright}}</a></p>
 </footer>
-<img src="/static/front/image/weixin.jpg" alt="微信二维码" style="display:none; width:100%; height:100%;" id="weixin"/>
-<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="https://cdn.bootcss.com/js-xss/0.3.3/xss.min.js"></script>
-<script src="/static/front/layui/layui.js"></script>
-<script src="/static/front/js/yss/gloable.js"></script>
-<script src="/static/front/js/plugins/nprogress.js"></script>
-<script>NProgress.start();</script>
-{{if eq .CurrentPage "article-index"}}<script src="/static/front/js/yss/article.js"></script>{{end}}
-<script>
-    window.onload = function () {
-        NProgress.done();
-    };
-</script>
-<script>
-    layui.use(['jquery'], function () {
-        var $ = layui.jquery;
-        var openid = $.cookie('openid');
-        var nickname = $.cookie('nickname');
-        var figureurl_qq = $.cookie('figureurl_qq');
-        if (openid != undefined && "" != openid) {
-            $(".blog-user").attr("href", "/QQUser/QQLogOut");
-            $(".blog-user>i").hide();
-            $(".blog-user>img").attr("src", figureurl_qq);
-            $(".blog-user>img").attr("alt", nickname);
-            $(".blog-user>img").attr("title", nickname);
-            $(".blog-user>img").show();
-        }
-    });
-</script>
-<!--自动提交-->
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
+<div id="suspension">
+    <div class="livechat-girl animated">
+        <img class="girl" src="/static/front/images/a.png" oncontextmenu="return false;" ondragstart="return false;">
+        <div class="livechat-hint rd-notice-tooltip rd-notice-type-success rd-notice-position-left single-line show_hint">
+            <div class="rd-notice-content">嘿，来试试登录吧！</div>
+        </div>
+        <div class="animated-circles">
+            <div class="circle c-1"></div>
+            <div class="circle c-2"></div>
+            <div class="circle c-3"></div>
+        </div>
+    </div>
+</div>
+<!-- 打字机特效js-->
+<script src="/static/front/js/typewriter-special-effects.js"></script>
+<script src="/static/front/js/Template.js"></script>
+<!-- 这个JS展示公告层用的，无关紧要可以删掉 -->
+<script src="/static/front/js/TempShowTip.js"></script>
 </body>
-</html>
+<!-- InstanceEnd --></html>
