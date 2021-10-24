@@ -38,6 +38,7 @@ type Article struct {
 	CreatedMon  string `gorm:"-" bson:"-" json:"created_mon"`  //创建日期 - 月
 	CreatedYear string `gorm:"-" bson:"-" json:"created_year"` //创建日期 - 年
 	SerieName   string `gorm:"-" bson:"-" json:"serie_name"`
+	ArticleUrl  string `gorm:"-" bson:"-" json:"article_url"` //访问地址
 }
 
 // SortedArticles 按时间排序后文章

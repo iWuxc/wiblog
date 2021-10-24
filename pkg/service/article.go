@@ -6,12 +6,13 @@ import (
 	"sync"
 	"wiblog/pkg/cache"
 	"wiblog/pkg/cache/store"
+	"wiblog/pkg/conf"
 	"wiblog/pkg/model"
 )
 
-func List(c *gin.Context, page, limit int) ([]*model.Article, int, error) {
+func ArticleList(c *gin.Context, page, limit int) ([]*model.Article, int, error) {
 	search := store.SearchArticles{
-		Page: page,
+		Page:  page,
 		Limit: limit,
 		Fields: map[string]interface{}{
 			store.SearchArticleDraft: false,
@@ -30,7 +31,7 @@ func List(c *gin.Context, page, limit int) ([]*model.Article, int, error) {
 	wg := sync.WaitGroup{}
 
 	articleList := model.ArticleList{
-		Lock: new(sync.Mutex),
+		Lock:  new(sync.Mutex),
 		IdMap: make(map[int]*model.Article, len(articles)),
 	}
 
@@ -44,15 +45,20 @@ func List(c *gin.Context, page, limit int) ([]*model.Article, int, error) {
 			articleList.Lock.Lock()
 			defer articleList.Lock.Unlock()
 			articleList.IdMap[a.ID] = &model.Article{
-				ID: a.ID,
-				Author: a.Author,
-				Slug: a.Slug,
-				Title: a.Title,
-				Count: a.Count,
-				Content: a.Content,
-				Tags: a.Tags,
-				IsDraft: a.IsDraft,
-				IsHot: a.IsHot,
+				ID:          a.ID,
+				Author:      a.Author,
+				Slug:        a.Slug,
+				Title:       a.Title,
+				Count:       a.Count,
+				Content:     a.Content,
+				Tags:        a.Tags,
+				IsDraft:     a.IsDraft,
+				IsHot:       a.IsHot,
+				Cover:       a.Cover,
+				CreatedDay:  dateFormat(a.CreatedAt, "02"), //01/02 03:04:05PM 06 -0700
+				CreatedMon:  dateFormat(a.CreatedAt, "01"),
+				CreatedYear: dateFormat(a.CreatedAt, "2006"),
+				ArticleUrl:  "https://" + conf.Conf.WiBlogApp.Host + "/post/" + a.Slug + ".html",
 			}
 		}(a)
 	}
@@ -66,7 +72,7 @@ func List(c *gin.Context, page, limit int) ([]*model.Article, int, error) {
 	case <-finished:
 	}
 
-	for _, id := range ids{
+	for _, id := range ids {
 		infos = append(infos, articleList.IdMap[id])
 	}
 

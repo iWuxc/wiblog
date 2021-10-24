@@ -495,13 +495,19 @@ func ResponseNotice(c *gin.Context, typ, content, hl string) {
 }
 
 func handleWEBArticleList(c *gin.Context) {
+
 	page, _ := strconv.Atoi(c.PostForm("page"))
 	pagesize, _ := strconv.Atoi(c.PostForm("pagesize"))
-	articles, _, err := service.List(c, page, pagesize)
+
+	articles, _, err := service.ArticleList(c, page, pagesize)
 
 	var html string
 	for _, v := range articles {
-		html += fmt.Sprintf(articleHtml(), "置顶", v.Slug, v.Title)
+		html += fmt.Sprintf(articleHtml(), "置顶", v.ArticleUrl, v.Title,
+			v.CreatedDay, v.CreatedMon, v.CreatedYear,
+			v.ArticleUrl, v.Cover, "该部分是文章的简单介绍，后期数据库需要加入该字段内容",
+			v.ArticleUrl,
+			strings.Join(v.Tags, " "))
 	}
 
 	if err != nil {

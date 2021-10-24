@@ -5,35 +5,35 @@ func articleHtml() string {
 				<div class='fc-flag'>%s</div>
 				<h5 class='title'>
 					<span class='fc-blue'>【原创】</span>
-					<a href='/article/detail/%s'>%s</a>
+					<a href='%s'>%s</a>
 				</h5>
 				<div class='time'>
-					<span class='day'>28</span>
-					<span class='month fs-18'>10<span class='fs-14'>月</span></span>
-					<span class='year fs-18 ml10'>2021</span>
+					<span class='day'>%s</span>
+					<span class='month fs-18'>%s<span class='fs-14'>月</span></span>
+					<span class='year fs-18 ml10'>%s</span>
 				</div>
 				<div class='content'>
-					<a href='${articles[i].Title}' class='cover img-light'>
-						<img src='{{.Domain}}' >
+					<a href='%s' class='cover img-light'>
+						<img src=%s />
 					</a>
-					{7}
+					%s
 				</div>
 				<div class='read-more'>
-					<a href='{13}' class='fc-black f-fwb'>继续阅读</a>
+					<a href='%s' class='fc-black f-fwb'>继续阅读</a>
 				</div>
 				<aside class='f-oh footer'>
 					<div class='f-fl tags'>
 						<span class='fa fa-tags fs-16'></span>
-						<a class='tag'>{8}</a>
+						<a class='tag'>%s</a>
 					</div>
 					<div class='f-fr'>
 						<span class='read'>
 							<i class='fa fa-eye fs-16'></i>
-							<i class='num'>{9}</i>
+							<i class='num'>20123</i>
 						</span>
 						<span class='ml20'>
 							<i class='fa fa-comments fs-16'></i>
-							<a href = 'javascript:void(0)' class='num fc-grey'>{10}</a>
+							<a href = 'javascript:void(0)' class='num fc-grey'>10</a>
 						</span>
 					</div>
 				</aside>

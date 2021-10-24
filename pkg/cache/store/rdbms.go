@@ -144,6 +144,9 @@ func (db *rdbms) LoadArticleList(ctx context.Context, search SearchArticles) (mo
 			gormDB = gormDB.Where("is_hot=?", true)
 		}
 	}
+
+	gormDB.Where("id >= ?", 11)
+
 	// search count
 	var count int64
 	err := gormDB.Count(&count).Error
@@ -180,6 +183,10 @@ func (db *rdbms) LoadArticleCount(ctx context.Context, search SearchArticles) (i
 			gormDB = gormDB.Where("is_hot=?", true)
 		}
 	}
+
+	//过滤掉系统生成的文章 关于 友情链接
+	gormDB.Where("id >= ?", 11)
+
 	// search count
 	var count int64
 	err := gormDB.Count(&count).Error
