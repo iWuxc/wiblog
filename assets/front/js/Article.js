@@ -18,20 +18,24 @@ function iniParam() {
     var c = 1;
     var f = 5;
 
-    g(c, a, f, null, b);
+    d(c, f, null, null);
+
+    // g(c, a, f, null, b);
 
     function d(j, l, k, i)   {
-        $.httpAsyncPost("/Web/Home/GetArticleList", {
+        $.httpAsyncPost("/web/article/list", {
             page: j,
             limit: l,
             keyWord: k,
             categoriesId: i
         }, function (n) {
-            if (n.state == $.httpState.success) {
+            if (n.code === 0) {
                 if (!k) {
+                    console.log(11111)
                     $("#single-list").html(n.data.html)
                 } else {
-                    var m = '<div class="card serach-tip">';
+                    console.log(22222)
+                    var m = '<div class="card erach-tip">';
                     m += "<p>";
                     m += "<span>" + k + "</span> 为您找到 <strong>" + n.data.count + "</strong> 个相关结果";
                     m += "</p>";

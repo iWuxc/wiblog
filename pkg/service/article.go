@@ -45,20 +45,18 @@ func ArticleList(c *gin.Context, page, limit int) ([]*model.Article, int, error)
 			articleList.Lock.Lock()
 			defer articleList.Lock.Unlock()
 			articleList.IdMap[a.ID] = &model.Article{
-				ID:          a.ID,
-				Author:      a.Author,
-				Slug:        a.Slug,
-				Title:       a.Title,
-				Count:       a.Count,
-				Content:     a.Content,
-				Tags:        a.Tags,
-				IsDraft:     a.IsDraft,
-				IsHot:       a.IsHot,
-				Cover:       a.Cover,
-				CreatedDay:  dateFormat(a.CreatedAt, "02"), //01/02 03:04:05PM 06 -0700
-				CreatedMon:  dateFormat(a.CreatedAt, "01"),
-				CreatedYear: dateFormat(a.CreatedAt, "2006"),
-				ArticleUrl:  "https://" + conf.Conf.WiBlogApp.Host + "/post/" + a.Slug + ".html",
+				ID:            a.ID,
+				Author:        a.Author,
+				Slug:          a.Slug,
+				Title:         a.Title,
+				Count:         a.Count,
+				Content:       a.Content,
+				Tags:          a.Tags,
+				IsDraft:       a.IsDraft,
+				IsHot:         a.IsHot,
+				Cover:         a.Cover,
+				CreatedFormat: dateFormat(a.CreatedAt, "2006-01-02 03:04"), //01/02 03:04:05PM 06 -0700
+				ArticleUrl:    "https://" + conf.Conf.WiBlogApp.Host + "/post/" + a.Slug + ".html",
 			}
 		}(a)
 	}

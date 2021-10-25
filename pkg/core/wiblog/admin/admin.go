@@ -496,25 +496,29 @@ func ResponseNotice(c *gin.Context, typ, content, hl string) {
 
 func handleWEBArticleList(c *gin.Context) {
 
-	page, _ := strconv.Atoi(c.PostForm("page"))
-	pagesize, _ := strconv.Atoi(c.PostForm("pagesize"))
+	data := make(map[string]interface{})
 
-	articles, _, err := service.ArticleList(c, page, pagesize)
+	page, _ := strconv.Atoi(c.PostForm("page"))
+	pagesize, _ := strconv.Atoi(c.PostForm("limit"))
+
+	articles, count, err := service.ArticleList(c, page, pagesize)
 
 	var html string
-	for _, v := range articles {
-		html += fmt.Sprintf(articleHtml(), "置顶", v.ArticleUrl, v.Title,
-			v.CreatedDay, v.CreatedMon, v.CreatedYear,
-			v.ArticleUrl, v.Cover, "该部分是文章的简单介绍，后期数据库需要加入该字段内容",
-			v.ArticleUrl,
-			strings.Join(v.Tags, " "))
+	for k, v := range articles {
+		html += fmt.Sprintf(articleHtml(), v.ArticleUrl, v.Cover,
+			v.ArticleUrl, v.Title, v.Content,
+			v.ArticleUrl, strings.Join(v.Tags, " "), v.ArticleUrl, v.ArticleUrl, k+1)
 	}
 
 	if err != nil {
 		sendAjaxResponse(c, 1, err.Error(), "")
 		return
 	}
-	sendAjaxResponse(c, 0, "操作成功", html)
+
+	data["html"] = html
+	data["count"] = count
+
+	sendAjaxResponse(c, 0, "操作成功", data)
 }
 
 type Response struct {

@@ -1,42 +1,39 @@
 package admin
 
 func articleHtml() string {
-	str := `<section class='article-item zoomIn article'>
-				<div class='fc-flag'>%s</div>
-				<h5 class='title'>
-					<span class='fc-blue'>【原创】</span>
-					<a href='%s'>%s</a>
-				</h5>
-				<div class='time'>
-					<span class='day'>%s</span>
-					<span class='month fs-18'>%s<span class='fs-14'>月</span></span>
-					<span class='year fs-18 ml10'>%s</span>
-				</div>
-				<div class='content'>
-					<a href='%s' class='cover img-light'>
-						<img src=%s />
-					</a>
-					%s
-				</div>
-				<div class='read-more'>
-					<a href='%s' class='fc-black f-fwb'>继续阅读</a>
-				</div>
-				<aside class='f-oh footer'>
-					<div class='f-fl tags'>
-						<span class='fa fa-tags fs-16'></span>
-						<a class='tag'>%s</a>
+	str := `<div class="single-post">
+				<div class="inner-post">
+					<div class="post-img">
+					<a href="%s">
+					<img src="%s" alt=""/></a></div>
+					<div class="post-info">
+						<div class="post-title">
+							<h3>
+								<a href="%s">
+									%s
+								</a>
+							</h3>
+						</div>
+						<div class="post-content"><p>%s</p>
+						</div>
+						<div class="blog-meta">
+							<ul>
+								<li>
+									<i class="layui-icon layui-icon-note"></i>
+										<a href="%s">算法</a>
+								</li>
+								<li><i class="layui-icon layui-icon-log"></i>%s</li>
+								<li><i class="layui-icon layui-extend-wiappfangwenliang"></i>浏览（<a
+										href="%s">64</a>）
+								</li>
+							</ul>
+							<div class="post-readmore">
+								<a href="%s">阅读更多</a>
+							</div>
+						</div>
 					</div>
-					<div class='f-fr'>
-						<span class='read'>
-							<i class='fa fa-eye fs-16'></i>
-							<i class='num'>20123</i>
-						</span>
-						<span class='ml20'>
-							<i class='fa fa-comments fs-16'></i>
-							<a href = 'javascript:void(0)' class='num fc-grey'>10</a>
-						</span>
-					</div>
-				</aside>
-			</section>`
+				</div>
+				<div class="post-date one"><span>%d</span></div>
+			</div>`
 	return str
 }
