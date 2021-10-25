@@ -76,7 +76,7 @@ func handleArticleIndexPage(c *gin.Context) {
 	params["Description"] = "文章列表，" + cache.Wi.Blogger.SubTitle
 	//params["Domain"] = conf.Conf.WiBlogApp.Host
 	params["Domain"] = "http://127.0.0.1:9000"
-	params["CurrentPage"] = "article-index"
+	params["CurrentPage"] = "web-posts"
 
 	//文章设置属性
 	pagesize := conf.Conf.WiBlogApp.General.PageNum

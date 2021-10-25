@@ -1,51 +1,88 @@
 // JavaScript Document
-
 function iniParam() {
-    var laypage = layui.laypage;
+    var e = layui.laypage;
 
-    //页面效果
     $("#keyWord").focus(function () {
-        $(this).parent().addClass("search-border");
+        $(this).parent().addClass("search-border")
     }).blur(function () {
-        $(this).parent().removeClass("search-border");
-    }).keydown(function (e) { 
-        if (e.which == 13) { //监听回车事件
-            search($(this).val());
-            return false;
+        $(this).parent().removeClass("search-border")
+    }).keydown(function (i) {
+        if (i.which == 13) {
+            h($(this).val());
+            return false
         }
     });
 
-    //搜索
-    $('#search').click(function () {
-        var value = $("#keyWord").val();
-        search(value);
-    });
+    var a = $("#ArticleListCount").val();
+    var b = $("#CategoriesId").val();
+    var c = 1;
+    var f = 5;
 
-    function search(value) {
-        if (!value) {
-            layer.tips('关键字都没输入想搜啥呢...', '#keyWord', { tips: [1, '#659FFD'] });
-            $("#keyWord")[0].focus(); //使文本框获得焦点
-            return;
-        }
-      	layer.msg("没想到你居然搜这种东西："+value+"！！！");
+    g(c, a, f, null, b);
+
+    function d(j, l, k, i)   {
+        $.httpAsyncPost("/Web/Home/GetArticleList", {
+            page: j,
+            limit: l,
+            keyWord: k,
+            categoriesId: i
+        }, function (n) {
+            if (n.state == $.httpState.success) {
+                if (!k) {
+                    $("#single-list").html(n.data.html)
+                } else {
+                    var m = '<div class="card serach-tip">';
+                    m += "<p>";
+                    m += "<span>" + k + "</span> 为您找到 <strong>" + n.data.count + "</strong> 个相关结果";
+                    m += "</p>";
+                    m += "</div>";
+                    $("#single-list").html(m + n.data.html)
+                }
+                g(j, n.data.count, l, k, i)
+            } else {
+                $.layerMsg(n.message, n.state)
+            }
+            setTimeout(function () {
+                $.loading(false)
+            }, 500)
+        })
     }
-	
-	laypage.render({
-		elem: 'page',
-		count: 50, //数据总数通过服务端得到
-		limit: 5, //每页显示的条数。laypage将会借助 count 和 limit 计算出分页数。
-		curr: 1, //起始页。一般用于刷新类型的跳页以及HASH跳页。
-		first: '首页',
-		last: '尾页',
-		layout: ['prev', 'page', 'next', 'skip'],
-		//theme: "page",
-		jump: function (obj, first) {
-			if (!first) { //首次不执行
-				layer.msg("第"+obj.curr+"页");
 
-			}
-		}
-	});
-  
+    function g(j, m, l, k, i) {
+        e.render({
+            elem: "page",
+            count: m,
+            limit: l,
+            curr: j,
+            first: "首页",
+            last: "尾页",
+            layout: ["prev", "page", "next", "skip"],
+            jump: function (o, n) {
+                if (!n) {
+                    $.loading(true);
+                    d(o.curr, o.limit, k, i);
+                    $("body,html").animate({
+                        scrollTop: $("#am").offset().top
+                    }, 500)
+                }
+            }
+        })
+    }
 
+    $("#search").click(function () {
+        var i = $("#keyWord").val();
+        h(i)
+    });
+
+    function h(i) {
+        if (!i) {
+            layer.tips("关键字都没输入想搜啥呢...", "#keyWord", {
+                tips: [1, "#659FFD"]
+            });
+            $("#keyWord")[0].focus();
+            return
+        }
+        $.loading(true);
+        d(c, f, i, null)
+    }
 }

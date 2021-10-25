@@ -1,0 +1,1443 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Window-target" content="_top">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Q-Blog 学无止境</title>
+    <meta name="Author" contect="QBL">
+    <meta name="Copyright" content="Q-Blog">
+    <meta name="keywords">
+    <meta name="description">
+    <meta property="og:title" content="Q-Blog 学无止境">
+    <meta property="og:type" content="个人博客">
+    <meta property="og:url" content="http://www.qbl.link">
+    <meta property="og:image" content="http://www.qbl.link/Content/Web/favicon.ico">
+    <meta property="og:site_name" content="www.qbl.link">
+    <meta property="og:description">
+    <link rel="shortcut icon" href="/Content/Web/favicon.ico" type="image/x-icon">
+    <link href="/Content/Web/css/loading.css" rel="stylesheet">
+    <link href="/Content/css/scroll-bar.css" rel="stylesheet">
+    <link href="/Content/layuiAdmin/layui/css/layui.css" rel="stylesheet" media="all">
+    <link href="/Content/Web/css/common.css" rel="stylesheet">
+    <link href="/Content/Web/css/suspension.css" rel="stylesheet">
+    <link href="/Content/css/animate.css" rel="stylesheet">
+    <script src="https://hm.baidu.com/hm.js?132af61e5d1e0bde3638f1ee143bfdb0"></script>
+    <script src="/Content/js/jquery.min.js"></script>
+    <script src="/Content/layuiAdmin/layui/layui.js"></script>
+    <script src="/Content/js/wow.min.js"></script>
+    <script src="/Content/js/framework-ajax.js"></script>
+    <script src="/Content/js/framework-extend.js"></script>
+    <link id="layuicss-atalicdncomtfont_1278258_lvsrmpb4x18css" rel="stylesheet"
+          href="//at.alicdn.com/t/font_1278258_lvsrmpb4x18.css" media="all">
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link id="layuicss-layer" rel="stylesheet"
+          href="https://www.qbl.link/Content/layuiAdmin/layui/css/modules/layer/default/layer.css?v=3.1.1" media="all">
+</head>
+<body>
+<svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;">
+    <symbol id="layui-extend-hamburg-menu" viewBox="0 0 1024 1024">
+        <path d="M124.56604 259.591293l0 84.975347 764.78119 0 0-84.975347L124.56604 259.591293zM124.56604 557.00603l764.78119 0 0-84.97637L124.56604 472.02966 124.56604 557.00603zM124.56604 769.44542l764.78119 0 0-84.97637L124.56604 684.46905 124.56604 769.44542z"></path>
+    </symbol>
+    <symbol id="layui-extend-QQ-Stroke" viewBox="0 0 1024 1024">
+        <path d="M534.377148 64.11832c302.340933 0 317.210595 288.721751 317.210595 288.721751 45.862537 60.731176 21.084201 115.245767 21.084201 115.245767 147.456377 231.735875 52.05047 298.68466 26.02677 303.621089-26.02677 4.937452-50.829665-28.51852-50.829665-28.51852s-8.650007 33.429367-29.740348 50.823526c76.854389 35.897581 63.201437 80.536244 63.201437 80.536244s-16.117073 134.765333-335.797929 49.576115l-27.27111-4.964058c-306.406528 110.594841-344.484775-38.423101-344.484775-38.423101s-12.401448-61.926398 47.078225-85.505419c-34.707476-21.084201-47.078225-65.669652-47.078225-65.669652s-30.992875 50.79692-71.881121 32.212656c-40.895409-18.587334-65.668629-183.380564 87.973634-302.33991 0 0-22.280446-70.63678 28.517497-112.778576C218.386334 346.656231 232.035192 64.11832 534.377148 64.11832M265.464559 362.773304c-66.916039 56.986899-22.303982 114.024963-22.303982 114.024963C95.705224 567.267744 121.729947 713.472618 121.729947 713.472618s23.52274-11.789511 40.251749-45.857421c16.731056-34.07098 42.754756 5.574972 42.754756 5.574972s16.117073 78.070076 65.462944 108.651582c49.348941 30.582529-2.174526 50.095955-2.174526 50.095955s-54.318116 0.788969-49.63956 37.673018c4.673439 36.885072 179.871647 83.065857 285.004079 1.24741l55.757908 7.437389c183.415356 63.783699 273.856182 4.298909 279.895735-7.111978 6.0416-11.411911-27.704992-33.809013-58.724473-46.788629-31.022551-12.986779-39.003316-26.66736-11.562337-44.936445 27.445072-18.262946 38.281885-54.513568 54.342676-92.036159 16.054651-37.525662 40.250726-19.197224 43.3626-8.650007 3.105734 10.541077 26.02063 45.825698 26.02063 45.825698s59.743686-63.312978-64.446801-250.297626c0 0 26.951839-56.026014-18.591427-101.592816 0 0-11.124362-262.724657-280.062534-262.724657C260.442172 109.98188 265.464559 362.773304 265.464559 362.773304"></path>
+    </symbol>
+    <symbol id="layui-extend-quotation" viewBox="0 0 1195 1024">
+        <path d="M1125.400405 972.814933 651.636395 972.814933 651.636395 631.106304C651.636395 491.702016 663.719168 382.333696 687.885227 302.997931 712.0512 223.662165 737.181781 170.700459 802.935893 107.231829 868.68992 43.763285 914.312789 24.717568 1010.828373 0L1078.255957 145.030059C1010.828373 170.796971 969.749333 182.289237 906.391381 248.024235 843.033429 313.759232 838.360149 377.340075 838.360149 431.988736L1125.400405 431.988736 1125.400405 972.814933ZM473.764096 972.814933 0 972.814933 0 631.106304C0 491.702016 12.082859 382.333696 36.248832 302.997931 60.414891 223.662165 85.545472 170.700459 151.299499 107.231829 217.053611 43.763285 262.676395 24.717568 359.192064 0L426.619563 145.030059C359.192064 170.796971 318.112939 182.289237 254.754987 248.024235 191.397035 313.759232 186.723755 377.340075 186.723755 431.988736L473.764096 431.988736 473.764096 972.814933Z"></path>
+    </symbol>
+    <symbol id="layui-extend-qq-copy" viewBox="0 0 1024 1024">
+        <path d="M697.030 407.601h-346.394l228.096 39.095-244.99 199.674h371.733l-219.65-47.541z"></path>
+        <path d="M516.294 14.933c-275.458 0-498.788 223.33-498.788 498.788 0 275.456 223.33 498.761 498.788 498.761 275.456 0 498.733-223.305 498.733-498.761 0-275.458-223.277-498.788-498.733-498.788zM840.561 424.388l-126.741 107.441 42.125 270.483c-8.446 8.42-8.653 8.42-17.15 8.42l-220.064-135.243-220.533 135.243c-16.892 0-18.628 0-18.628-8.42l30.338-270.483-133.687-118.321-45.702-32.439h-12.902v-1.399l12.902 1.399h262.347l33.811-60.237 84.486-178.534c8.42 0 8.42 0 16.919 0l92.907 178.534 33.811 60.237h228.098c8.446 0 8.446-4.947 8.446 3.524l-50.782 39.795z"></path>
+    </symbol>
+    <symbol id="layui-extend-icon_folder" viewBox="0 0 1340 1024">
+        <path d="M1035.60787948 461.04926526l-170.19659502 346.21779523a55.43557901 55.43557901 0 0 1-45.35453148 30.54862926H274.56006832a19.16417325 19.16417325 0 0 1-16.98503774-30.54862925l170.19659502-346.21779523a55.43557901 55.43557901 0 0 1 45.35453147-30.54862861h545.49668466a19.16417325 19.16417325 0 0 1 16.98503775 30.5486286zM898.91294757 369.40337881H391.39839117L186.11160469 797.0841843V226.84311013a40.73150543 40.73150543 0 0 1 40.73150543-40.73150544h264.75478437a40.73150543 40.73150543 0 0 1 40.73150544 40.73150543v40.73150544h366.58354764a40.73150543 40.73150543 0 0 1 40.73150545 40.73150481v20.36575303a40.73150543 40.73150543 0 0 1-40.73150545 40.73150542z"
+              fill="#FFCC66"></path>
+    </symbol>
+    <symbol id="layui-extend-folder-open" viewBox="0 0 1026 1024">
+        <path d="M950.857143 394.971429l-124.342857 438.857142c-7.314286 21.942857-36.571429 43.885714-58.514286 43.885715h-658.285714c-7.314286 0-14.628571 0-21.942857-7.314286 0-7.314286-7.314286-14.628571 0-21.942857l124.342857-438.857143c7.314286-21.942857 36.571429-43.885714 58.514285-43.885714h658.285715c7.314286 0 14.628571 0 14.628571 7.314285 7.314286 0 7.314286 7.314286 7.314286 21.942858zM73.142857 109.714286c0-21.942857 14.628571-36.571429 36.571429-36.571429h234.057143l65.828571 124.342857c0 14.628571 14.628571 21.942857 29.257143 21.942857h402.285714c21.942857 0 36.571429 14.628571 36.571429 36.571429V292.571429H270.628571C219.428571 292.571429 160.914286 336.457143 146.285714 394.971429L73.142857 643.657143V109.714286z m936.228572 219.428571c-14.628571-21.942857-36.571429-29.257143-58.514286-36.571428v-36.571429c0-58.514286-51.2-109.714286-109.714286-109.714286H460.8L394.971429 21.942857C394.971429 7.314286 380.342857 0 365.714286 0H109.714286C51.2 0 0 51.2 0 109.714286v731.428571c0 36.571429 21.942857 73.142857 43.885714 87.771429h7.314286c14.628571 14.628571 36.571429 21.942857 58.514286 21.942857h658.285714c58.514286 0 109.714286-43.885714 131.657143-102.4l124.342857-438.857143c7.314286-29.257143 0-58.514286-14.628571-80.457143z"></path>
+    </symbol>
+    <symbol id="layui-extend-tubiaozhizuomoban" viewBox="0 0 1024 1024">
+        <path d="M817.602 226.22H487.119v-43.192c0-14.185-11.503-25.671-25.679-25.671H207.931c-14.161 0-25.664 11.486-25.664 25.671V425.01c0 14.168 11.503 25.655 25.664 25.655h212.396c4.156 8.586 12.856 14.555 23.037 14.555h374.238c14.161 0 25.664-11.494 25.664-25.671v-187.65c0-14.185-11.503-25.679-25.664-25.679z"
+              fill="#FFCC66"></path>
+        <path d="M170.201 419.943l-13.983-90.547h708.183v75.452z" fill="#FDEEE2"></path>
+        <path d="M846.294 791.193c0 14.169-15.095 45.27-29.271 45.27H203.404c-14.177 0-24.149-18.253-24.149-32.431l-98.69-403.687c0-14.185 11.486-25.68 25.663-25.68h790.749c14.177 0 25.68 11.495 25.68 25.68l-76.363 390.848z"
+              fill="#FFCC66"></path>
+        <path d="M221.512 269.032h582.509v34.975H221.512z" fill="#FDEEE2"></path>
+    </symbol>
+    <symbol id="layui-extend-wenjian1" viewBox="0 0 1024 1024">
+        <path d="M293.7 635.7H643V592H293.7v43.7z m291.1-247.4H293.7V432h291.1v-43.7z m320.1-203.7v43.7l-43.6-43.6v1.2L816.4 141h1.1l-43.4-43.4 116.3-0.3h-684v87.3h-87.3v742.2h698.5v-87.3h87.3V184.6z m-654.8-43.7h508.3l-6.1 6.1 37.5 37.5H250.1v-43.6z m523.8 742.2H162.7V228.2h495l-4.6 4.6 120.8 120.8v529.5z m43.7-567.6L686.7 184.9l130.8-0.3v130.9z m43.7 480.3h-43.7V212.4l37.5 37.5 6.1-6.1v552z m-567.6-262H643v-43.7H293.7v43.7z m0 203.8H643v-43.7H293.7v43.7z"></path>
+    </symbol>
+    <symbol id="layui-extend-QQ" viewBox="0 0 1024 1024">
+        <path d="M894.2 611c-8.7-19-18.3-36.5-28.2-52.2-8.2-12.9-16.6-24.5-24.9-34.4-15-17.8-29.7-28.9-42.5-34.3 2-16.6 3-35.9 3-54.5 0-42.9-5.7-82.4-15.1-111.3-9.7-144.6-130.2-258.5-277.4-258.5-146.9 0-267.2 114.3-277.5 258.6-9.5 29-15.4 67.9-15.4 111.3 0 19.7 1.2 37 3.4 54.5-12.6 7.1-26.7 21.9-40.9 39.7-9.2 11.5-18.4 25-27.2 39.9-7.5 12.7-14.8 26.5-21.5 41.2-37.2 80.9-45 156.7-17.4 169.4 17.5 8.1 45.1-11.3 72.4-47.2 21.2 45.3 51.6 85.3 88.8 117.8-43.2 14.5-71.9 40-71.9 69.2 0 45.1 68.9 40.1 154 40.1 70.5 0 129.9 3.4 148.2-21.1h4.9c2.4 0 4.8 0 7.2-0.1 18.2 24.6 77.7 21.1 148.2 21.1 85 0 154 5 154-40.1 0-29.5-29.4-55.3-73.6-69.7 38.3-33.6 69.4-75.3 90.5-122.4 28.5 39.1 57.9 60.7 76.2 52.3 27.7-12.5 19.9-88.4-17.3-169.3z"
+              fill="#4D4D4D"></path>
+    </symbol>
+    <symbol id="layui-extend-jiangbei-1" viewBox="0 0 1024 1024">
+        <path d="M896 42.666667h-128l-170.666667 213.333333h128z" fill="#FF4C4C"></path>
+        <path d="M768 42.666667h-128l-170.666667 213.333333h128z" fill="#3B8CFF"></path>
+        <path d="M640 42.666667h-128L341.333333 256h128z" fill="#F1F1F1"></path>
+        <path d="M128 42.666667h128l170.666667 213.333333H298.666667z" fill="#FF4C4C"></path>
+        <path d="M256 42.666667h128l170.666667 213.333333h-128z" fill="#3B8CFF"></path>
+        <path d="M384 42.666667h128l170.666667 213.333333h-128z" fill="#FBFBFB"></path>
+        <path d="M298.666667 256h426.666666v213.333333H298.666667z" fill="#E3A815"></path>
+        <path d="M512 661.333333m-320 0a320 320 0 1 0 640 0 320 320 0 1 0-640 0Z" fill="#FDDC3A"></path>
+        <path d="M512 661.333333m-256 0a256 256 0 1 0 512 0 256 256 0 1 0-512 0Z" fill="#E3A815"></path>
+        <path d="M512 661.333333m-213.333333 0a213.333333 213.333333 0 1 0 426.666666 0 213.333333 213.333333 0 1 0-426.666666 0Z"
+              fill="#F5CF41"></path>
+        <path d="M277.333333 256h469.333334a21.333333 21.333333 0 0 1 0 42.666667h-469.333334a21.333333 21.333333 0 0 1 0-42.666667z"
+              fill="#D19A0E"></path>
+        <path d="M277.333333 264.533333a12.8 12.8 0 1 0 0 25.6h469.333334a12.8 12.8 0 1 0 0-25.6h-469.333334z m0-17.066666h469.333334a29.866667 29.866667 0 1 1 0 59.733333h-469.333334a29.866667 29.866667 0 1 1 0-59.733333z"
+              fill="#F9D525"></path>
+        <path d="M512 746.666667l-100.309333 52.736 19.157333-111.701334-81.152-79.104 112.128-16.298666L512 490.666667l50.176 101.632 112.128 16.298666-81.152 79.104 19.157333 111.701334z"
+              fill="#FFF2A0"></path>
+    </symbol>
+    <symbol id="layui-extend-jiangbei-2" viewBox="0 0 1024 1024">
+        <path d="M896 42.666667h-128l-170.666667 213.333333h128z" fill="#FF4C4C"></path>
+        <path d="M768 42.666667h-128l-170.666667 213.333333h128z" fill="#3B8CFF"></path>
+        <path d="M640 42.666667h-128L341.333333 256h128z" fill="#F1F1F1"></path>
+        <path d="M128 42.666667h128l170.666667 213.333333H298.666667z" fill="#FF4C4C"></path>
+        <path d="M256 42.666667h128l170.666667 213.333333h-128z" fill="#3B8CFF"></path>
+        <path d="M384 42.666667h128l170.666667 213.333333h-128z" fill="#FBFBFB"></path>
+        <path d="M298.666667 256h426.666666v213.333333H298.666667z" fill="#9C9C9C"></path>
+        <path d="M512 661.333333m-320 0a320 320 0 1 0 640 0 320 320 0 1 0-640 0Z" fill="#D3D3D3"></path>
+        <path d="M512 661.333333m-256 0a256 256 0 1 0 512 0 256 256 0 1 0-512 0Z" fill="#B8B8B8"></path>
+        <path d="M512 661.333333m-213.333333 0a213.333333 213.333333 0 1 0 426.666666 0 213.333333 213.333333 0 1 0-426.666666 0Z"
+              fill="#D3D3D3"></path>
+        <path d="M277.333333 256h469.333334a21.333333 21.333333 0 0 1 0 42.666667h-469.333334a21.333333 21.333333 0 0 1 0-42.666667z"
+              fill="#9C9C9C"></path>
+        <path d="M277.333333 264.533333a12.8 12.8 0 1 0 0 25.6h469.333334a12.8 12.8 0 1 0 0-25.6h-469.333334z m0-17.066666h469.333334a29.866667 29.866667 0 1 1 0 59.733333h-469.333334a29.866667 29.866667 0 1 1 0-59.733333z"
+              fill="#B8B8B8"></path>
+        <path d="M512 746.666667l-100.309333 52.736 19.157333-111.701334-81.152-79.104 112.128-16.298666L512 490.666667l50.176 101.632 112.128 16.298666-81.152 79.104 19.157333 111.701334z"
+              fill="#F0F0F0"></path>
+    </symbol>
+    <symbol id="layui-extend-jiangbei-3" viewBox="0 0 1024 1024">
+        <path d="M896 42.666667h-128l-170.666667 213.333333h128z" fill="#FF4C4C"></path>
+        <path d="M768 42.666667h-128l-170.666667 213.333333h128z" fill="#3B8CFF"></path>
+        <path d="M640 42.666667h-128L341.333333 256h128z" fill="#F1F1F1"></path>
+        <path d="M128 42.666667h128l170.666667 213.333333H298.666667z" fill="#FF4C4C"></path>
+        <path d="M256 42.666667h128l170.666667 213.333333h-128z" fill="#3B8CFF"></path>
+        <path d="M384 42.666667h128l170.666667 213.333333h-128z" fill="#FBFBFB"></path>
+        <path d="M298.666667 256h426.666666v213.333333H298.666667z" fill="#A0510E"></path>
+        <path d="M512 661.333333m-320 0a320 320 0 1 0 640 0 320 320 0 1 0-640 0Z" fill="#E19449"></path>
+        <path d="M512 661.333333m-256 0a256 256 0 1 0 512 0 256 256 0 1 0-512 0Z" fill="#C2681B"></path>
+        <path d="M512 661.333333m-213.333333 0a213.333333 213.333333 0 1 0 426.666666 0 213.333333 213.333333 0 1 0-426.666666 0Z"
+              fill="#E19449"></path>
+        <path d="M277.333333 256h469.333334a21.333333 21.333333 0 0 1 0 42.666667h-469.333334a21.333333 21.333333 0 0 1 0-42.666667z"
+              fill="#A0510E"></path>
+        <path d="M277.333333 264.533333a12.8 12.8 0 1 0 0 25.6h469.333334a12.8 12.8 0 1 0 0-25.6h-469.333334z m0-17.066666h469.333334a29.866667 29.866667 0 1 1 0 59.733333h-469.333334a29.866667 29.866667 0 1 1 0-59.733333z"
+              fill="#C2681B"></path>
+        <path d="M512 746.666667l-100.309333 52.736 19.157333-111.701334-81.152-79.104 112.128-16.298666L512 490.666667l50.176 101.632 112.128 16.298666-81.152 79.104 19.157333 111.701334z"
+              fill="#FFDCA6"></path>
+    </symbol>
+    <symbol id="layui-extend-wenjianjia" viewBox="0 0 1024 1024">
+        <path d="M859.5 193H446.939c-1.851-53.25-45.747-96-99.439-96h-183C109.635 97 65 141.635 65 196.5v632c0 54.864 44.635 99.5 99.5 99.5h695c54.864 0 99.5-44.636 99.5-99.5v-536c0-54.865-44.636-99.5-99.5-99.5z m-695-33h183c20.126 0 36.5 16.374 36.5 36.5v28c0 17.397 14.103 31.5 31.5 31.5h444c20.126 0 36.5 16.374 36.5 36.5V321H128V196.5c0-20.126 16.374-36.5 36.5-36.5z m695 705h-695c-20.126 0-36.5-16.374-36.5-36.5V384h768v444.5c0 20.126-16.374 36.5-36.5 36.5z"></path>
+    </symbol>
+    <symbol id="layui-extend-Favorite-Folder" viewBox="0 0 1024 1024">
+        <path d="M375.466667 1024c-3.413333 0-6.826667 0-10.24-3.413333-6.826667-3.413333-10.24-13.653333-6.826667-20.48l58.026667-174.08-139.946667-112.64c-3.413333-3.413333-3.413333-13.653333-3.413333-20.48s10.24-10.24 17.066666-10.24h160.426667l81.92-160.426667c3.413333-6.826667 10.24-10.24 17.066667-10.24s13.653333 3.413333 13.653333 10.24l64.853333 160.426667H785.066667c6.826667 0 13.653333 3.413333 17.066666 10.24 3.413333 6.826667 0 13.653333-6.826666 20.48L648.533333 826.026667l51.2 174.08c3.413333 6.826667 0 13.653333-6.826666 20.48-6.826667 3.413333-13.653333 3.413333-20.48 0l-139.946667-109.226667-146.773333 109.226667c-3.413333 3.413333-6.826667 3.413333-10.24 3.413333z m-37.546667-307.2l112.64 88.746667c6.826667 3.413333 6.826667 13.653333 6.826667 17.066666l-47.786667 136.533334 112.64-85.333334c6.826667-3.413333 13.653333-3.413333 20.48 0l105.813333 85.333334-40.96-136.533334c-3.413333-6.826667 0-13.653333 6.826667-17.066666l116.053333-88.746667H614.4c-6.826667 0-13.653333-3.413333-17.066667-10.24l-54.613333-136.533333-68.266667 136.533333c-3.413333 6.826667-10.24 10.24-13.653333 10.24H337.92z"
+              fill=""></path>
+        <path d="M904.533333 819.2H750.933333c-10.24 0-17.066667-6.826667-17.066666-17.066667s6.826667-17.066667 17.066666-17.066666h153.6c37.546667 0 68.266667-30.72 68.266667-68.266667V341.333333c0-37.546667-30.72-68.266667-68.266667-68.266666H406.186667C361.813333 273.066667 320.853333 245.76 307.2 201.386667l-3.413333-20.48C293.546667 157.013333 269.653333 136.533333 238.933333 136.533333H119.466667c-37.546667 0-68.266667 30.72-68.266667 68.266667v512c0 37.546667 30.72 68.266667 68.266667 68.266667H273.066667c10.24 0 17.066667 6.826667 17.066666 17.066666s-6.826667 17.066667-17.066666 17.066667H119.466667c-58.026667 0-102.4-44.373333-102.4-102.4V204.8c0-58.026667 44.373333-102.4 102.4-102.4H238.933333c44.373333 0 81.92 27.306667 95.573334 71.68l6.826666 20.48c6.826667 23.893333 34.133333 44.373333 64.853334 44.373333h498.346666c58.026667 0 102.4 44.373333 102.4 102.4v375.466667c0 58.026667-44.373333 102.4-102.4 102.4z"
+              fill=""></path>
+        <path d="M955.733333 290.133333c-10.24 0-17.066667-6.826667-17.066666-17.066666V102.4c0-37.546667-30.72-68.266667-68.266667-68.266667h-716.8c-37.546667 0-68.266667 30.72-68.266667 68.266667v17.066667c0 10.24-6.826667 17.066667-17.066666 17.066666s-17.066667-6.826667-17.066667-17.066666V102.4c0-58.026667 44.373333-102.4 102.4-102.4h716.8c58.026667 0 102.4 44.373333 102.4 102.4v170.666667c0 10.24-6.826667 17.066667-17.066667 17.066666z"
+              fill=""></path>
+    </symbol>
+    <symbol id="layui-extend-weibiaoti-_huabanfuben" viewBox="0 0 1024 1024">
+        <path d="M848.8576 199.1936H415.7568c0-26.5728-21.5424-48.128-48.128-48.128H175.1424c-26.5728 0-48.128 21.5424-48.128 48.128V343.5648c0 26.5984 21.5424 48.1408 48.128 48.1408h673.728c26.5728 0 48.128-21.5424 48.128-48.1408v-96.2432c-0.0128-26.5856-21.5552-48.128-48.1408-48.128z"
+              fill="#CCA352"></path>
+        <path d="M800.7424 247.3088H223.2576c-26.5728 0-48.128 21.5424-48.128 48.128v48.128c0 26.5984 21.5424 48.1408 48.128 48.1408h577.472c26.5728 0 48.128-21.5424 48.128-48.1408v-48.128c0-26.5728-21.5424-48.128-48.1152-48.128z"
+              fill="#FFFFFF"></path>
+        <path d="M848.8576 295.4368H175.1424c-26.5728 0-48.128 21.5424-48.128 48.128v481.2544c0 26.5472 21.5424 48.128 48.128 48.128h673.728c26.5728 0 48.128-21.568 48.128-48.128V343.552c-0.0128-26.5728-21.5552-48.1152-48.1408-48.1152z"
+              fill="#FFCC66"></path>
+    </symbol>
+    <symbol id="layui-extend-wenjian-copy" viewBox="0 0 1024 1024">
+        <path d="M401.42 521.352H218.979v36.486H401.42v-36.486z m0-109.465H218.979v36.488H401.42v-36.488zM218.979 776.768H620.35v-36.486H218.979v36.486z m523.736-304.806L517.522 229.444H164.247c-40.303 0-72.976 32.673-72.976 72.977v583.812c0 40.305 32.673 72.977 72.976 72.977h510.835c40.305 0 72.977-32.672 72.977-72.977V484.862l-6.45-6.45 1.106-6.45zM529.129 296.243l159.726 170.375H565.618c-20.151 0-36.488-16.336-36.488-36.488V296.243z m182.441 589.99c0 20.152-16.336 36.49-36.488 36.49H164.247c-20.151 0-36.488-16.338-36.488-36.49V302.421c0-20.151 16.338-36.486 36.488-36.486h328.394V430.13c0 40.305 32.673 72.977 72.977 72.977H711.57v383.126zM218.979 667.305H620.35v-36.49H218.979v36.49z m705.07-298.357l1.107-6.451-225.194-242.516H346.688c-40.303 0-72.976 32.672-72.976 72.977h36.49c0-20.152 16.334-36.49 36.486-36.49h328.394v164.199c0 40.303 32.673 72.977 72.977 72.977h145.953v383.125c0 20.152-16.336 36.49-36.488 36.49h-72.977v36.488h72.977c40.305 0 72.977-32.675 72.977-72.978V375.398l-6.452-6.45z m-175.99-11.795c-20.152 0-36.488-16.336-36.488-36.486V186.779l159.727 170.375H748.059z"></path>
+    </symbol>
+</svg>
+<!--
+           ▄              ▄
+          ▌▒█           ▄▀▒▌
+          ▌▒▒▀▄        ▀▒▒▒▐
+         ▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐
+       ▄▄▀▒▒▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐
+     ▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▐
+    ▐▒▒▒▄▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▒▒▌
+    ▌▒▒▐▄█▀▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐
+   ▐▒▒▒▒▒▒▒▒▒▒▒▌██▀▒▒▒▒▒▒▒▒▀▄▌
+   ▌▒▀▄██▄▒▒▒▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌
+   ▌▀▐▄█▄█▌▄▒▀▒▒▒▒▒▒░░░░░░▒▒▒▐
+  ▐▒▀▐▀▐▀▒▒▄▄▒▄▒▒▒  typecho  ▒▌
+  ▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒░░░░░░▒▒▒▐
+   ▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌
+   ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐
+    ▀ yo-du ▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▌
+      ▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀
+     ▐▀▒▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀
+    ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀
+
+    --你好，世界！生活，从敲的第一行代码开始。祝您扒码愉快，有问题请留言。
+-->
+<div id="loading" style="display: none;">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_one"></div>
+        </div>
+    </div>
+</div>
+<header>
+    <nav>
+        <div class="logo">
+            <a href="/Web/Home/Index.html">
+                <img src="/Content/Web/images/logo.png" oncontextmenu="return false;" ondragstart="return false;">
+            </a>
+        </div>
+        <!-- 汉堡菜单 -->
+        <input type="checkbox" id="togglebox">
+        <ul>
+            <li class=""><a href="/Web/Home/Index.html">网站首页</a></li>
+            <li class="nav-select-this"><a href="/Web/Home/Article.html" class="nav-a-click">学无止境</a></li>
+            <li><a href="/Web/Home/Archive.html">文章归档</a></li>
+            <li><a href="/Web/Home/Moments.html">瞬时说说</a></li>
+            <li><a href="/Web/Home/Resources.html">资源分享</a></li>
+            <li><a href="/Web/Home/About.html">关于本站</a></li>
+        </ul>
+        <label class="menu" for="togglebox">
+            <i class="layui-icon layui-extend-hamburg-menu"></i>
+        </label>
+    </nav>
+    <div class="clearfix"></div>
+</header>
+
+<section id="bg" class="bg-overlay layui-hide">
+    <div class="overlay"></div>
+    <div class="layui-row text py-5">
+        <p class="lead">Keep on going never give up.</p>
+        <h1></h1>
+        <a href="#welcome" class="layui-btn layui-btn-normal layui-btn-radius layui-btn-lg">Let's Go</a>
+    </div>
+</section>
+
+
+<section class="container">
+
+
+    <span id="am" class="target-fix"></span>
+    <div class="layui-container">
+        <div class="layui-row layui-col-space20">
+            <div class="layui-col-md9 layui-col-sm12 layui-col-xs12 post-area">
+                <div id="single-list">
+                    <div class="single-post">
+                        <div class="inner-post">
+                            <div class="post-img"><a
+                                    href="/Web/Home/ArticleDetails/1b52032b-51b1-4611-b7d6-d7919442e40f.html"><img
+                                    src="/upload/images/20201106/20201106001215827972_small.png" alt=""></a></div>
+                            <div class="post-info">
+                                <div class="post-title"><h3><a
+                                        href="/Web/Home/ArticleDetails/1b52032b-51b1-4611-b7d6-d7919442e40f.html">最长公共子序列问题</a>
+                                </h3></div>
+                                <div class="post-content"><p>著名的最长公共子序列问题（Longest Commom
+                                    Subsequence,LCS）即寻找序列间最大或最多共同点问题。最长公共子序列算法的主要作用是找出两个序列中最长的公共子序列，是一种非常基础的算法，被广泛应用于程序相似性对比、图形相似处理、媒体流的相似比较、计算生物学等方...</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="layui-icon layui-icon-note"></i><a
+                                                href="/Web/Home/Article/10df4b34-1ce3-4b55-a5f1-4432f721c424.html">算法</a>
+                                        </li>
+                                        <li><i class="layui-icon layui-icon-log"></i>2020-11-06 00:12</li>
+                                        <li><i class="layui-icon layui-extend-wiappfangwenliang"></i>浏览（<a
+                                                href="/Web/Home/ArticleDetails/1b52032b-51b1-4611-b7d6-d7919442e40f.html">64</a>）
+                                        </li>
+                                    </ul>
+                                    <div class="post-readmore"><a
+                                            href="/Web/Home/ArticleDetails/1b52032b-51b1-4611-b7d6-d7919442e40f.html">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-date one"><span>01</span></div>
+                    </div>
+                    <div class="single-post">
+                        <div class="inner-post">
+                            <div class="post-img"><a
+                                    href="/Web/Home/ArticleDetails/1c4d6c07-76e2-4626-ad91-e95656c8142a.html"><img
+                                    src="/Content/Web/images/test.jpg" alt=""></a></div>
+                            <div class="post-info">
+                                <div class="post-title"><h3><a
+                                        href="/Web/Home/ArticleDetails/1c4d6c07-76e2-4626-ad91-e95656c8142a.html">数据库Left
+                                    Join查询时从右表的多条数据中取1条数据</a></h3></div>
+                                <div class="post-content"><p>挺久没更新文章了，哈哈哈，太多事情忙了呀，最近写代码遇到这个需求，记录下，以免以后忘了。应用场景使用Left
+                                    Join左连接查询时，左表为主要表格，从右表中获取一些列数据作为辅助数据，然而右表中存在多条数据，如何取右表中的1条数据跟左表进行连接查询。代码错误情况SELECT
+                                    Le...</p></div>
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="layui-icon layui-icon-note"></i><a
+                                                href="/Web/Home/Article/68913cbc-05ff-46e4-bf1d-78f133a981d7.html">SQL
+                                            Server</a></li>
+                                        <li><i class="layui-icon layui-icon-log"></i>2020-08-02 00:55</li>
+                                        <li><i class="layui-icon layui-extend-wiappfangwenliang"></i>浏览（<a
+                                                href="/Web/Home/ArticleDetails/1c4d6c07-76e2-4626-ad91-e95656c8142a.html">215</a>）
+                                        </li>
+                                    </ul>
+                                    <div class="post-readmore"><a
+                                            href="/Web/Home/ArticleDetails/1c4d6c07-76e2-4626-ad91-e95656c8142a.html">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-date two"><span>02</span></div>
+                    </div>
+                    <div class="single-post">
+                        <div class="inner-post">
+                            <div class="post-img"><a
+                                    href="/Web/Home/ArticleDetails/0b2806ac-ec55-426c-ae96-cc323d9f82fa.html"><img
+                                    src="/upload/images/20200224/20200224183100557437_small.png" alt=""></a></div>
+                            <div class="post-info">
+                                <div class="post-title"><h3><a
+                                        href="/Web/Home/ArticleDetails/0b2806ac-ec55-426c-ae96-cc323d9f82fa.html">console.log()花样输出/屏蔽输出（胶囊样式、彩色文字、图片等）</a>
+                                </h3></div>
+                                <div class="post-content"><p>
+                                    在开发的环境下，经常需要console出一些debug信息，以方便开发，一般debug完后都会删除掉这些输出，但难免有时会粗心大意忘记删除。而在生产环境中，又不合适在浏览器的console中输出那么多的调试信息。因此，就需要屏蔽禁用console输出的信息。所以自己最近封装了一个...</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="layui-icon layui-icon-note"></i><a
+                                                href="/Web/Home/Article/eec2e894-a324-466c-b250-e41afb55d5fd.html">随笔</a>
+                                        </li>
+                                        <li><i class="layui-icon layui-icon-log"></i>2020-02-24 18:31</li>
+                                        <li><i class="layui-icon layui-extend-wiappfangwenliang"></i>浏览（<a
+                                                href="/Web/Home/ArticleDetails/0b2806ac-ec55-426c-ae96-cc323d9f82fa.html">297</a>）
+                                        </li>
+                                    </ul>
+                                    <div class="post-readmore"><a
+                                            href="/Web/Home/ArticleDetails/0b2806ac-ec55-426c-ae96-cc323d9f82fa.html">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-date three"><span>03</span></div>
+                    </div>
+                    <div class="single-post">
+                        <div class="inner-post">
+                            <div class="post-img"><a
+                                    href="/Web/Home/ArticleDetails/fa876e28-dc60-4f5d-90f7-748a233fb825.html"><img
+                                    src="/Content/Web/images/test.jpg" alt=""></a></div>
+                            <div class="post-info">
+                                <div class="post-title"><h3><a
+                                        href="/Web/Home/ArticleDetails/fa876e28-dc60-4f5d-90f7-748a233fb825.html">1980-2020全国行政区划代码新老数据大全</a>
+                                </h3></div>
+                                <div class="post-content"><p>
+                                    两个多月没更新文章了啊#weibo_13#都在忙都没时间打理网站了，哈哈，最近在做一个根据身份证号获取人员信息功能的时候需要用到行政区划代码，百度一番后发现其大多数据都基本是不新不全的，所以整理了这份数据出来，分享给大家。首先来介绍一下居民身份证号码，正确、正式的称谓应该是“公民...</p>
+                                </div>
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="layui-icon layui-icon-note"></i><a
+                                                href="/Web/Home/Article/eec2e894-a324-466c-b250-e41afb55d5fd.html">随笔</a>
+                                        </li>
+                                        <li><i class="layui-icon layui-icon-log"></i>2020-02-24 04:13</li>
+                                        <li><i class="layui-icon layui-extend-wiappfangwenliang"></i>浏览（<a
+                                                href="/Web/Home/ArticleDetails/fa876e28-dc60-4f5d-90f7-748a233fb825.html">967</a>）
+                                        </li>
+                                    </ul>
+                                    <div class="post-readmore"><a
+                                            href="/Web/Home/ArticleDetails/fa876e28-dc60-4f5d-90f7-748a233fb825.html">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-date four"><span>04</span></div>
+                    </div>
+                    <div class="single-post">
+                        <div class="inner-post">
+                            <div class="post-img"><a
+                                    href="/Web/Home/ArticleDetails/5979b147-6f0a-4bde-9bff-cafc4d2dfe09.html"><img
+                                    src="/Content/Web/images/test.jpg" alt=""></a></div>
+                            <div class="post-info">
+                                <div class="post-title"><h3><a
+                                        href="/Web/Home/ArticleDetails/5979b147-6f0a-4bde-9bff-cafc4d2dfe09.html">C语言
+                                    【练习】二维数组矩阵转置的实现</a></h3></div>
+                                <div class="post-content">
+                                    <p>#include
+                                        <stdio.h>#define Row 2#define Column 4void main(){ /** 将 4 * 2 矩阵转换为 2 *4 矩阵 4 *
+                                            2 矩阵格式： 1 2 3 4 5 6 7 8 转换后的 2 *4 矩阵格式： 1 5 ...
+                                        </stdio.h>
+                                    </p>
+                                </div>
+                                <div class="blog-meta">
+                                    <ul>
+                                        <li><i class="layui-icon layui-icon-note"></i><a
+                                                href="/Web/Home/Article/3178672e-54ae-4341-a75a-f5dbf728d68e.html">C语言</a>
+                                        </li>
+                                        <li><i class="layui-icon layui-icon-log"></i>2019-11-23 16:15</li>
+                                        <li><i class="layui-icon layui-extend-wiappfangwenliang"></i>浏览（<a
+                                                href="/Web/Home/ArticleDetails/5979b147-6f0a-4bde-9bff-cafc4d2dfe09.html">156</a>）
+                                        </li>
+                                    </ul>
+                                    <div class="post-readmore"><a
+                                            href="/Web/Home/ArticleDetails/5979b147-6f0a-4bde-9bff-cafc4d2dfe09.html">阅读更多</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-date five"><span>05</span></div>
+                    </div>
+                </div>
+                <div id="page" class="wow rotateInDownLeft"
+                     style="visibility: visible; animation-name: rotateInDownLeft;">
+                    <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-5"><a
+                            href="javascript:;" class="layui-laypage-prev layui-disabled" data-page="0">上一页</a><span
+                            class="layui-laypage-curr"><em class="layui-laypage-em"></em><em>1</em></span><a
+                            href="javascript:;" data-page="2">2</a><a href="javascript:;" data-page="3">3</a><a
+                            href="javascript:;" data-page="4">4</a><a href="javascript:;" data-page="5">5</a><span
+                            class="layui-laypage-spr">…</span><a href="javascript:;" class="layui-laypage-last"
+                                                                 title="尾页" data-page="18">尾页</a><a href="javascript:;"
+                                                                                                    class="layui-laypage-next"
+                                                                                                    data-page="2">下一页</a><span
+                            class="layui-laypage-skip">到第<input type="text" min="1" value="1" class="layui-input">页<button
+                            type="button" class="layui-laypage-btn">确定</button></span></div>
+                </div>
+            </div>
+            <div class="layui-col-md3 layui-col-sm12 layui-col-xs12">
+                <div class="card search wow flipInY" data-wow-delay="0.5s"
+                     style="visibility: visible; animation-delay: 0.5s; animation-name: flipInY;">
+                    <i id="search" class="layui-icon layui-icon-search"></i>
+                    <input id="keyWord" type="text" autocomplete="off" placeholder="Search..." class="layui-input">
+                </div>
+                <div class="card lmNav">
+                    <h2 class="side-title">栏目分类</h2>
+                    <ul>
+                        <li><a href="/Web/Home/Article/eec2e894-a324-466c-b250-e41afb55d5fd.html">
+                            <div class="layui-row">
+                                <div class="layui-col-xs10 layui-elip">随笔</div>
+                                <div class="layui-col-xs2"><span class="layui-badge-rim">6</span></div>
+                            </div>
+                        </a></li>
+                        <li><a href="/Web/Home/Article/572a080e-764b-4a9e-8985-f1c68b2877bd.html">
+                            <div class="layui-row">
+                                <div class="layui-col-xs10 layui-elip">C#</div>
+                                <div class="layui-col-xs2"><span class="layui-badge-rim">71</span></div>
+                            </div>
+                        </a></li>
+                        <li><a href="/Web/Home/Article/2c428b14-57ea-40b4-b6af-f69b9b73c150.html">
+                            <div class="layui-row">
+                                <div class="layui-col-xs10 layui-elip">Asp.Net</div>
+                                <div class="layui-col-xs2"><span class="layui-badge-rim">1</span></div>
+                            </div>
+                        </a></li>
+                        <li><a href="/Web/Home/Article/68913cbc-05ff-46e4-bf1d-78f133a981d7.html">
+                            <div class="layui-row">
+                                <div class="layui-col-xs10 layui-elip">SQL Server</div>
+                                <div class="layui-col-xs2"><span class="layui-badge-rim">8</span></div>
+                            </div>
+                        </a></li>
+                        <li><a href="/Web/Home/Article/3178672e-54ae-4341-a75a-f5dbf728d68e.html">
+                            <div class="layui-row">
+                                <div class="layui-col-xs10 layui-elip">C语言</div>
+                                <div class="layui-col-xs2"><span class="layui-badge-rim">2</span></div>
+                            </div>
+                        </a></li>
+                        <li><a href="/Web/Home/Article/10df4b34-1ce3-4b55-a5f1-4432f721c424.html">
+                            <div class="layui-row">
+                                <div class="layui-col-xs10 layui-elip">算法</div>
+                                <div class="layui-col-xs2"><span class="layui-badge-rim">1</span></div>
+                            </div>
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="card paihang">
+                    <h2 class="side-title">热门文章</h2>
+                    <ul>
+                        <li><span class="layui-badge">1</span><a
+                                href="/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html"
+                                title="Q-Blog v2.0 网站改版啦">Q-Blog v2.0 网站改版啦</a></li>
+                        <li><span class="layui-badge">2</span><a
+                                href="/Web/Home/ArticleDetails/63d47ab3-9eb7-4ca5-9852-b4d39b895cb0.html"
+                                title="C# 学习笔记（31）C#连接SQL Server数据库增删改查">C# 学习笔记（31）C#连接SQL Server数据库增删改查</a></li>
+                        <li><span class="layui-badge">3</span><a
+                                href="/Web/Home/ArticleDetails/fa876e28-dc60-4f5d-90f7-748a233fb825.html"
+                                title="1980-2020全国行政区划代码新老数据大全">1980-2020全国行政区划代码新老数据大全</a></li>
+                        <li><span class="layui-badge layui-bg-gray">4</span><a
+                                href="/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html"
+                                title="Q-Blog v1.0上线啦">Q-Blog v1.0上线啦</a></li>
+                        <li><span class="layui-badge layui-bg-gray">5</span><a
+                                href="/Web/Home/ArticleDetails/7f23e318-1e07-44c9-a639-b27b3e4b8097.html"
+                                title="Asp.Net MVC 接入第三方登录（QQ、新浪等）">Asp.Net MVC 接入第三方登录（QQ、新浪等）</a></li>
+                        <li><span class="layui-badge layui-bg-gray">6</span><a
+                                href="/Web/Home/ArticleDetails/145fc709-1acd-4ff2-8c35-160dcd7d1fdb.html"
+                                title="C# 学习笔记（41）面向对象三大特性之多态">C# 学习笔记（41）面向对象三大特性之多态</a></li>
+                        <li><span class="layui-badge layui-bg-gray">7</span><a
+                                href="/Web/Home/ArticleDetails/24af59e6-177c-4524-8104-90a57d979da7.html"
+                                title="SQL Server之使用Alter Database修改数据库">SQL Server之使用Alter Database修改数据库</a></li>
+                        <li><span class="layui-badge layui-bg-gray">8</span><a
+                                href="/Web/Home/ArticleDetails/0b2806ac-ec55-426c-ae96-cc323d9f82fa.html"
+                                title="console.log()花样输出/屏蔽输出（胶囊样式、彩色文字、图片等）">console.log()花样输出/屏蔽输出（胶囊样式、彩色文字、图片等）</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card suiji">
+                    <h2 class="side-title">猜你喜欢</h2>
+                    <ul>
+                        <li><a href="/Web/Home/ArticleDetails/065c0b9d-8137-4773-b80f-35d1ef28846b.html">C#
+                            学习笔记（38）使用FileStream实现文件的复制</a></li>
+                        <li><a href="/Web/Home/ArticleDetails/a84fa6e8-3e4a-47a3-b004-a8047ad12fef.html">C#【练习】求水仙花数的算法实现</a>
+                        </li>
+                        <li><a href="/Web/Home/ArticleDetails/75e7f758-58aa-4c4b-965f-bb6ddb206e8d.html">C#
+                            学习笔记（27）类与结构体的区别</a></li>
+                        <li><a href="/Web/Home/ArticleDetails/ecac796c-e464-4013-96ed-0ff054c1bcba.html"> C#
+                            学习笔记（42）接口</a></li>
+                        <li><a href="/Web/Home/ArticleDetails/2f1dae4d-e1a4-4f93-8885-716f6f34d268.html">C#
+                            学习笔记（17）方法的递归</a></li>
+                        <li><a href="/Web/Home/ArticleDetails/c49bca96-0b84-4998-b554-0ae7dcc0fb05.html">解除网页禁止复制和进入编辑状态的JS代码（转载）</a>
+                        </li>
+                        <li><a href="/Web/Home/ArticleDetails/bc29f137-4307-4fab-9a1d-0b81ddd7b51e.html">C# 操作XML文档</a>
+                        </li>
+                        <li><a href="/Web/Home/ArticleDetails/c9b72b16-c55b-46df-84ce-5fc89a37680a.html">C# 学习笔记（46）List
+                            <t>泛型集合</t>
+                        </a></li>
+                        <li><a href="/Web/Home/ArticleDetails/76611c0e-8cec-43de-8123-bfcccfa30361.html">C#【练习】阶乘</a>
+                        </li>
+                        <li><a href="/Web/Home/ArticleDetails/7f23e318-1e07-44c9-a639-b27b3e4b8097.html">Asp.Net MVC
+                            接入第三方登录（QQ、新浪等）</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-hide">
+        <input id="ArticleListCount" type="text" value="89">
+        <input id="CategoriesId" type="text">
+    </div>
+
+    <style>.layui-container {
+        padding-top: 25px
+    }
+
+    .post-area .single-post {
+        position: relative;
+        margin-bottom: 25px;
+        background-color: #fff
+    }
+
+    .post-area .single-post:nth-last-child(1) {
+        margin-bottom: 0
+    }
+
+    .post-area .single-post .inner-post {
+        padding: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+    }
+
+    .post-area .single-post .inner-post .post-img {
+        float: left;
+        width: 25%
+    }
+
+    .post-area .single-post .inner-post .post-img img {
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        border: 0;
+        max-width: 100%
+    }
+
+    .post-area .single-post .inner-post .post-info {
+        float: left;
+        width: 75%;
+        padding-left: 25px
+    }
+
+    .post-area .single-post .inner-post .post-info .post-title h3 {
+        font-size: 24px;
+        line-height: 26px;
+        font-weight: 600;
+        margin-top: 10px;
+        margin-bottom: 18px
+    }
+
+    .post-area .single-post .inner-post .post-info .post-title h3 a {
+        color: #333;
+        -webkit-transition: all .5s;
+        -o-transition: all .5s;
+        -moz-transition: all .5s;
+        -ms-transition: all .5s;
+        transition: all .5s
+    }
+
+    .post-area .single-post .inner-post .post-info .post-title h3 a:hover {
+        color: #777
+    }
+
+    .post-area .single-post .inner-post .post-info .post-content p {
+        font-size: 16px;
+        color: #333;
+        line-height: 26px;
+        margin-bottom: 25px;
+        margin: 0 0 26px;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta {
+        overflow: hidden;
+        margin-top: 50px
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: inline-block
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta ul li {
+        display: inline-block;
+        margin-right: 3px;
+        color: #838383;
+        font-size: 12.5px
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta ul li .layui-icon-note {
+        transform: rotateY(90deg);
+        -ms-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        display: inline-block
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta ul li a {
+        color: #096;
+        font-size: 12.5px
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta ul li a:hover {
+        text-decoration: underline
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta ul li i {
+        font-size: 13.5px;
+        margin-right: 3px
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta .post-readmore {
+        float: right
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta .post-readmore a {
+        display: inline-block;
+        font-size: 18px;
+        color: #333;
+        font-weight: 500;
+        text-transform: capitalize;
+        -webkit-transition: all .2s;
+        -o-transition: all .2s;
+        -moz-transition: all .2s;
+        -ms-transition: all .2s;
+        transition: all .2s
+    }
+
+    .post-area .single-post .inner-post .post-info .blog-meta .post-readmore a:hover {
+        color: #666;
+        text-decoration: underline
+    }
+
+    .post-area .single-post .post-date {
+        position: absolute;
+        right: 0;
+        top: 0
+    }
+
+    .post-area .single-post .post-date span {
+        width: 60px;
+        height: 60px;
+        background: #7167ff;
+        color: #FFF;
+        font-size: 20px;
+        font-weight: 500;
+        display: inline-block;
+        text-align: center;
+        padding: 13.5px 0;
+        padding-left: 16.5px;
+        border-radius: 0 0 0 100px;
+        -webkit-border-radius: 0 0 0 100px;
+        -moz-border-radius: 0 0 0 100px;
+        -ms-border-radius: 0 0 0 100px;
+        -o-border-radius: 0 0 0 100px;
+        transition: all .5s;
+        -webkit-transition: all .5s;
+        -o-transition: all .5s;
+        -moz-transition: all .5s;
+        -ms-transition: all .5s;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -khtml-user-select: none;
+        user-select: none
+    }
+
+    .post-area .single-post:hover .post-date span {
+        background: #665cf2
+    }
+
+    .post-area .single-post .post-date.two span {
+        background: #fe6566
+    }
+
+    .post-area .single-post .post-date.three span {
+        background: #3fb750
+    }
+
+    .post-area .single-post .post-date.four span {
+        background: #ff7008
+    }
+
+    .post-area .single-post .post-date.five span {
+        background: #23bdb6
+    }
+
+    .post-area .single-post:hover .post-date.two span {
+        background: #e44a4b
+    }
+
+    .post-area .single-post:hover .post-date.three span {
+        background: #31a041
+    }
+
+    .post-area .single-post:hover .post-date.four span {
+        background: #ffab08
+    }
+
+    .post-area .single-post:hover .post-date.five span {
+        background: #15a59e
+    }
+
+    #page {
+        margin-top: 8px;
+        margin-bottom: 5px
+    }
+
+    .card {
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 3px;
+        background-color: #fff;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.05);
+        -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.05);
+        -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.05);
+        -ms-box-shadow: 0 0 3px rgba(0, 0, 0, 0.05)
+    }
+
+    .side-title {
+        font-size: 14.5px;
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        color: #484848;
+        font-weight: normal;
+        position: relative;
+        margin-bottom: 10px;
+        padding-bottom: 10px
+    }
+
+    .side-title:hover:after {
+        width: 100%
+    }
+
+    .side-title:after {
+        content: "";
+        position: absolute;
+        width: 65px;
+        height: 2px;
+        background: #000;
+        left: 0;
+        bottom: -1px;
+        -moz-transition: all 1s ease;
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease
+    }
+
+    .search {
+        position: relative;
+        min-height: 36px;
+        padding: 5px;
+        margin-bottom: 10px
+    }
+
+    .search input, .search input:focus {
+        border: none !important;
+        padding-left: 10px;
+        padding-right: 35px
+    }
+
+    .search i {
+        font-weight: bold;
+        color: #D0D0D0;
+        font-size: 25px;
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        z-index: 1;
+        -moz-transition: all 1s ease;
+        -webkit-transition: all 1s ease;
+        transition: all 1s ease
+    }
+
+    .search i:hover {
+        cursor: pointer;
+        color: #999;
+        font-size: 27px
+    }
+
+    .search-border {
+        border: 2px solid #659FFD
+    }
+
+    .serach-tip {
+        height: 47px;
+        padding: 0 15px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+    }
+
+    .serach-tip p {
+        font-size: 18px;
+        line-height: 50px;
+        background-color: #fff
+    }
+
+    .serach-tip p span {
+        color: #01AAED
+    }
+
+    .lmNav {
+        padding: 20px 0 13px 0
+    }
+
+    .lmNav .side-title {
+        margin-left: 20px;
+        margin-right: 20px
+    }
+
+    .lmNav ul {
+        overflow: hidden;
+        display: block;
+        list-style-type: disc
+    }
+
+    .lmNav li {
+        padding: 5px 20px 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden
+    }
+
+    .lmNav li:hover {
+        border-left: 3px solid #5FB878;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent
+    }
+
+    .lmNav li:hover a {
+        color: #555444
+    }
+
+    .lmNav li a {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid #f8f9f7;
+        transition: none;
+        text-decoration: none;
+        color: #787977
+    }
+
+    .lmNav li a .layui-row .layui-elip {
+        padding-right: 5px
+    }
+
+    .lmNav li a .layui-row .layui-col-xs2 {
+        text-align: right
+    }
+
+    .paihang {
+        padding-bottom: 8px
+    }
+
+    .paihang ul {
+        overflow: hidden
+    }
+
+    .paihang ul li {
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+
+    .paihang ul li span {
+        margin-right: 6px;
+        font-size: 10px !important;
+        height: 15px !important;
+        line-height: 16.5px !important
+    }
+
+    .paihang ul li a {
+        font-size: 14px;
+        position: relative;
+        bottom: -0.5px
+    }
+
+    .paihang ul li a:hover {
+        color: #1E9FFF
+    }
+
+    .suiji {
+        padding-bottom: 10px
+    }
+
+    .suiji ul {
+        overflow: hidden;
+        display: block;
+        list-style-type: disc
+    }
+
+    .suiji li {
+        line-height: 22px;
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 12px
+    }
+
+    .suiji li:before {
+        position: absolute;
+        content: "";
+        width: 4px;
+        height: 4px;
+        background: #000;
+        border-radius: 10px;
+        left: 0;
+        top: 8px
+    }
+
+    .suiji ul li a:hover {
+        color: #1E9FFF
+    }
+
+    @media (max-width: 1200px) {
+        .post-area .single-post .inner-post .post-info .blog-meta {
+            margin-top: 0
+        }
+
+        .post-area .single-post .inner-post .post-info .post-title h3 {
+            margin-bottom: 10px
+        }
+
+        .post-area .single-post .inner-post .post-info .post-content p {
+            margin-top: 0;
+            line-height: 23px
+        }
+    }
+
+    @media (max-width: 767px) {
+        .post-area .single-post .inner-post .post-info .blog-meta .post-readmore {
+            float: none;
+            height: 0;
+            visibility: hidden
+        }
+
+        .post-area .single-post .inner-post .post-img {
+            float: none;
+            width: 100%;
+            margin-bottom: 15px
+        }
+
+        .post-area .single-post .inner-post .post-info {
+            float: none;
+            width: 100%;
+            padding-left: 0
+        }
+    }
+
+    @media (max-width: 415px) {
+        .post-area .single-post .inner-post .post-info .post-title h3 {
+            margin-top: 10px
+        }
+    }
+
+    @media (max-width: 360px) {
+        .post-area .single-post .inner-post .post-info .post-content p {
+            font-size: 12px;
+            line-height: 20px
+        }
+    }
+    </style>
+    <script>
+        function iniParam() {
+            var e = layui.laypage;
+            $("#keyWord").focus(function () {
+                $(this).parent().addClass("search-border")
+            }).blur(function () {
+                $(this).parent().removeClass("search-border")
+            }).keydown(function (i) {
+                if (i.which == 13) {
+                    h($(this).val());
+                    return false
+                }
+            });
+            var a = $("#ArticleListCount").val();
+            var b = $("#CategoriesId").val();
+            var c = 1;
+            var f = 5;
+            g(c, a, f, null, b);
+
+            function d(j, l, k, i) {
+                $.httpAsyncPost("/Web/Home/GetArticleList", {
+                    page: j,
+                    limit: l,
+                    keyWord: k,
+                    categoriesId: i
+                }, function (n) {
+                    if (n.state == $.httpState.success) {
+                        if (!k) {
+                            $("#single-list").html(n.data.html)
+                        } else {
+                            var m = '<div class="card serach-tip">';
+                            m += "<p>";
+                            m += "<span>" + k + "</span> 为您找到 <strong>" + n.data.count + "</strong> 个相关结果";
+                            m += "</p>";
+                            m += "</div>";
+                            $("#single-list").html(m + n.data.html)
+                        }
+                        g(j, n.data.count, l, k, i)
+                    } else {
+                        $.layerMsg(n.message, n.state)
+                    }
+                    setTimeout(function () {
+                        $.loading(false)
+                    }, 500)
+                })
+            }
+
+            function g(j, m, l, k, i) {
+                e.render({
+                    elem: "page",
+                    count: m,
+                    limit: l,
+                    curr: j,
+                    first: "首页",
+                    last: "尾页",
+                    layout: ["prev", "page", "next", "skip"],
+                    jump: function (o, n) {
+                        if (!n) {
+                            $.loading(true);
+                            d(o.curr, o.limit, k, i);
+                            $("body,html").animate({scrollTop: $("#am").offset().top}, 500)
+                        }
+                    }
+                })
+            }
+
+            $("#search").click(function () {
+                var i = $("#keyWord").val();
+                h(i)
+            });
+
+            function h(i) {
+                if (!i) {
+                    layer.tips("关键字都没输入想搜啥呢...", "#keyWord", {tips: [1, "#659FFD"]});
+                    $("#keyWord")[0].focus();
+                    return
+                }
+                $.loading(true);
+                d(c, f, i, null)
+            }
+        };</script>
+</section>
+
+
+<footer>
+    <p>
+        <a href="#">Copyright © 2019-2020. Q-Blog All rights reserved.</a>
+        <a target="_blank" href="http://www.beian.miit.gov.cn/" class="layui-hide-xs" rel="nofollow"
+           style="margin-left:5px;">桂ICP备19008837号</a>
+    </p>
+</footer>
+
+<div id="suspension">
+    <div class="livechat-girl animated" style="right: -35px; bottom: 75px;">
+        <img class="girl" src="/Content/Web/images/a.png" oncontextmenu="return false;" ondragstart="return false;"
+             style="border-radius: 0px;">
+        <div class="livechat-hint rd-notice-tooltip rd-notice-type-success rd-notice-position-left single-line hide_hint">
+            <div class="rd-notice-content">嘿，来试试登录吧！</div>
+        </div>
+        <div class="animated-circles">
+            <div class="circle c-1"></div>
+            <div class="circle c-2"></div>
+            <div class="circle c-3"></div>
+        </div>
+    </div>
+</div>
+
+<!-- 打字机特效js-->
+<script src="/Content/js/typewriter-special-effects.js"></script>
+<canvas width="932" height="713"
+        style="position: fixed; top: 0px; left: 0px; pointer-events: none; z-index: 999999;"></canvas>
+
+
+<script>
+    layui.use(["element", "laypage", "form", "util", "layer", "flow", "table"], function () {
+        try {
+            var j = layui.util, c = layui.layer;
+            $(document).ready(function () {
+                if (window.location.host != "www.qbl.link" && window.location.host != "qbl.link") {
+                    $("#loading").hide();
+                    $("html").html('<head><meta name="full-screen"content="yes"><meta name="x5-fullscreen"content="true"><meta name="apple-mobile-web-app-capable"content="yes"/><meta http-equiv="Content-Type"content="text/html; charset=utf-8"/><title>拒绝克隆站点</title></head><body style="background-color: #0099CC;color: #ffffff;"><span style="font-size: 100px;font-family: "微软雅黑";">&nbsp;:(</span><p style="font-size: 24px;font-family: "微软雅黑";">警告：您访问的是恶意克隆镜像网站！<br/>5秒后为您跳转到Q-Blog官网，您可以在官方网站试着找找您所需要的信息。</p><p style="font-size: 24px;font-family: "微软雅黑";"><span style="font-size: 16px;">恶意镜像猛于虎也，非杀不可，避免自己的网站流量长远丢失，维护自己的网站名誉！如果您想了解更多信息，则可以稍后访问官方网站！</span></p></body>');
+                    history.pushState(null, null, document.URL);
+                    window.addEventListener("popstate", function () {
+                        history.pushState(null, null, document.URL)
+                    });
+                    setTimeout(function () {
+                        this.location.href = "http://www.qbl.link/"
+                    }, 5000);
+                    return
+                }
+                setTimeout(function () {
+                    $("#loading").hide()
+                }, 500)
+            });
+            new WOW().init();
+            $("header nav > ul > li a").click(function () {
+                $("header nav > ul > li").removeClass("nav-select-this").find("a").removeClass("nav-a-click");
+                $(this).addClass("nav-a-click").parent().addClass("nav-select-this")
+            });
+            j.fixbar({
+                css: {right: 10, bottom: 40,}, bar1: "&#xe602e;", click: function (e) {
+                    if (e === "bar1") {
+                        c.tab({
+                            area: ["300", "290px"],
+                            resize: false,
+                            shadeClose: true,
+                            scrollbar: false,
+                            anim: 4,
+                            tab: [{
+                                title: "微信",
+                                content: '<img src="/Content/Web/images/zsm.jpg" style="width:255px;" oncontextmenu="return false;" ondragstart="return false;" />',
+                            }, {
+                                title: "支付宝",
+                                content: '<img src="/Content/Web/images/zfb.jpg" style="width:255px;" oncontextmenu="return false;" ondragstart="return false;" />',
+                            }],
+                            success: function (m, l) {
+                                $("#" + m[0].id + " .layui-layer-content").css("overflow", "hidden");
+                                $("#" + m[0].id + " .layui-layer-title span").css("padding", "0px");
+                                c.tips("本站收获的所有打赏费用均只用于服务器日常维护以及本站开发用途，感谢您的支持！", "#" + m[0].id, {
+                                    tips: [1, "#FFB800"],
+                                    time: 0,
+                                })
+                            },
+                            end: function () {
+                                c.closeAll("tips")
+                            }
+                        })
+                    }
+                }
+            });
+            var h = window.location.pathname.split("/");
+            var g = "";
+            if (h.length == 4) {
+                g = h[h.length - 1];
+                if (g.indexOf(".html") < 0) {
+                    g += ".html"
+                }
+            }
+            if (h.length == 5) {
+                g = h[h.length - 2];
+                g += ".html"
+            }
+            if (!!g) {
+                $("header nav > ul > li").removeClass("nav-select-this").find("a").removeClass("nav-a-click");
+                $("header nav > ul > li").each(function () {
+                    var l = $(this).find("a").attr("href").split("/");
+                    var e = l[l.length - 1];
+                    if (g.toLowerCase() === e.toLowerCase()) {
+                        $(this).addClass("nav-select-this").find("a").addClass("nav-a-click");
+                        return false
+                    }
+                })
+            }
+            iniParam();
+            var a = setInterval(function () {
+                if ($(".animated-circles").hasClass("animated")) {
+                    $(".animated-circles").removeClass("animated")
+                } else {
+                    $(".animated-circles").addClass("animated")
+                }
+            }, 3000);
+            var k = setInterval(function () {
+                $(".livechat-hint").removeClass("show_hint").addClass("hide_hint");
+                clearInterval(k)
+            }, 4500);
+            $(".livechat-girl").hover(function () {
+                clearInterval(k);
+                $(".livechat-hint").removeClass("hide_hint").addClass("show_hint")
+            }, function () {
+                $(".livechat-hint").removeClass("show_hint").addClass("hide_hint")
+            }).click(function () {
+                d()
+            });
+            f();
+
+            function f() {
+                var e = $.checkLogin();
+                if (!e) {
+                    var l = $.request("msg");
+                    if (l) {
+                        $.layerAlert(l, $.httpState.error)
+                    }
+                }
+                i(e);
+                return e
+            }
+
+            function i(e) {
+                if (!e) {
+                    $(".girl").attr("src", "/Content/Web/images/a.png").css("border-radius", "0px");
+                    $(".livechat-girl").css({right: "-35px", bottom: "75px"}).removeClass("red-dot");
+                    $(".rd-notice-content").text("嘿，来试试登录吧！");
+                    return
+                }
+                $.httpAsyncGet("/Web/Home/GetUserInfo", function (l) {
+                    if (l.state == $.httpState.success) {
+                        clearInterval(a);
+                        $(".girl").attr("src", l.data.FigureUrl).css("border-radius", "50px");
+                        $(".rd-notice-content").text("欢迎您，" + l.data.NickName + "！");
+                        $(".livechat-girl").css({right: "0px", bottom: "80px"});
+                        if (!l.data.Email) {
+                            $(".livechat-girl").addClass("red-dot")
+                        } else {
+                            $(".livechat-girl").removeClass("red-dot")
+                        }
+                    }
+                })
+            }
+
+            function d() {
+                if (!f()) {
+                    $.loading(true);
+                    window.location.href = "/Login/QQLogin";
+                    return
+                }
+                $.layerForm({
+                    id: "form",
+                    title: "个人中心",
+                    url: "/Web/Home/PersonalCenter",
+                    width: 700,
+                    height: 530,
+                    btn: ["确认", "退出登录"],
+                    showLoginTip: true,
+                    callBack: function (e, m, n) {
+                        var l = document.getElementById(e);
+                        l.contentWindow.verifyAndSubmit(m)
+                    },
+                    btn2CallBack: function (e, l, m) {
+                        $.layerConfirm("是否退出登录", function (n, o) {
+                            if (n) {
+                                $.httpGetCallback("/Login/Logout", null, function (p) {
+                                    if (p.state == $.httpState.success) {
+                                        i(false);
+                                        top.layer.close(o)
+                                    } else {
+                                        $.layerMsg(p.message, p.state)
+                                    }
+                                })
+                            }
+                        });
+                        return true
+                    }
+                })
+            }
+        } catch (b) {
+            layui.hint().error(b)
+        }
+    });
+    var _hmt = _hmt || [];
+    (function () {
+        var a = document.createElement("script");
+        a.src = "https://hm.baidu.com/hm.js?132af61e5d1e0bde3638f1ee143bfdb0";
+        var b = document.getElementsByTagName("script")[0];
+        b.parentNode.insertBefore(a, b)
+    })();</script>
+
+<audio controls="controls" style="display: none;"></audio>
+<ul class="layui-fixbar" style="right: 10px; bottom: 40px;">
+    <li class="layui-icon" lay-type="bar1" style="">󦀮</li>
+    <li class="layui-icon layui-fixbar-top" lay-type="top" style="display: none;"></li>
+</ul>
+<div class="layui-layer-move"></div>
+</body>
+<style type="text/css">
+    #yddContainer {
+        display: block;
+        font-family: Microsoft YaHei;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        top: -4px;
+        left: -4px;
+        font-size: 12px;
+        border: 1px solid
+    }
+
+    #yddTop {
+        display: block;
+        height: 22px
+    }
+
+    #yddTopBorderlr {
+        display: block;
+        position: static;
+        height: 17px;
+        padding: 2px 28px;
+        line-height: 17px;
+        font-size: 12px;
+        color: #5079bb;
+        font-weight: bold;
+        border-style: none solid;
+        border-width: 1px
+    }
+
+    #yddTopBorderlr .ydd-sp {
+        position: absolute;
+        top: 2px;
+        height: 0;
+        overflow: hidden
+    }
+
+    .ydd-icon {
+        left: 5px;
+        width: 17px;
+        padding: 0px 0px 0px 0px;
+        padding-top: 17px;
+        background-position: -16px -44px
+    }
+
+    .ydd-close {
+        right: 5px;
+        width: 16px;
+        padding-top: 16px;
+        background-position: left -44px
+    }
+
+    #yddKeyTitle {
+        float: left;
+        text-decoration: none
+    }
+
+    #yddMiddle {
+        display: block;
+        margin-bottom: 10px
+    }
+
+    .ydd-tabs {
+        display: block;
+        margin: 5px 0;
+        padding: 0 5px;
+        height: 18px;
+        border-bottom: 1px solid
+    }
+
+    .ydd-tab {
+        display: block;
+        float: left;
+        height: 18px;
+        margin: 0 5px -1px 0;
+        padding: 0 4px;
+        line-height: 18px;
+        border: 1px solid;
+        border-bottom: none
+    }
+
+    .ydd-trans-container {
+        display: block;
+        line-height: 160%
+    }
+
+    .ydd-trans-container a {
+        text-decoration: none;
+    }
+
+    #yddBottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 22px;
+        line-height: 22px;
+        overflow: hidden;
+        background-position: left -22px
+    }
+
+    .ydd-padding010 {
+        padding: 0 10px
+    }
+
+    #yddWrapper {
+        color: #252525;
+        z-index: 10001;
+        background: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);
+    }
+
+    #yddContainer {
+        background: #fff;
+        border-color: #4b7598
+    }
+
+    #yddTopBorderlr {
+        border-color: #f0f8fc
+    }
+
+    #yddWrapper .ydd-sp {
+        background-image: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)
+    }
+
+    #yddWrapper a, #yddWrapper a:hover, #yddWrapper a:visited {
+        color: #50799b
+    }
+
+    #yddWrapper .ydd-tabs {
+        color: #959595
+    }
+
+    .ydd-tabs, .ydd-tab {
+        background: #fff;
+        border-color: #d5e7f3
+    }
+
+    #yddBottom {
+        color: #363636
+    }
+
+    #yddWrapper {
+        min-width: 250px;
+        max-width: 400px;
+    }</style>
+</html>

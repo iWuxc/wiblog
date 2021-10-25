@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html><!-- InstanceBegin template="/Templates/Template.dwt" codeOutsideHTMLIsLocked="false" -->
+<html>
+<!-- InstanceBegin template="/Templates/Template.dwt" codeOutsideHTMLIsLocked="false" -->
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 <head>
@@ -8,7 +9,8 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Window-target" content="_top">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- InstanceBeginEditable name="doctitle" -->
     <title>{{.Title}}</title>
     <!-- InstanceEndEditable -->
@@ -35,6 +37,8 @@
     <script src="/static/front/js/jquery.min.js"></script>
     <script src="/static/front/Eextend/layui/layui.js"></script>
     <script src="/static/front/js/wow.min.js"></script>
+    <script src="/static/front/js/framework-ajax.js"></script>
+    <script src="/static/front/js/framework-extend.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -110,11 +114,18 @@
 </section>
 {{.LayoutContent}}
 <footer>
-    <p><a href="http://www.qbl.link">{{.Copyright}}</a></p>
+    <footer>
+        <p>
+            <a href="#">Copyright &copy;2019-2020. Q-Blog All rights reserved.</a>
+            <a target="_blank" href="http://www.beian.miit.gov.cn/" class="layui-hide-xs" rel="nofollow"
+               style="margin-left:5px;">桂ICP备19008837号</a>
+        </p>
+    </footer>
 </footer>
 <div id="suspension">
     <div class="livechat-girl animated">
-        <img class="girl" src="/static/front/images/a.png" oncontextmenu="return false;" ondragstart="return false;">
+        <img class="girl" src="/static/front/Content/Web/images/a.png" oncontextmenu="return false;"
+             ondragstart="return false;">
         <div class="livechat-hint rd-notice-tooltip rd-notice-type-success rd-notice-position-left single-line show_hint">
             <div class="rd-notice-content">嘿，来试试登录吧！</div>
         </div>
@@ -128,7 +139,184 @@
 <!-- 打字机特效js-->
 <script src="/static/front/js/typewriter-special-effects.js"></script>
 <script src="/static/front/js/Template.js"></script>
-<!-- 这个JS展示公告层用的，无关紧要可以删掉 -->
-<script src="/static/front/js/TempShowTip.js"></script>
 </body>
-<!-- InstanceEnd --></html>
+<!-- InstanceEnd -->
+</html>
+<script>
+    layui.use(["element", "laypage", "form", "util", "layer", "flow", "table"], function () {
+        try {
+            var j = layui.util, c = layui.layer;
+            new WOW().init();
+            $("header nav > ul > li a").click(function () {
+                $("header nav > ul > li").removeClass("nav-select-this").find("a").removeClass("nav-a-click");
+                $(this).addClass("nav-a-click").parent().addClass("nav-select-this")
+            });
+            j.fixbar({
+                css: {
+                    right: 10,
+                    bottom: 40,
+                },
+                bar1: "&#xe602e;",
+                click: function (e) {
+                    if (e === "bar1") {
+                        c.tab({
+                            area: ["300", "290px"],
+                            resize: false,
+                            shadeClose: true,
+                            scrollbar: false,
+                            anim: 4,
+                            tab: [{
+                                title: "微信",
+                                content: '<img src="/Content/Web/images/zsm.jpg" style="width:255px;" oncontextmenu="return false;" ondragstart="return false;" />',
+                            }, {
+                                title: "支付宝",
+                                content: '<img src="/Content/Web/images/zfb.jpg" style="width:255px;" oncontextmenu="return false;" ondragstart="return false;" />',
+                            }],
+                            success: function (m, l) {
+                                $("#" + m[0].id + " .layui-layer-content").css("overflow", "hidden");
+                                $("#" + m[0].id + " .layui-layer-title span").css("padding", "0px");
+                                c.tips("本站收获的所有打赏费用均只用于服务器日常维护以及本站开发用途，感谢您的支持！", "#" + m[0].id, {
+                                    tips: [1, "#FFB800"],
+                                    time: 0,
+                                })
+                            },
+                            end: function () {
+                                c.closeAll("tips")
+                            }
+                        })
+                    }
+                }
+            });
+            var h = window.location.pathname.split("/");
+            var g = "";
+            if (h.length == 4) {
+                g = h[h.length - 1];
+                if (g.indexOf(".html") < 0) {
+                    g += ".html"
+                }
+            }
+            if (h.length == 5) {
+                g = h[h.length - 2];
+                g += ".html"
+            }
+            if (!!g) {
+                $("header nav > ul > li").removeClass("nav-select-this").find("a").removeClass("nav-a-click");
+                $("header nav > ul > li").each(function () {
+                    var l = $(this).find("a").attr("href").split("/");
+                    var e = l[l.length - 1];
+                    if (g.toLowerCase() === e.toLowerCase()) {
+                        $(this).addClass("nav-select-this").find("a").addClass("nav-a-click");
+                        return false
+                    }
+                })
+            }
+            iniParam();
+            var a = setInterval(function () {
+                if ($(".animated-circles").hasClass("animated")) {
+                    $(".animated-circles").removeClass("animated")
+                } else {
+                    $(".animated-circles").addClass("animated")
+                }
+            }, 3000);
+            var k = setInterval(function () {
+                $(".livechat-hint").removeClass("show_hint").addClass("hide_hint");
+                clearInterval(k)
+            }, 4500);
+            $(".livechat-girl").hover(function () {
+                clearInterval(k);
+                $(".livechat-hint").removeClass("hide_hint").addClass("show_hint")
+            }, function () {
+                $(".livechat-hint").removeClass("show_hint").addClass("hide_hint")
+            }).click(function () {
+                d()
+            });
+            f();
+
+            function f() {
+                var e = $.checkLogin();
+                if (!e) {
+                    var l = $.request("msg");
+                    if (l) {
+                        $.layerAlert(l, $.httpState.error)
+                    }
+                }
+                i(e);
+                return e
+            }
+
+            function i(e) {
+                if (!e) {
+                    $(".girl").attr("src", "/Content/Web/images/a.png").css("border-radius", "0px");
+                    $(".livechat-girl").css({
+                        right: "-35px",
+                        bottom: "75px"
+                    }).removeClass("red-dot");
+                    $(".rd-notice-content").text("嘿，来试试登录吧！");
+                    return
+                }
+                $.httpAsyncGet("/Web/Home/GetUserInfo", function (l) {
+                    if (l.state == $.httpState.success) {
+                        clearInterval(a);
+                        $(".girl").attr("src", l.data.FigureUrl).css("border-radius", "50px");
+                        $(".rd-notice-content").text("欢迎您，" + l.data.NickName + "！");
+                        $(".livechat-girl").css({
+                            right: "0px",
+                            bottom: "80px"
+                        });
+                        if (!l.data.Email) {
+                            $(".livechat-girl").addClass("red-dot")
+                        } else {
+                            $(".livechat-girl").removeClass("red-dot")
+                        }
+                    }
+                })
+            }
+
+            function d() {
+                if (!f()) {
+                    $.loading(true);
+                    window.location.href = "/Login/QQLogin";
+                    return
+                }
+                $.layerForm({
+                    id: "form",
+                    title: "个人中心",
+                    url: "/Web/Home/PersonalCenter",
+                    width: 700,
+                    height: 530,
+                    btn: ["确认", "退出登录"],
+                    showLoginTip: true,
+                    callBack: function (e, m, n) {
+                        var l = document.getElementById(e);
+                        l.contentWindow.verifyAndSubmit(m)
+                    },
+                    btn2CallBack: function (e, l, m) {
+                        $.layerConfirm("是否退出登录", function (n, o) {
+                            if (n) {
+                                $.httpGetCallback("/Login/Logout", null, function (p) {
+                                    if (p.state == $.httpState.success) {
+                                        i(false);
+                                        top.layer.close(o)
+                                    } else {
+                                        $.layerMsg(p.message, p.state)
+                                    }
+                                })
+                            }
+                        });
+                        return true
+                    }
+                })
+            }
+        } catch (b) {
+            layui.hint().error(b)
+        }
+    });
+    var _hmt = _hmt || [];
+    (function () {
+            var a = document.createElement("script");
+            a.src = "https://hm.baidu.com/hm.js?132af61e5d1e0bde3638f1ee143bfdb0";
+            var b = document.getElementsByTagName("script")[0];
+            b.parentNode.insertBefore(a, b)
+        }
+    )();
+</script>
