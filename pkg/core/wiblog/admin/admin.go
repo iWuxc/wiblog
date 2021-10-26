@@ -208,6 +208,7 @@ func handleAPIPostCreate(c *gin.Context) {
 	text := c.PostForm("text")
 	cover := c.PostForm("cover")
 	isHot := c.PostForm("hot")
+	intro := c.PostForm("intro")
 
 	date := parseLocationDate(c.PostForm("title"))
 	serie := c.PostForm("serie")
@@ -232,6 +233,7 @@ func handleAPIPostCreate(c *gin.Context) {
 		Tags:      tags,
 		CreatedAt: date,
 		IsHot:     isHot == "1",
+		Intro:     intro,
 	}
 
 	cid, err = strconv.Atoi(c.PostForm("cid"))
@@ -255,6 +257,8 @@ func handleAPIPostCreate(c *gin.Context) {
 		"serie_id":   article.SerieID,
 		"is_draft":   article.IsDraft,
 		"tags":       article.Tags,
+		"is_hot":     article.IsHot,
+		"intro":      article.Intro,
 		"updated_at": article.UpdatedAt,
 		"created_at": article.CreatedAt,
 	})
@@ -494,6 +498,7 @@ func ResponseNotice(c *gin.Context, typ, content, hl string) {
 	c.Redirect(http.StatusFound, c.Request.Referer())
 }
 
+// handleWEBArticleList 文章列表
 func handleWEBArticleList(c *gin.Context) {
 
 	data := make(map[string]interface{})

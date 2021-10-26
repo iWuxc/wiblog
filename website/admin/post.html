@@ -11,6 +11,11 @@
                     <label for="title" class="sr-only">标题</label>
                     <input type="text" id="title" name="title" autocomplete="off" {{with .Edit}}value="{{.Title}}"{{end}} placeholder="标题" class="w-100 text title" />
                 </p>
+                <p class="intro">
+                    <label for="intro" class="sr-only">简短介绍</label>
+                    <textarea style="height: 350px" autocomplete="off" id="intro" name="intro" class="w-100 mono" placeholder="简短介绍">{{with .Edit}}{{.Intro}}{{end}}</textarea>
+                    <p class="description">此文字是文章的简单介绍，用于显示在列表页文章介绍.</p>
+                </p>
                 <p class="cover">
                     <label for="title" class="sr-only">封面图</label>
                     <input type="text" id="cover" name="cover" autocomplete="off" {{with .Edit}}value="{{.Cover}}" {{end}} placeholder="封面图" class="w-100 text cover" />
