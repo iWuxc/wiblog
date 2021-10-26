@@ -123,6 +123,13 @@ func (db *rdbms) LoadArticle(ctx context.Context, id int) (*model.Article, error
 	return article, err
 }
 
+// FindArticleBySlug 加载文章 - slug
+func (db *rdbms) FindArticleBySlug(ctx context.Context, slug string) (*model.Article, error) {
+	article := &model.Article{}
+	err := db.Where(&model.Article{}).Where("slug=?", slug).First(article).Error
+	return article, err
+}
+
 // LoadArticleList 查找文章列表
 func (db *rdbms) LoadArticleList(ctx context.Context, search SearchArticles) (model.SortedArticles, int, error) {
 	gormDB := db.Model(model.Article{})

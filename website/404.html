@@ -1,7 +1,73 @@
-{{define "notfound"}}
-<div id=content class=inner>
-    <article class="post post-404"><h1 class=title>404 - 什么也没有</h1>
-        <div class="entry-content"><p>你要找的东东不存在喔！</p>
-            <p>请检查 URL 拼写是否有误，或者通过<a href="/search.html"> 站内搜索 </a>搜一下吧～</p></div>
-    </article>
-</div>{{end}}
+<!doctype html>
+<html><!-- InstanceBegin template="/Templates/GuidePage.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+    <meta charset="utf-8">
+    <!-- InstanceBeginEditable name="doctitle" -->
+    <title>404 NotFound</title>
+    <!-- InstanceEndEditable -->
+    <!-- InstanceBeginEditable name="head" -->
+    <!-- InstanceEndEditable -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="Author" contect="{{.Author}}">
+<!--    <meta name="Copyright" content="{{.Copyright}}">-->
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+    <link href="/static/front/css/main.css" rel="stylesheet"/>
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/static/front/css/ie9.css"/><![endif]-->
+    <noscript>
+        <link rel="stylesheet" href="/static/front/css/noscript.css"/>
+    </noscript>
+</head>
+
+<body>
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <span class="icon fa-university"></span>
+        </div>
+        <div class="content">
+            <div class="inner">
+                <!-- InstanceBeginEditable name="EditRegion3" -->
+                <h2>NotFound</h2>
+                <h1>404</h1>
+                <p style="font-size:1.2rem;"><!--[-->对不起，页面已走丢。不过，你放心，一切尽在掌控之中，不会走多远的！<!--]--></p>
+                <!-- InstanceEndEditable -->
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="http://www.qbl.link">首页</a></li>
+                <li><a href="http://www.qbl.link/Web/Home/Article.html">博客</a></li>
+                <li><a href="http://www.qbl.link/Web/Home/MessageBoard.html">留言</a></li>
+<!--                <li><a href="http://www.qbl.link/Web/Home/About.html">音乐</a></li>-->
+                <li><a href="http://www.qbl.link/Web/Home/About.html">关于</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main -->
+    <!-- Footer -->
+    <footer id="footer">
+        <p class="copyright">{{.Copyright}} <a href="http://{{.Domain}}">{{.Title}}</a> All rights reserved.</p>
+    </footer>
+</div>
+<!-- BG -->
+<div id="bg"></div>
+<!-- Scripts -->
+<script src="/static/front/js/jquery.min.js"></script>
+<script src="/static/front/js/skel.min.js"></script>
+<script src="/static/front/js/util.js"></script>
+<script src="/static/front/js/main.js"></script>
+<!-- 百度统计 -->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?132af61e5d1e0bde3638f1ee143bfdb0";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+<!-- InstanceEnd --></html>

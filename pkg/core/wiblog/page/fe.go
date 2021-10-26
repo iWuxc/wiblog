@@ -98,7 +98,15 @@ func handleArticleIndexPage(c *gin.Context) {
 }
 
 func handleArticleDetailPage(c *gin.Context) {
+	slug := c.Param("slug")
 	params := baseFEParams(c)
+	article, err := cache.Wi.Store.FindArticleBySlug(c, slug)
+	fmt.Println(err)
+	if err != nil || article == nil {
+		renderHTMLHomeLayout(c, "404.html", params)
+		return
+	}
+	params["Article"] = article
 	renderHTMLHomeLayout(c, "web-post", params)
 }
 
@@ -107,7 +115,7 @@ func renderHTMLHomeLayout(c *gin.Context, name string, data gin.H) {
 	c.Header("Content-Type", "text/html; charset=utf-8")
 
 	//special page
-	if name == "home.html" {
+	if name == "home.html" || name == "404.html" {
 		err := htmlTemplate.ExecuteTemplate(c.Writer, name, data)
 		if err != nil {
 			panic(err)
