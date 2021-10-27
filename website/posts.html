@@ -16,19 +16,21 @@
             <div class="layui-col-md3 layui-col-sm12 layui-col-xs12">
                 <div class="card search wow flipInY" data-wow-delay="0.5s">
                     <i id="search" class="layui-icon layui-icon-search"></i>
-                    <input id="keyWord" type="text" autocomplete="off" placeholder="Search..." class="layui-input">
+                    <input id="keyword" type="text" autocomplete="off" placeholder="Search..." class="layui-input">
                 </div>
                 <div class="card lmNav">
                     <h2 class="side-title">栏目分类</h2>
                     <ul>
+                        {{range .Series}}
                         <li>
                             <a href="#">
                                 <div class="layui-row">
-                                    <div class="layui-col-xs10 layui-elip">随笔</div>
+                                    <div class="layui-col-xs10 layui-elip" data-id="{{.ID}}">{{.Name}}</div>
                                     <div class="layui-col-xs2"><span class="layui-badge-rim">16</span></div>
                                 </div>
                             </a>
                         </li>
+                        {{end}}
                     </ul>
                 </div>
                 <div class="card paihang">

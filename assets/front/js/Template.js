@@ -3,7 +3,7 @@
 layui.use(['element', 'laypage', 'form', 'util', 'layer', 'flow','table','layedit'], function () {
     try {
         var util = layui.util, layer = layui.layer;
-	console.log("Q-Blog官网：www.qbl.link");	
+
         $(document).ready(function () { //DOM树加载完毕执行，不必等到页面中图片或其他外部文件都加载完毕
             //页面加载完成后，速度太快会导到loading层闪烁，影响体验，所以在此加上500毫秒延迟
             setTimeout(function () { $("#loading").hide(); }, 500);

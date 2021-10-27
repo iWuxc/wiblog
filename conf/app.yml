@@ -8,7 +8,7 @@ wiblogapp:
     name: cmd-wiblog
     enablehttp: true
     httpport: 9000
-    host: wuxc.com
+    host: 127.0.0.1:9000
   staticversion: 1 # 静态文件版本
   hotwords: # 热搜词
     - docker

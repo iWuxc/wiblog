@@ -2,7 +2,7 @@
 function iniParam() {
     var e = layui.laypage;
 
-    $("#keyWord").focus(function () {
+    $("#keyword").focus(function () {
         $(this).parent().addClass("search-border")
     }).blur(function () {
         $(this).parent().removeClass("search-border")
@@ -26,15 +26,13 @@ function iniParam() {
         $.httpAsyncPost("/web/article/list", {
             page: j,
             limit: l,
-            keyWord: k,
-            categoriesId: i
+            keyword: k,
+            serieid: i
         }, function (n) {
             if (n.code === 0) {
                 if (!k) {
-                    console.log(11111)
                     $("#single-list").html(n.data.html)
                 } else {
-                    console.log(22222)
                     var m = '<div class="card erach-tip">';
                     m += "<p>";
                     m += "<span>" + k + "</span> 为您找到 <strong>" + n.data.count + "</strong> 个相关结果";
@@ -74,13 +72,20 @@ function iniParam() {
     }
 
     $("#search").click(function () {
-        var i = $("#keyWord").val();
+        var i = $("#keyword").val();
         h(i)
     });
 
+    $(".lmNav li").click(function () {
+        var serieid = $(this).find(".layui-col-xs10").data("id");  //文本内容
+        $.loading(true)
+        d(c, f, null, serieid)
+    })
+
+
     function h(i) {
         if (!i) {
-            layer.tips("关键字都没输入想搜啥呢...", "#keyWord", {
+            layer.tips("关键字都没输入想搜啥呢...", "#keyword", {
                 tips: [1, "#659FFD"]
             });
             $("#keyWord")[0].focus();

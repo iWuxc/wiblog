@@ -25,7 +25,7 @@
     <meta property="og:image" content="/static/front/images/logo.png"/>
     <meta property="og:site_name" content="{{.Domain}}"/>
     <meta property="og:description" content="{{.Description}}"/>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link href="/static/front/css/loading.css" rel="stylesheet"/>
     <link href="/static/front/css/scroll-bar.css" rel="stylesheet"/>
     <link href="/static/front/Eextend/layui/css/layui.css" rel="stylesheet" media="all"/>
@@ -82,18 +82,18 @@
 <header>
     <nav>
         <div class="logo">
-            <a target='_blank' href="Index.html">
+            <a target='_blank' href="/">
                 <img src="/static/front/images/logo.png" oncontextmenu="return false;" ondragstart="return false;"/>
             </a>
         </div>
         <!-- 汉堡菜单 -->
         <input type="checkbox" id="togglebox"/>
         <ul>
-            <li><a href="Index.html">网站首页</a></li>
-            <li><a href="Article.html">学无止境</a></li>
-            <li><a href="Archive.html">文章归档</a></li>
-<!--            <li><a href="Moments.html">瞬时说说</a></li>-->
-            <li><a href="About.html">关于本站</a></li>
+            <li><a href="/">网站首页</a></li>
+            <li><a href="/posts">学无止境</a></li>
+            <li><a href="/archive">文章归档</a></li>
+            <!--            <li><a href="Moments.html">瞬时说说</a></li>-->
+            <li><a href="/about">关于本站</a></li>
         </ul>
         <label class="menu" for="togglebox">
             <i class="layui-icon layui-extend-hamburg-menu"></i>
@@ -141,181 +141,3 @@
 </body>
 <!-- InstanceEnd -->
 </html>
-<script>
-    layui.use(["element", "laypage", "form", "util", "layer", "flow", "table"], function () {
-        try {
-            var j = layui.util, c = layui.layer;
-            new WOW().init();
-            $("header nav > ul > li a").click(function () {
-                $("header nav > ul > li").removeClass("nav-select-this").find("a").removeClass("nav-a-click");
-                $(this).addClass("nav-a-click").parent().addClass("nav-select-this")
-            });
-            j.fixbar({
-                css: {
-                    right: 10,
-                    bottom: 40,
-                },
-                bar1: "&#xe602e;",
-                click: function (e) {
-                    if (e === "bar1") {
-                        c.tab({
-                            area: ["300", "290px"],
-                            resize: false,
-                            shadeClose: true,
-                            scrollbar: false,
-                            anim: 4,
-                            tab: [{
-                                title: "微信",
-                                content: '<img src="/Content/Web/images/zsm.jpg" style="width:255px;" oncontextmenu="return false;" ondragstart="return false;" />',
-                            }, {
-                                title: "支付宝",
-                                content: '<img src="/Content/Web/images/zfb.jpg" style="width:255px;" oncontextmenu="return false;" ondragstart="return false;" />',
-                            }],
-                            success: function (m, l) {
-                                $("#" + m[0].id + " .layui-layer-content").css("overflow", "hidden");
-                                $("#" + m[0].id + " .layui-layer-title span").css("padding", "0px");
-                                c.tips("本站收获的所有打赏费用均只用于服务器日常维护以及本站开发用途，感谢您的支持！", "#" + m[0].id, {
-                                    tips: [1, "#FFB800"],
-                                    time: 0,
-                                })
-                            },
-                            end: function () {
-                                c.closeAll("tips")
-                            }
-                        })
-                    }
-                }
-            });
-            var h = window.location.pathname.split("/");
-            var g = "";
-            if (h.length == 4) {
-                g = h[h.length - 1];
-                if (g.indexOf(".html") < 0) {
-                    g += ".html"
-                }
-            }
-            if (h.length == 5) {
-                g = h[h.length - 2];
-                g += ".html"
-            }
-            if (!!g) {
-                $("header nav > ul > li").removeClass("nav-select-this").find("a").removeClass("nav-a-click");
-                $("header nav > ul > li").each(function () {
-                    var l = $(this).find("a").attr("href").split("/");
-                    var e = l[l.length - 1];
-                    if (g.toLowerCase() === e.toLowerCase()) {
-                        $(this).addClass("nav-select-this").find("a").addClass("nav-a-click");
-                        return false
-                    }
-                })
-            }
-            iniParam();
-            var a = setInterval(function () {
-                if ($(".animated-circles").hasClass("animated")) {
-                    $(".animated-circles").removeClass("animated")
-                } else {
-                    $(".animated-circles").addClass("animated")
-                }
-            }, 3000);
-            var k = setInterval(function () {
-                $(".livechat-hint").removeClass("show_hint").addClass("hide_hint");
-                clearInterval(k)
-            }, 4500);
-            $(".livechat-girl").hover(function () {
-                clearInterval(k);
-                $(".livechat-hint").removeClass("hide_hint").addClass("show_hint")
-            }, function () {
-                $(".livechat-hint").removeClass("show_hint").addClass("hide_hint")
-            }).click(function () {
-                d()
-            });
-            f();
-
-            function f() {
-                var e = $.checkLogin();
-                if (!e) {
-                    var l = $.request("msg");
-                    if (l) {
-                        $.layerAlert(l, $.httpState.error)
-                    }
-                }
-                i(e);
-                return e
-            }
-
-            function i(e) {
-                if (!e) {
-                    $(".girl").attr("src", "/Content/Web/images/a.png").css("border-radius", "0px");
-                    $(".livechat-girl").css({
-                        right: "-35px",
-                        bottom: "75px"
-                    }).removeClass("red-dot");
-                    $(".rd-notice-content").text("嘿，来试试登录吧！");
-                    return
-                }
-                $.httpAsyncGet("/Web/Home/GetUserInfo", function (l) {
-                    if (l.state == $.httpState.success) {
-                        clearInterval(a);
-                        $(".girl").attr("src", l.data.FigureUrl).css("border-radius", "50px");
-                        $(".rd-notice-content").text("欢迎您，" + l.data.NickName + "！");
-                        $(".livechat-girl").css({
-                            right: "0px",
-                            bottom: "80px"
-                        });
-                        if (!l.data.Email) {
-                            $(".livechat-girl").addClass("red-dot")
-                        } else {
-                            $(".livechat-girl").removeClass("red-dot")
-                        }
-                    }
-                })
-            }
-
-            function d() {
-                if (!f()) {
-                    $.loading(true);
-                    window.location.href = "/Login/QQLogin";
-                    return
-                }
-                $.layerForm({
-                    id: "form",
-                    title: "个人中心",
-                    url: "/Web/Home/PersonalCenter",
-                    width: 700,
-                    height: 530,
-                    btn: ["确认", "退出登录"],
-                    showLoginTip: true,
-                    callBack: function (e, m, n) {
-                        var l = document.getElementById(e);
-                        l.contentWindow.verifyAndSubmit(m)
-                    },
-                    btn2CallBack: function (e, l, m) {
-                        $.layerConfirm("是否退出登录", function (n, o) {
-                            if (n) {
-                                $.httpGetCallback("/Login/Logout", null, function (p) {
-                                    if (p.state == $.httpState.success) {
-                                        i(false);
-                                        top.layer.close(o)
-                                    } else {
-                                        $.layerMsg(p.message, p.state)
-                                    }
-                                })
-                            }
-                        });
-                        return true
-                    }
-                })
-            }
-        } catch (b) {
-            layui.hint().error(b)
-        }
-    });
-    var _hmt = _hmt || [];
-    (function () {
-            var a = document.createElement("script");
-            a.src = "https://hm.baidu.com/hm.js?132af61e5d1e0bde3638f1ee143bfdb0";
-            var b = document.getElementsByTagName("script")[0];
-            b.parentNode.insertBefore(a, b)
-        }
-    )();
-</script>

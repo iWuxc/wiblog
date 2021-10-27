@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"sync"
 	"wiblog/pkg/cache"
@@ -10,12 +9,14 @@ import (
 	"wiblog/pkg/model"
 )
 
-func ArticleList(c *gin.Context, page, limit int) ([]*model.Article, int, error) {
+func ArticleList(c *gin.Context, page, limit, serieid int, keyword string) ([]*model.Article, int, error) {
 	search := store.SearchArticles{
 		Page:  page,
 		Limit: limit,
 		Fields: map[string]interface{}{
 			store.SearchArticleDraft: false,
+			store.SearchArticleTitle: keyword,
+			store.SearchArticleSerieID: serieid,
 		},
 	}
 	infos := make([]*model.Article, 0)
@@ -56,7 +57,7 @@ func ArticleList(c *gin.Context, page, limit int) ([]*model.Article, int, error)
 				IsHot:         a.IsHot,
 				Cover:         a.Cover,
 				CreatedFormat: dateFormat(a.CreatedAt, "2006-01-02 03:04"), //01/02 03:04:05PM 06 -0700
-				ArticleUrl:    "https://" + conf.Conf.WiBlogApp.Host + "/post/" + a.Slug + ".html",
+				ArticleUrl:    "http://" + conf.Conf.WiBlogApp.Host + "/post/" + a.Slug + ".html",
 			}
 		}(a)
 	}
@@ -73,7 +74,5 @@ func ArticleList(c *gin.Context, page, limit int) ([]*model.Article, int, error)
 	for _, id := range ids {
 		infos = append(infos, articleList.IdMap[id])
 	}
-
-	fmt.Println(articleList.IdMap)
 	return infos, count, err
 }

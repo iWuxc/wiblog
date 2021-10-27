@@ -21,7 +21,7 @@ import (
 var (
 	NoticeSuccess = "success"
 	NoticeWarning = "warning"
-	NoticeError   = "error"
+	//NoticeError   = "error"
 )
 
 // RegisterRoutes register routes
@@ -505,8 +505,10 @@ func handleWEBArticleList(c *gin.Context) {
 
 	page, _ := strconv.Atoi(c.PostForm("page"))
 	pagesize, _ := strconv.Atoi(c.PostForm("limit"))
+	keyword := c.PostForm("keyword")
+	serieid, _ := strconv.Atoi(c.PostForm("serieid"))
 
-	articles, count, err := service.ArticleList(c, page, pagesize)
+	articles, count, err := service.ArticleList(c, page, pagesize, serieid, keyword)
 
 	var html string
 	for k, v := range articles {

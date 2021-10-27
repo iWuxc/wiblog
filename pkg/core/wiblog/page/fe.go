@@ -6,8 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 	htemplate "html/template"
 	"net/http"
+	"strings"
 	"time"
 	"wiblog/pkg/cache"
+	"wiblog/pkg/cache/render"
 	"wiblog/pkg/cache/store"
 	"wiblog/pkg/conf"
 )
@@ -71,6 +73,7 @@ func handleHomePage(c *gin.Context) {
 
 // handleArticleIndexPage 文章列表
 func handleArticleIndexPage(c *gin.Context) {
+
 	params := baseFEParams(c)
 	params["Title"] = "文章列表" + " | " + cache.Wi.Blogger.SubTitle
 	params["Description"] = "文章列表，" + cache.Wi.Blogger.SubTitle
@@ -89,23 +92,37 @@ func handleArticleIndexPage(c *gin.Context) {
 			store.SearchArticleDraft: false,
 		},
 	}
+
 	count, _ := cache.Wi.Store.LoadArticleCount(c, search)
 	params["Count"] = count
 	//总页数
 	params["PageCount"] = (count + pagesize - 1) / pagesize
 
+	//分类
+	params["Series"] = cache.Wi.Series
+
 	renderHTMLHomeLayout(c, "web-posts", params)
 }
 
+// handleArticleDetailPage 文章详情
 func handleArticleDetailPage(c *gin.Context) {
-	slug := c.Param("slug")
 	params := baseFEParams(c)
-	article, err := cache.Wi.Store.FindArticleBySlug(c, slug)
-	fmt.Println(err)
+
+	slug := c.Param("slug")
+
+	if !strings.HasSuffix(slug, ".html") {
+		renderHTMLHomeLayout(c, "404.html", params)
+		return
+	}
+
+	article, err := cache.Wi.Store.FindArticleBySlug(c, slug[:len(slug)-5])
 	if err != nil || article == nil {
 		renderHTMLHomeLayout(c, "404.html", params)
 		return
 	}
+
+	render.GenerateExcerptMarkdown(article)
+
 	params["Article"] = article
 	renderHTMLHomeLayout(c, "web-post", params)
 }

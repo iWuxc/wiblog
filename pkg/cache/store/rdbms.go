@@ -146,7 +146,9 @@ func (db *rdbms) LoadArticleList(ctx context.Context, search SearchArticles) (mo
 		case SearchArticleTitle:
 			gormDB = gormDB.Where("title LIKE ?", "%"+v.(string)+"%")
 		case SearchArticleSerieID:
-			gormDB = gormDB.Where("serie_id=?", v.(int))
+			if v.(int) > 0 {
+				gormDB = gormDB.Where("serie_id=?", v.(int))
+			}
 		case SearchArticleHot:
 			gormDB = gormDB.Where("is_hot=?", true)
 		}
