@@ -14,8 +14,8 @@ func ArticleList(c *gin.Context, page, limit, serieid int, keyword string) ([]*m
 		Page:  page,
 		Limit: limit,
 		Fields: map[string]interface{}{
-			store.SearchArticleDraft: false,
-			store.SearchArticleTitle: keyword,
+			store.SearchArticleDraft:   false,
+			store.SearchArticleTitle:   keyword,
 			store.SearchArticleSerieID: serieid,
 		},
 	}

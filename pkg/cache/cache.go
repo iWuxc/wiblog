@@ -77,7 +77,7 @@ type Cache struct {
 	Series      model.SortedSeries
 	TagArticles map[string]model.SortedArticles // tagname:articles
 	ArticlesMap map[string]*model.Article       // slug:article
-	HotArticles []*model.Article //热门文章
+	HotArticles []*model.Article                //热门文章
 }
 
 // AddArticle 添加文章
@@ -237,7 +237,7 @@ func (c *Cache) loadOrInit() error {
 
 	// hot articles
 	hotSearch := store.SearchArticles{
-		Page: 1,
+		Page:  1,
 		Limit: 3,
 		Fields: map[string]interface{}{
 			store.SearchArticleHot: true,

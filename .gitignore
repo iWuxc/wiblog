@@ -25,3 +25,6 @@ assets/*.*
 
 # go mod
 go.sum
+
+# build file
+wiblog
