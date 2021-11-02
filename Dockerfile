@@ -1,13 +1,8 @@
-FROM golang:1.17
-
-ENV GO111MODULE=on \
-    GOPROXY=https://goproxy.cn,direct \
-    GIN_MODE=release \
-    PORT=9000
+FROM alpine:latest
 
 LABEL maintainer="1272105563@qq.com"
 
-#RUN apk add --update --no-cache tzdata
+RUN apk add --update --no-cache tzdata
 
 RUN mkdir -p "/app"
 
