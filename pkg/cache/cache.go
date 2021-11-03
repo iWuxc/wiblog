@@ -238,7 +238,7 @@ func (c *Cache) loadOrInit() error {
 	// hot articles
 	hotSearch := store.SearchArticles{
 		Page:  1,
-		Limit: 3,
+		Limit: 6,
 		Fields: map[string]interface{}{
 			store.SearchArticleHot: true,
 		},
