@@ -24,7 +24,7 @@ func AuthFilter(c *gin.Context) {
 func SetLogin(c *gin.Context, username string) {
 	session := sessions.Default(c)
 	session.Set("username", username)
-	session.Save()
+	_ = session.Save()
 }
 
 // SetLogout logout user

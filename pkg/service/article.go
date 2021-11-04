@@ -9,16 +9,8 @@ import (
 	"wiblog/pkg/model"
 )
 
-func ArticleList(c *gin.Context, page, limit, serieid int, keyword string) ([]*model.Article, int, error) {
-	search := store.SearchArticles{
-		Page:  page,
-		Limit: limit,
-		Fields: map[string]interface{}{
-			store.SearchArticleDraft:   false,
-			store.SearchArticleTitle:   keyword,
-			store.SearchArticleSerieID: serieid,
-		},
-	}
+func ArticleList(c *gin.Context, search store.SearchArticles) ([]*model.Article, int, error) {
+
 	infos := make([]*model.Article, 0)
 	articles, count, err := cache.Wi.Store.LoadArticleList(c, search)
 	if err != nil {
@@ -56,6 +48,7 @@ func ArticleList(c *gin.Context, page, limit, serieid int, keyword string) ([]*m
 				IsDraft:       a.IsDraft,
 				IsHot:         a.IsHot,
 				Cover:         a.Cover,
+				Intro: 		   a.Intro,
 				CreatedFormat: dateFormat(a.CreatedAt, "2006-01-02 03:04"), //01/02 03:04:05PM 06 -0700
 				ArticleUrl:    "http://" + conf.Conf.WiBlogApp.Host + "/post/" + a.Slug + ".html",
 			}

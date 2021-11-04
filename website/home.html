@@ -132,108 +132,22 @@
                 <p class="container-lead text-muted">每个人都有一个习惯，我的习惯是在这里等你来临。</p>
             </div>
             <div class="layui-row layui-col-space30 blog-body">
+                {{range .Article}}
                 <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
                     <article class="card">
-                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">
-                            <img class="card-img-top" src="/static/front/images/img04.jpg" alt=""></a>
+                        <a href="{{.ArticleUrl}}">
+                            <img class="card-img-top" src="{{.Cover}}" alt=""></a>
                         <div class="card-body">
-                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
-                            <h4 class="card-title"><a
-                                    href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">Q-Blog
-                                v2.0改版啦</a></h4>
-                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
+                            <div class="card-subtitle mb-2 text-muted">作者：{{.Author}} &nbsp;&nbsp;{{.CreatedFormat}}</div>
+                            <h4 class="card-title"><a href="{{.ArticleUrl}}">{{.Title}}</a></h4>
+                            <p class="card-text">{{.Intro}}...</p>
                             <div class="text-right">
-                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html"
-                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                                <a href="{{.ArticleUrl}}" class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
                             </div>
                         </div>
                     </article>
                 </div>
-                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
-                    <article class="card">
-                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">
-                            <img class="card-img-top" src="/static/front/images/img03.jpg" alt=""></a>
-                        <div class="card-body">
-                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
-                            <h4 class="card-title"><a
-                                    href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">Q-Blog
-                                v2.0改版啦</a></h4>
-                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
-                            <div class="text-right">
-                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html"
-                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
-                    <article class="card">
-                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">
-                            <img class="card-img-top" src="/static/front/images/img06.jpg" alt=""></a>
-                        <div class="card-body">
-                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
-                            <h4 class="card-title"><a
-                                    href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html">Q-Blog
-                                v2.0改版啦</a></h4>
-                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
-                            <div class="text-right">
-                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/66b3cd59-3246-411d-b155-139726779477.html"
-                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
-                    <article class="card">
-                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">
-                            <img class="card-img-top" src="/static/front/images/img01.jpg" alt=""></a>
-                        <div class="card-body">
-                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
-                            <h4 class="card-title"><a
-                                    href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">Q-Blog
-                                v1.0上线啦</a></h4>
-                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
-                            <div class="text-right">
-                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html"
-                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
-                    <article class="card">
-                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">
-                            <img class="card-img-top" src="/static/front/images/img02.jpg" alt=""></a>
-                        <div class="card-body">
-                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
-                            <h4 class="card-title"><a
-                                    href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">Q-Blog
-                                v1.0上线啦</a></h4>
-                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
-                            <div class="text-right">
-                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html"
-                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="layui-col-md4 layui-col-sm6 layui-col-xs12">
-                    <article class="card">
-                        <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">
-                            <img class="card-img-top" src="/static/front/images/img05.jpg" alt=""></a>
-                        <div class="card-body">
-                            <div class="card-subtitle mb-2 text-muted">作者：Lonely &nbsp;&nbsp;2019年4月22日</div>
-                            <h4 class="card-title"><a
-                                    href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html">Q-Blog
-                                v1.0上线啦</a></h4>
-                            <p class="card-text">一直以来想自己写代码做博客搭建一个网站出来，但一直迟迟都未动手。其中原因有很多：技术不足、没时间、不想维护、懒，都是我拖延至...</p>
-                            <div class="text-right">
-                                <a href="http://www.qbl.link/Web/Home/ArticleDetails/6b71489e-1a3d-4d3b-8027-e1f21d7e5237.html"
-                                   class="card-more">阅读更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                {{end}}
             </div>
         </div>
     </div>

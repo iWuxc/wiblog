@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 	"wiblog/pkg/cache"
+	"wiblog/pkg/cache/store"
 	"wiblog/pkg/conf"
 	"wiblog/pkg/core/wiblog"
 	"wiblog/pkg/internal"
@@ -508,12 +509,22 @@ func handleWEBArticleList(c *gin.Context) {
 	keyword := c.PostForm("keyword")
 	serieid, _ := strconv.Atoi(c.PostForm("serieid"))
 
-	articles, count, err := service.ArticleList(c, page, pagesize, serieid, keyword)
+	search := store.SearchArticles{
+		Page:  page,
+		Limit: pagesize,
+		Fields: map[string]interface{}{
+			store.SearchArticleDraft:   false,
+			store.SearchArticleTitle:   keyword,
+			store.SearchArticleSerieID: serieid,
+		},
+	}
+
+	articles, count, err := service.ArticleList(c, search)
 
 	var html string
 	for k, v := range articles {
 		html += fmt.Sprintf(articleHtml(), v.ArticleUrl, v.Cover,
-			v.ArticleUrl, v.Title, v.Content,
+			v.ArticleUrl, v.Title, v.Intro,
 			v.ArticleUrl, strings.Join(v.Tags, " "), v.ArticleUrl, v.ArticleUrl, k+1)
 	}
 
