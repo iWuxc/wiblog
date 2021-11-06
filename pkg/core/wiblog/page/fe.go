@@ -75,8 +75,6 @@ func handleArticleIndexPage(c *gin.Context) {
 	params := baseFEParams(c)
 	params["Title"] = "文章列表" + " | " + cache.Wi.Blogger.SubTitle
 	params["Description"] = "文章列表，" + cache.Wi.Blogger.SubTitle
-	//params["Domain"] = conf.Conf.WiBlogApp.Host
-	params["Domain"] = "http://127.0.0.1:9000"
 	params["CurrentPage"] = "web-posts"
 
 	//文章设置属性
@@ -105,6 +103,10 @@ func handleArticleIndexPage(c *gin.Context) {
 // handleArticleDetailPage 文章详情
 func handleArticleDetailPage(c *gin.Context) {
 	params := baseFEParams(c)
+
+	params["Title"] = "文章详情" + " | " + cache.Wi.Blogger.SubTitle
+	params["Description"] = "文章详情，" + cache.Wi.Blogger.SubTitle
+	params["CurrentPage"] = "web-posts"
 
 	slug := c.Param("slug")
 
