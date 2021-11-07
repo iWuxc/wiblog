@@ -37,6 +37,7 @@ func (db *rdbms) Init(name, source string) (Store, error) {
 		&model.Blogger{},
 		&model.Article{},
 		&model.Serie{},
+		&model.Comment{},
 	)
 
 	db.DB = gormDB

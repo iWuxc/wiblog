@@ -9,7 +9,7 @@
     height: 100%;
     color: #FFFFFF;
     position: relative;
-    background-image: url("../images/bgImage.jpeg");
+    background-image: url("../images/bgImage.jpg");
     background-position: center center;
     background-attachment: fixed;
 }
