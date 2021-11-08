@@ -45,5 +45,6 @@ services:
       - wiblog
     volumes:
       - "/app/services/nginx/conf.d:/etc/nginx/conf.d/:rw"
+      - "/app/services/nginx/ssl:/etc/nginx/ssl/:ro"
       - "/app/services/nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
       - "/app/logs/nginx:/var/log/nginx/:rw"
