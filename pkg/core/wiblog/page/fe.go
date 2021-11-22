@@ -127,6 +127,12 @@ func handleArticleDetailPage(c *gin.Context) {
 	renderHTMLHomeLayout(c, "web-post", params)
 }
 
+// handleCommentCreate 添加评论
+func handleCommentCreate(c *gin.Context) {
+	c.PostForm("content")
+	c.PostForm("art")
+}
+
 // renderHTMLHomeLayout homelayout html
 func renderHTMLHomeLayout(c *gin.Context, name string, data gin.H) {
 	c.Header("Content-Type", "text/html; charset=utf-8")

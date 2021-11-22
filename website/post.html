@@ -4,6 +4,7 @@
 
     <link href="/static/front/css/comment.css" rel="stylesheet"/>
     <link href="/static/front/css/ArticleDetails.css" rel="stylesheet"/>
+<!--    <script src="/static/front/js/editor-box.js"></script>-->
     <!-- 代码高亮 -->
     <link href="/static/front/Eextend/highlight/styles/monokai-sublime.css" rel="stylesheet"/>
     <script src="/static/front/Eextend/highlight/highlight.pack.js"></script>
@@ -55,209 +56,207 @@
                 </p>
             </div>
         </div>
-<!--        <div class="card comment">-->
-<!--            <span id="am_comment" class="target-fix">暗锚,解决锚点偏移</span>-->
-<!--            <h2 class="side-title">文章评论</h2>-->
-<!--            <form class="layui-form blog-editor" lay-filter="formComment">-->
-<!--                <div class="layui-form-item">-->
-<!--                    <textarea name="content" id="demo-1" placeholder="请输入内容"-->
-<!--                              class="layui-textarea layui-hide"></textarea>-->
-<!--                </div>-->
-<!--                <div class="layui-form-item">-->
-<!--                    <button type="button" class="layui-btn" lay-submit lay-filter="formComment">提交留言</button>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--            &lt;!&ndash; 评论列表 &ndash;&gt;-->
-<!--            <ul class="blog-comment">-->
-<!--                <li>-->
-<!--                    <div class="comment-parent">-->
-<!--                        <a href="http://www.qbl.link"><img src="images/nan.png" alt=""/></a>-->
-<!--                        <div class="info">-->
-<!--                            <span class="username"><a href="http://www.qbl.link">Lonely</a></span>-->
-<!--                            <span class="layui-badge layui-bg-orange">博主</span>-->
-<!--                        </div>-->
-<!--                        <div class="content comment-text">-->
-<!--                            Hello World!-->
-<!--                        </div>-->
-<!--                        <p class="info info-footer">-->
-<!--								<span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-location"></i>西虹市 移通-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0-->
-<!--								</span>-->
-<!--                            <a class="btn-reply" href="javascript:;">回复</a>-->
-<!--                        </p>-->
-<!--                        <div class="replycontainer layui-hide">-->
-<!--                            <form class="layui-form blog-editor" lay-filter="formReply">-->
-<!--                                <textarea name="content" id="demo-2" placeholder="请输入内容"-->
-<!--                                          class="layui-textarea layui-hide"></textarea>-->
-<!--                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">-->
-<!--                                    提交-->
-<!--                                </button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <hr/>-->
-<!--                    <div class="comment-child">-->
-<!--                        <a href="http://www.qbl.link"><img src="images/nv.png" alt=""/></a>-->
-<!--                        <div class="info">-->
-<!--                            <span class="username"><a href="http://www.qbl.link">王多鱼</a></span>-->
-<!--                            <span>回复<a href="http://www.qbl.link" class="to-username">@Lonely</a>：</span>-->
-<!--                            <span class="comment-text">不装了摊牌了，这个项目我投了</span>-->
-<!--                        </div>-->
-<!--                        <p class="info">-->
-<!--								<span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-location"></i>西虹市 移通-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0-->
-<!--								</span>-->
-<!--                            <a class="btn-reply" href="javascript:;">回复</a>-->
-<!--                        </p>-->
-<!--                        <div class="replycontainer layui-hide">-->
-<!--                            <form class="layui-form blog-editor" lay-filter="formReply">-->
-<!--                                <textarea name="content" id="demo-3" placeholder="请输入内容"-->
-<!--                                          class="layui-textarea layui-hide"></textarea>-->
-<!--                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">-->
-<!--                                    提交-->
-<!--                                </button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="comment-child">-->
-<!--                        <a href="http://www.qbl.link"><img src="images/nan.png" alt=""/></a>-->
-<!--                        <div class="info">-->
-<!--                            <span class="username"><a href="http://www.qbl.link">Lonely</a></span>-->
-<!--                            <span class="layui-badge layui-bg-orange">博主</span>-->
-<!--                            <span>回复<a href="http://www.qbl.link" class="to-username">@王多鱼</a>：</span>-->
-<!--                            <span class="comment-text">谢谢王总</span>-->
-<!--                        </div>-->
-<!--                        <p class="info">-->
-<!--								<span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-location"></i>西虹市 移通-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0-->
-<!--								</span>-->
-<!--                            <a class="btn-reply" href="javascript:;">回复</a>-->
-<!--                        </p>-->
-<!--                        <div class="replycontainer layui-hide">-->
-<!--                            <form class="layui-form blog-editor" lay-filter="formReply">-->
-<!--                                <textarea name="content" id="demo-4" placeholder="请输入内容"-->
-<!--                                          class="layui-textarea layui-hide"></textarea>-->
-<!--                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">-->
-<!--                                    提交-->
-<!--                                </button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
+        <div class="card comment">
+            <span id="am_comment" class="target-fix">暗锚,解决锚点偏移</span>
+            <h2 class="side-title">文章评论</h2>
+            <form class="layui-form blog-editor" lay-filter="formComment">
+                <div class="layui-form-item">
+                    <textarea name="content" id="demo-1" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
+                </div>
+                <div class="layui-form-item">
+                    <button type="button" class="layui-btn" lay-submit lay-filter="formComment">提交留言</button>
+                </div>
+            </form>
+            评论列表
+            <ul class="blog-comment">
+                <li>
+                    <div class="comment-parent">
+                        <a href="http://www.qbl.link"><img src="images/nan.png" alt=""/></a>
+                        <div class="info">
+                            <span class="username"><a href="http://www.qbl.link">Lonely</a></span>
+                            <span class="layui-badge layui-bg-orange">博主</span>
+                        </div>
+                        <div class="content comment-text">
+                            Hello World!
+                        </div>
+                        <p class="info info-footer">
+								<span class="aux-word">
+									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-icon-location"></i>西虹市 移通
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0
+								</span>
+                            <a class="btn-reply" href="javascript:;">回复</a>
+                        </p>
+                        <div class="replycontainer layui-hide">
+                            <form class="layui-form blog-editor" lay-filter="formReply">
+                                <textarea name="content" id="demo-2" placeholder="请输入内容"
+                                          class="layui-textarea layui-hide"></textarea>
+                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">
+                                    提交
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="comment-child">
+                        <a href="http://www.qbl.link"><img src="images/nv.png" alt=""/></a>
+                        <div class="info">
+                            <span class="username"><a href="http://www.qbl.link">王多鱼</a></span>
+                            <span>回复<a href="http://www.qbl.link" class="to-username">@Lonely</a>：</span>
+                            <span class="comment-text">不装了摊牌了，这个项目我投了</span>
+                        </div>
+                        <p class="info">
+								<span class="aux-word">
+									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-icon-location"></i>西虹市 移通
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0
+								</span>
+                            <a class="btn-reply" href="javascript:;">回复</a>
+                        </p>
+                        <div class="replycontainer layui-hide">
+                            <form class="layui-form blog-editor" lay-filter="formReply">
+                                <textarea name="content" id="demo-3" placeholder="请输入内容"
+                                          class="layui-textarea layui-hide"></textarea>
+                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">
+                                    提交
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="comment-child">
+                        <a href="http://www.qbl.link"><img src="images/nan.png" alt=""/></a>
+                        <div class="info">
+                            <span class="username"><a href="http://www.qbl.link">Lonely</a></span>
+                            <span class="layui-badge layui-bg-orange">博主</span>
+                            <span>回复<a href="http://www.qbl.link" class="to-username">@王多鱼</a>：</span>
+                            <span class="comment-text">谢谢王总</span>
+                        </div>
+                        <p class="info">
+								<span class="aux-word">
+									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-icon-location"></i>西虹市 移通
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0
+								</span>
+                            <a class="btn-reply" href="javascript:;">回复</a>
+                        </p>
+                        <div class="replycontainer layui-hide">
+                            <form class="layui-form blog-editor" lay-filter="formReply">
+                                <textarea name="content" id="demo-4" placeholder="请输入内容"
+                                          class="layui-textarea layui-hide"></textarea>
+                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">
+                                    提交
+                                </button>
+                            </form>
+                        </div>
+                    </div>
 
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <div class="comment-parent">-->
-<!--                        <a href="http://www.qbl.link"><img src="images/img02.jpg" alt=""/></a>-->
-<!--                        <div class="info">-->
-<!--                            <span class="username"><a href="http://www.qbl.link">王思聪</a></span>-->
-<!--                        </div>-->
-<!--                        <div class="content comment-text">-->
-<!--                            我出十个亿，这个项目我投了，明天过来签合同-->
-<!--                        </div>-->
-<!--                        <p class="info info-footer">-->
-<!--								<span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-location"></i>西虹市 移通-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0-->
-<!--								</span>-->
-<!--                            <a class="btn-reply" href="javascript:;">回复</a>-->
-<!--                        </p>-->
-<!--                        <div class="replycontainer layui-hide">-->
-<!--                            <form class="layui-form blog-editor" lay-filter="formReply">-->
-<!--                                <textarea name="content" id="demo-5" placeholder="请输入内容"-->
-<!--                                          class="layui-textarea layui-hide"></textarea>-->
-<!--                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">-->
-<!--                                    提交-->
-<!--                                </button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <hr/>-->
-<!--                    <div class="comment-child">-->
-<!--                        <a href="http://www.qbl.link"><img src="images/nan.png" alt=""/></a>-->
-<!--                        <div class="info">-->
-<!--                            <span class="username"><a href="http://www.qbl.link">Lonely</a></span>-->
-<!--                            <span class="layui-badge layui-bg-orange">博主</span>-->
-<!--                            <span>回复<a href="http://www.qbl.link" class="to-username">@王思聪</a>：</span>-->
-<!--                            <span class="comment-text">王总，什么钱不钱的不是问题，主要就是我比较喜欢跟您合作</span>-->
-<!--                        </div>-->
-<!--                        <p class="info">-->
-<!--								<span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-location"></i>西虹市 移通-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0-->
-<!--								</span>-->
-<!--                            <a class="btn-reply" href="javascript:;">回复</a>-->
-<!--                        </p>-->
-<!--                        <div class="replycontainer layui-hide">-->
-<!--                            <form class="layui-form blog-editor" lay-filter="formReply">-->
-<!--                                <textarea name="content" id="demo-6" placeholder="请输入内容"-->
-<!--                                          class="layui-textarea layui-hide"></textarea>-->
-<!--                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">-->
-<!--                                    提交-->
-<!--                                </button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="comment-child">-->
-<!--                        <a href="http://www.qbl.link"><img src="images/nv.png" alt=""/></a>-->
-<!--                        <div class="info">-->
-<!--                            <span class="username"><a href="http://www.qbl.link">王多鱼</a></span>-->
-<!--                            <span>回复<a href="http://www.qbl.link" class="to-username">@王思聪</a>：</span>-->
-<!--                            <span class="comment-text">小样，跟我王多鱼争项目是不？</span>-->
-<!--                        </div>-->
-<!--                        <p class="info">-->
-<!--								<span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-icon-location"></i>西虹市 移通-->
-<!--								</span>-->
-<!--                            <span class="aux-word">-->
-<!--									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0-->
-<!--								</span>-->
-<!--                            <a class="btn-reply" href="javascript:;">回复</a>-->
-<!--                        </p>-->
-<!--                        <div class="replycontainer layui-hide">-->
-<!--                            <form class="layui-form blog-editor" lay-filter="formReply">-->
-<!--                                <textarea name="content" id="demo-7" placeholder="请输入内容"-->
-<!--                                          class="layui-textarea layui-hide"></textarea>-->
-<!--                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">-->
-<!--                                    提交-->
-<!--                                </button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <div id="page"></div>-->
-<!--        </div>-->
+                </li>
+                <li>
+                    <div class="comment-parent">
+                        <a href="http://www.qbl.link"><img src="images/img02.jpg" alt=""/></a>
+                        <div class="info">
+                            <span class="username"><a href="http://www.qbl.link">王思聪</a></span>
+                        </div>
+                        <div class="content comment-text">
+                            我出十个亿，这个项目我投了，明天过来签合同
+                        </div>
+                        <p class="info info-footer">
+								<span class="aux-word">
+									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-icon-location"></i>西虹市 移通
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0
+								</span>
+                            <a class="btn-reply" href="javascript:;">回复</a>
+                        </p>
+                        <div class="replycontainer layui-hide">
+                            <form class="layui-form blog-editor" lay-filter="formReply">
+                                <textarea name="content" id="demo-5" placeholder="请输入内容"
+                                          class="layui-textarea layui-hide"></textarea>
+                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">
+                                    提交
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="comment-child">
+                        <a href="http://www.qbl.link"><img src="images/nan.png" alt=""/></a>
+                        <div class="info">
+                            <span class="username"><a href="http://www.qbl.link">Lonely</a></span>
+                            <span class="layui-badge layui-bg-orange">博主</span>
+                            <span>回复<a href="http://www.qbl.link" class="to-username">@王思聪</a>：</span>
+                            <span class="comment-text">王总，什么钱不钱的不是问题，主要就是我比较喜欢跟您合作</span>
+                        </div>
+                        <p class="info">
+								<span class="aux-word">
+									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-icon-location"></i>西虹市 移通
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0
+								</span>
+                            <a class="btn-reply" href="javascript:;">回复</a>
+                        </p>
+                        <div class="replycontainer layui-hide">
+                            <form class="layui-form blog-editor" lay-filter="formReply">
+                                <textarea name="content" id="demo-6" placeholder="请输入内容"
+                                          class="layui-textarea layui-hide"></textarea>
+                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">
+                                    提交
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="comment-child">
+                        <a href="http://www.qbl.link"><img src="images/nv.png" alt=""/></a>
+                        <div class="info">
+                            <span class="username"><a href="http://www.qbl.link">王多鱼</a></span>
+                            <span>回复<a href="http://www.qbl.link" class="to-username">@王思聪</a>：</span>
+                            <span class="comment-text">小样，跟我王多鱼争项目是不？</span>
+                        </div>
+                        <p class="info">
+								<span class="aux-word">
+									<i class="layui-icon layui-icon-log"></i>2019-07-27 17:44:21
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-icon-location"></i>西虹市 移通
+								</span>
+                            <span class="aux-word">
+									<i class="layui-icon layui-extend-liulanqi"></i>Chrome 75.0
+								</span>
+                            <a class="btn-reply" href="javascript:;">回复</a>
+                        </p>
+                        <div class="replycontainer layui-hide">
+                            <form class="layui-form blog-editor" lay-filter="formReply">
+                                <textarea name="content" id="demo-7" placeholder="请输入内容" class="layui-textarea layui-hide"></textarea>
+                                <button type="button" class="layui-btn layui-btn-sm" lay-submit lay-filter="formReply">
+                                    提交
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div id="page"></div>
+        </div>
     </div>
 
     <script src="/static/front/js/ArticleDetails.js"></script>

@@ -33,6 +33,8 @@ func RegisterRoutes(e *gin.Engine) {
 	e.GET("/posts", handleArticleIndexPage)
 	e.GET("/post/:slug", handleArticleDetailPage)
 
+	e.POST("/comment", handleCommentCreate)
+
 	//login page
 	e.GET("/admin/login", handleLoginPage)
 

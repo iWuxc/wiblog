@@ -38,6 +38,7 @@ func (db *rdbms) Init(name, source string) (Store, error) {
 		&model.Article{},
 		&model.Serie{},
 		&model.Comment{},
+		&model.User{},
 	)
 
 	db.DB = gormDB
@@ -204,4 +205,9 @@ func (db *rdbms) LoadArticleCount(ctx context.Context, search SearchArticles) (i
 		return 0, err
 	}
 	return int(count), nil
+}
+
+// InsertComment 添加评论
+func (db *rdbms) InsertComment(ctx context.Context, comment *model.Comment) error {
+	return db.Model(&model.Comment{}).Create(comment).Error
 }

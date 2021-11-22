@@ -152,7 +152,7 @@ func (c *Cache) loadOrInit() error {
 		SubTitle:  "Rome was not built in one day.",
 		BeiAn:     "蜀ICP备xxxxxxxx号-1",
 		BTitle:    fmt.Sprintf("%s's Blog", strings.Title(blogapp.Account.Username)),
-		Copyright: `本站使用「<a href="//creativecommons.org/licenses/by/4.0/">署名 4.0 国际</a>」创作共享协议，转载请注明作者及原网址。`,
+		Copyright: `本站使用「<a href="//creativecommons.org/licenses/by/4.0/">署名 4.0 国际</a>」创作共享协议，转载请注明作者及原网址。Powered by <a target="_blank" rel="nofollow noopener" class="external" href="https://www.qbl.link">Q-Blog</a>`,
 	}
 
 	created, err := c.Store.LoadInsertBlogger(context.Background(), blogger)
