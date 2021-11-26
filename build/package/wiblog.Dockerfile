@@ -9,10 +9,10 @@ RUN mkdir -p "/app"
 
 RUN echo $(pwd)
 
-COPY bin/wiblog /app/wiblog
 COPY conf /app/conf
 COPY website /app/website
 COPY assets /app/assets
+COPY bin/wiblog /app/wiblog
 
 EXPOSE 9000
 
