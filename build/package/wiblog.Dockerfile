@@ -2,7 +2,8 @@ FROM alpine:latest
 
 LABEL maintainer="1272105563@qq.com"
 
-RUN apk add --update --no-cache tzdata
+RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories \
+    && apk add --update --no-cache tzdata
 
 RUN mkdir -p "/app"
 
