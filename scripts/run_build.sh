@@ -20,7 +20,7 @@ mkdir -p ./bin
 # build demo app
 for file in pkg/core/*; do
   app="$(basename $file)";
-  CGO_ENABLED=0 go build -tags prod -o bin/"$app" "./cmd/$app"
+  CGO_ENABLED=0 go build -tags prod -o ./bin/wiblog "./cmd/$app"
   # docker image
   docker buildx build --platform "$_platform" \
     -f "build/package/$app.Dockerfile" \
@@ -30,4 +30,4 @@ for file in pkg/core/*; do
 done
 
 # clean dir bin
-rm -rf ./bin
+#rm -rf ./bin
