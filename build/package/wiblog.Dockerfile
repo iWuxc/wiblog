@@ -7,8 +7,6 @@ RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories
 
 RUN mkdir -p "/app"
 
-RUN echo $(pwd)
-
 COPY conf /app/conf
 COPY website /app/website
 COPY assets /app/assets
