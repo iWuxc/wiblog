@@ -1,4 +1,4 @@
-name: WibligCi
+name: release image & asset
 
 on:
   push:
@@ -7,31 +7,21 @@ on:
 
 jobs:
   wibligci:
-    name: Test with go ${{ matrix.go_version }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    runs-on: self-hosted
     environment: wiblog
-
-    strategy:
-      matrix:
-        go_version: [ 1.17 ]
-        os: [ ubuntu-latest ]
-
     steps:
-      - name: Set up Go ${{ matrix.go_version }}
+      - name: Golang env
         uses: actions/setup-go@v2
         with:
-          go-version: ${{ matrix.go_version }}
-        id: ver-go
+          go-version: ^1.17
 
-      - name: Checkout code into go module directory
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Cache mod
-        uses: actions/cache@v2
+        uses: actions/cache@v1
         with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
+          path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
@@ -41,18 +31,10 @@ jobs:
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
 
       - name: Set up QEMU
-        id: qemu
         uses: docker/setup-qemu-action@v1
-        with:
-          image: tonistiigi/binfmt:latest
-          platforms: all
-      - name: Available platforms
-        run: echo ${{ steps.qemu.outputs.platforms }}
 
       - name: Docker Buildx
         uses: docker/setup-buildx-action@v1
-      - name: Available platforms
-        run: echo ${{ steps.buildx.outputs.platforms }}
 
       - name: Docker login
         uses: docker/login-action@v1
@@ -64,4 +46,3 @@ jobs:
         env:
           GOPROXY: https://goproxy.io,direct
         run: scripts/run_build.sh iwuxc ${{ steps.vars.outputs.tag }}
-
