@@ -30,4 +30,4 @@ for file in pkg/core/*; do
 done
 
 # clean dir bin
-#rm -rf ./bin
+rm -rf ./bin
