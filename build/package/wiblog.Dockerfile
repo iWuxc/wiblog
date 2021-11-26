@@ -9,7 +9,7 @@ RUN mkdir -p "/app"
 
 RUN echo $(pwd)
 
-COPY wiblog /app/wiblog
+COPY ../../wiblog /app/wiblog
 COPY ../../conf /app/conf
 COPY ../../website /app/website
 COPY ../../assets /app/assets
