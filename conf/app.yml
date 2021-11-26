@@ -1,7 +1,7 @@
 appname: wiblog
 database:
   driver: mysql
-  source: root:123456@tcp(127.0.0.1:3306)/wiblog?charset=utf8mb4&parseTime=True&loc=Local
+  source: root:123456@tcp(127.0.0.1:3305)/wiblog?charset=utf8mb4&parseTime=True&loc=Local
 eshost:
 wiblogapp:
   mode:
